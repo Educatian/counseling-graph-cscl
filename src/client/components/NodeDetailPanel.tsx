@@ -13,16 +13,60 @@ const DOMAIN_COLOR: Record<string, string> = {
   clinical: "var(--clinical)",
   shared: "var(--shared)"
 };
-const DOMAIN_LABEL: Record<string, string> = {
-  counseling: "상담심리",
-  clinical: "임상심리",
-  shared: "공통 허브"
+const DOMAIN_LABEL: Record<"ko" | "en", Record<string, string>> = {
+  ko: { counseling: "상담심리", clinical: "임상심리", shared: "공통 허브" },
+  en: { counseling: "Counseling", clinical: "Clinical", shared: "Bridge hub" }
 };
 
 const TABS = ["Overview", "Discussion", "Cases", "Quiz", "Notes"] as const;
 
+const NDP_STR = {
+  ko: {
+    overviewEmpty: "이 노드의 설명은 아직 비어있습니다. (세부 개념 노드의 description은 Phase A-2에서 충전 예정)",
+    quizPlaceholder: "Phase C에서 퀴즈 항목을 노드에 연결합니다.",
+    rubricIntro: (<>이 노드에 사례를 붙이면 <b>C3 연구</b> — 사례 배치 위치가 사례개념화 품질을 예측 — 의 원자료가 됩니다.</>),
+    rubricFields: { summary: "한 줄 요약", precipitating: "촉발 요인", perpetuating: "유지 요인", protective: "보호 요인", cultural: "문화·맥락" },
+    attach: "사례 첨부",
+    clear: "초기화",
+    saved: "저장됨",
+    notesIntro: (<>이 노드에 대한 사적 메모. 로컬에만 저장되며 나중에 <b>C4</b> — 개인↔전문가 그래프 정합도 — 분석에 활용됩니다.</>),
+    notesPlaceholder: "이 개념을 나의 언어로 다시 쓰기 / 궁금한 점 / 사례 연결 아이디어…",
+    save: "저장",
+    discussionIntro: (<><b>인식론적 행위(Q/C/E)</b> 태그를 붙여 토론하면 <b>S6</b> 담론 네트워크 분석의 코딩 데이터가 됩니다.</>),
+    emptyThread: "아직 코멘트 없음. 첫 질문/주장/근거를 남겨보세요.",
+    postPlaceholder: "질문·주장·근거를 남기세요 (⌘/Ctrl+Enter로 게시)",
+    post: "게시",
+    contrastCo: "상담",
+    contrastCl: "임상"
+  },
+  en: {
+    overviewEmpty: "This node has no description yet. (Detailed concept descriptions will be filled in Phase A-2.)",
+    quizPlaceholder: "Quiz items will be linked to nodes in Phase C.",
+    rubricIntro: (<>Anchoring a case here feeds the raw data for <b>Study C3</b> — where a case is attached predicts conceptualization quality.</>),
+    rubricFields: { summary: "one-line summary", precipitating: "precipitating factors", perpetuating: "perpetuating factors", protective: "protective factors", cultural: "cultural / contextual" },
+    attach: "Attach case",
+    clear: "Clear",
+    saved: "saved",
+    notesIntro: (<>Private notes for this node. Stored locally; later used in <b>Study C4</b> — personal ↔ expert graph alignment.</>),
+    notesPlaceholder: "Re-state the concept in your own words / questions / case-linking ideas…",
+    save: "Save",
+    discussionIntro: (<>Tag posts with <b>epistemic moves (Q/C/E)</b> — they become coded data for <b>Study S6</b> discourse network analysis.</>),
+    emptyThread: "No comments yet. Leave the first question / claim / evidence.",
+    postPlaceholder: "Leave a question, claim, or evidence (⌘/Ctrl+Enter to post)",
+    post: "Post",
+    contrastCo: "Counseling",
+    contrastCl: "Clinical"
+  }
+} as const;
+
+const MOVE_HINTS: Record<"ko" | "en", Record<"question" | "claim" | "evidence", string>> = {
+  ko: { question: "질문", claim: "주장", evidence: "근거" },
+  en: { question: "Question", claim: "Claim", evidence: "Evidence" }
+};
+
 export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
   const [tab, setTab] = useState<(typeof TABS)[number]>("Overview");
+  const t = NDP_STR[lang];
   if (!node) return null;
 
   const isSharedHub = node.domain === "shared" && !!node.description;
@@ -36,7 +80,7 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
               width: 10, height: 10, borderRadius: 50, flex: "none",
               background: DOMAIN_COLOR[node.domain], boxShadow: "0 0 0 2px rgba(255,255,255,0.7)"
             }} />
-            <span className="caption">{DOMAIN_LABEL[node.domain]} · {node.level}</span>
+            <span className="caption">{DOMAIN_LABEL[lang][node.domain] ?? node.domain} · {node.level}</span>
           </div>
           <h2>{lang === "en" && node.labelEn ? node.labelEn : node.labelKo}</h2>
           {lang === "en"
@@ -55,26 +99,26 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
       {tab === "Overview" && (
         <>
           {isSharedHub ? (
-            <SharedContrast desc={node.description!} />
+            <SharedContrast desc={node.description!} lang={lang} />
           ) : node.description ? (
             <div className="body" style={{ marginTop: 12 }}>
               {node.description}
             </div>
           ) : (
             <div className="body" style={{ marginTop: 12, color: "var(--text-tertiary)" }}>
-              이 노드의 설명은 아직 비어있습니다. (세부 개념 노드의 description은 Phase A-2에서 충전 예정)
+              {t.overviewEmpty}
             </div>
           )}
         </>
       )}
-      {tab === "Discussion" && <DiscussionThread nodeId={node.id} />}
-      {tab === "Cases" && <CaseRubric nodeId={node.id} />}
+      {tab === "Discussion" && <DiscussionThread nodeId={node.id} lang={lang} />}
+      {tab === "Cases" && <CaseRubric nodeId={node.id} lang={lang} />}
       {tab === "Quiz" && (
         <div className="body" style={{ marginTop: 12 }}>
-          Phase C에서 퀴즈 항목을 노드에 연결합니다.
+          {t.quizPlaceholder}
         </div>
       )}
-      {tab === "Notes" && <PersonalNotes nodeId={node.id} />}
+      {tab === "Notes" && <PersonalNotes nodeId={node.id} lang={lang} />}
 
       <div style={{
         marginTop: 16, paddingTop: 10, borderTop: "1px solid var(--border-soft)",
@@ -87,14 +131,14 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
 }
 
 /** §3-1 대조 설명을 "상담 ↔ 임상" 2열 카드로 분리 표시 */
-function SharedContrast({ desc }: { desc: string }) {
+function SharedContrast({ desc, lang }: { desc: string; lang: "ko" | "en" }) {
   const match = desc.match(/상담:\s*(.+?)\s*↔\s*임상:\s*(.+)/);
   if (!match) return <div className="body" style={{ marginTop: 12 }}>{desc}</div>;
   const [, coText, clText] = match;
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 12 }}>
-      <ContrastCard color="var(--counseling)" label="상담" text={coText} />
-      <ContrastCard color="var(--clinical)"   label="임상" text={clText} />
+      <ContrastCard color="var(--counseling)" label={NDP_STR[lang].contrastCo} text={coText} />
+      <ContrastCard color="var(--clinical)"   label={NDP_STR[lang].contrastCl} text={clText} />
     </div>
   );
 }
@@ -112,7 +156,8 @@ const EMPTY: Rubric = {
   summary: "", precipitating: "", perpetuating: "", protective: "", cultural: "", updatedAt: 0
 };
 
-function CaseRubric({ nodeId }: { nodeId: string }) {
+function CaseRubric({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) {
+  const t = NDP_STR[lang];
   const key = `case:${nodeId}`;
   const [r, setR] = useState<Rubric>(() => {
     try { return JSON.parse(localStorage.getItem(key) || "null") || EMPTY; } catch { return EMPTY; }
@@ -159,22 +204,22 @@ function CaseRubric({ nodeId }: { nodeId: string }) {
   return (
     <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
       <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5 }}>
-        이 노드에 사례를 붙이면 <b>C3 연구</b> — 사례 배치 위치가 사례개념화 품질을 예측 — 의 원자료가 됩니다.
+        {t.rubricIntro}
       </div>
-      {field("Summary", "한 줄 요약", "summary", 2)}
-      {field("Precipitating", "촉발 요인", "precipitating", 2)}
-      {field("Perpetuating", "유지 요인", "perpetuating", 2)}
-      {field("Protective", "보호 요인", "protective", 2)}
-      {field("Cultural", "문화·맥락", "cultural", 2)}
+      {field("Summary", t.rubricFields.summary, "summary", 2)}
+      {field("Precipitating", t.rubricFields.precipitating, "precipitating", 2)}
+      {field("Perpetuating", t.rubricFields.perpetuating, "perpetuating", 2)}
+      {field("Protective", t.rubricFields.protective, "protective", 2)}
+      {field("Cultural", t.rubricFields.cultural, "cultural", 2)}
       <div style={{ display: "flex", gap: 6, marginTop: 2 }}>
-        <button className="segment active" onClick={save} style={{ flex: 1, fontWeight: 600 }}>Attach case</button>
+        <button className="segment active" onClick={save} style={{ flex: 1, fontWeight: 600 }}>{t.attach}</button>
         {r.updatedAt ? (
-          <button className="segment" onClick={clear} style={{ fontSize: 11 }}>Clear</button>
+          <button className="segment" onClick={clear} style={{ fontSize: 11 }}>{t.clear}</button>
         ) : null}
       </div>
       {r.updatedAt ? (
         <div style={{ fontSize: 10, color: "var(--text-tertiary)", fontFamily: "var(--font-mono)" }}>
-          saved {new Date(r.updatedAt).toLocaleString()}
+          {t.saved} {new Date(r.updatedAt).toLocaleString()}
         </div>
       ) : null}
     </div>
@@ -182,7 +227,8 @@ function CaseRubric({ nodeId }: { nodeId: string }) {
 }
 
 /** Personal notes — B10. Quick markdown-free textarea, localStorage per node. */
-function PersonalNotes({ nodeId }: { nodeId: string }) {
+function PersonalNotes({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) {
+  const t = NDP_STR[lang];
   const key = `note:${nodeId}`;
   const [text, setText] = useState<string>(() => {
     try { return localStorage.getItem(key) ?? ""; } catch { return ""; }
@@ -210,13 +256,13 @@ function PersonalNotes({ nodeId }: { nodeId: string }) {
   return (
     <div style={{ marginTop: 12, display: "grid", gap: 8 }}>
       <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5 }}>
-        이 노드에 대한 사적 메모. 로컬에만 저장되며 나중에 <b>C4</b> — 개인↔전문가 그래프 정합도 — 분석에 활용됩니다.
+        {t.notesIntro}
       </div>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={6}
-        placeholder="이 개념을 나의 언어로 다시 쓰기 / 궁금한 점 / 사례 연결 아이디어…"
+        placeholder={t.notesPlaceholder}
         style={{
           resize: "vertical", minHeight: 96, padding: "8px 10px",
           fontSize: 12.5, lineHeight: 1.55, fontFamily: "inherit",
@@ -225,10 +271,10 @@ function PersonalNotes({ nodeId }: { nodeId: string }) {
         }}
       />
       <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <button className="segment active" onClick={save} style={{ fontWeight: 600 }}>Save</button>
+        <button className="segment active" onClick={save} style={{ fontWeight: 600 }}>{t.save}</button>
         {savedAt ? (
           <span style={{ fontSize: 10, color: "var(--text-tertiary)", fontFamily: "var(--font-mono)" }}>
-            saved {new Date(savedAt).toLocaleString()}
+            {t.saved} {new Date(savedAt).toLocaleString()}
           </span>
         ) : null}
       </div>
@@ -240,13 +286,15 @@ function PersonalNotes({ nodeId }: { nodeId: string }) {
 type Move = "question" | "claim" | "evidence" | null;
 interface Post { id: string; text: string; tag: Move; ts: number; }
 
-const MOVE_META: Record<Exclude<Move, null>, { label: string; color: string; hint: string }> = {
-  question: { label: "Q", color: "#6366f1", hint: "질문" },
-  claim:    { label: "C", color: "#10b981", hint: "주장" },
-  evidence: { label: "E", color: "#f59e0b", hint: "근거" }
+const MOVE_META: Record<Exclude<Move, null>, { label: string; color: string }> = {
+  question: { label: "Q", color: "#6366f1" },
+  claim:    { label: "C", color: "#10b981" },
+  evidence: { label: "E", color: "#f59e0b" }
 };
 
-function DiscussionThread({ nodeId }: { nodeId: string }) {
+function DiscussionThread({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) {
+  const t = NDP_STR[lang];
+  const hints = MOVE_HINTS[lang];
   const key = `thread:${nodeId}`;
   const [posts, setPosts] = useState<Post[]>(() => {
     try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch { return []; }
@@ -278,7 +326,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
   return (
     <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
       <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5 }}>
-        <b>Epistemic move</b> 태그를 붙여 토론하면 나중에 <b>S6</b> — 담론 네트워크 분석 — 의 코딩 데이터가 됩니다.
+        {t.discussionIntro}
       </div>
 
       <div style={{
@@ -300,7 +348,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
                   <span style={{
                     padding: "1px 6px", borderRadius: 3, fontWeight: 700,
                     background: m.color, color: "#fff", letterSpacing: "0.04em"
-                  }}>{m.label} · {m.hint}</span>
+                  }}>{m.label} · {hints[p.tag as Exclude<Move, null>]}</span>
                 ) : (
                   <span style={{ color: "var(--text-tertiary)" }}>·</span>
                 )}
@@ -321,7 +369,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
         })}
         {posts.length === 0 ? (
           <div style={{ fontSize: 11, color: "var(--text-tertiary)", padding: "6px 2px" }}>
-            아직 코멘트 없음. 첫 질문/주장/근거를 남겨보세요.
+            {t.emptyThread}
           </div>
         ) : null}
       </div>
@@ -336,7 +384,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
                 key={k}
                 className="segment"
                 onClick={() => setTag(active ? null : k)}
-                title={m.hint}
+                title={hints[k]}
                 style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.06em",
                   padding: "4px 8px",
@@ -344,7 +392,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
                   color: active ? "#fff" : "var(--text-secondary)",
                   borderColor: active ? m.color : undefined
                 }}
-              >{m.label} {m.hint}</button>
+              >{m.label} {hints[k]}</button>
             );
           })}
         </div>
@@ -355,7 +403,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
             if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); post(); }
           }}
           rows={3}
-          placeholder="질문·주장·근거를 남기세요 (⌘/Ctrl+Enter로 게시)"
+          placeholder={t.postPlaceholder}
           style={{
             resize: "vertical", minHeight: 56, padding: "8px 10px",
             fontSize: 12.5, lineHeight: 1.55, fontFamily: "inherit",
@@ -368,7 +416,7 @@ function DiscussionThread({ nodeId }: { nodeId: string }) {
           onClick={post}
           disabled={!draft.trim()}
           style={{ fontWeight: 600, opacity: draft.trim() ? 1 : 0.5 }}
-        >Post</button>
+        >{t.post}</button>
       </div>
     </div>
   );

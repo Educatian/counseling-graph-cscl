@@ -1,4 +1,5 @@
 import type { Domain } from "./GraphCanvas";
+import type { Lang } from "./TitleBar";
 
 interface Props {
   stats: Record<string, number> | null;
@@ -12,6 +13,7 @@ interface Props {
   myPath: string[];
   onClearMyPath: () => void;
   nodeLookup: Map<string, string>;
+  lang?: Lang;
 }
 
 const DOMAIN_DOT: Record<string, string> = {
@@ -20,18 +22,57 @@ const DOMAIN_DOT: Record<string, string> = {
   shared: "var(--shared)"
 };
 
-const DOMAIN_LABEL: Record<"all" | Domain, string> = {
-  all: "전체 그래프",
-  counseling: "상담심리",
-  clinical: "임상심리",
-  shared: "공통 허브"
+const DOMAIN_LABEL: Record<Lang, Record<"all" | Domain, string>> = {
+  ko: { all: "전체 그래프", counseling: "상담심리", clinical: "임상심리", shared: "공통 허브" },
+  en: { all: "All", counseling: "Counseling", clinical: "Clinical", shared: "Bridge hubs" }
 };
 
-export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePathId, onPathSelect, recording, onToggleRecording, myPath, onClearMyPath, nodeLookup }: Props) {
+const S = {
+  ko: {
+    domains: "Domains",
+    seedPaths: "Seed learning paths",
+    myPath: "My path (record)",
+    legend: "Legend",
+    recOn: "● REC · 클릭하여 경로 추가",
+    recOff: "⏺ 내 경로 기록",
+    recHint: "REC 켜고 그래프에서 노드를 순서대로 클릭하세요",
+    playing: "● 재생중",
+    clear: "Clear",
+    step: "step",
+    legCo: "상담 — 쿨 블루",
+    legCl: "임상 — 코랄",
+    legSh: "공통 허브 — 바이올렛",
+    legStart: "● 시작점 (§1-2/§2-2)",
+    legKey: "◉ 중요 허브 (§1-2/§2-2)",
+    legBridge: "⤳ 브릿지 (§3-1)"
+  },
+  en: {
+    domains: "Domains",
+    seedPaths: "Seed learning paths",
+    myPath: "My path (record)",
+    legend: "Legend",
+    recOn: "● REC · click nodes to add",
+    recOff: "⏺ Record my path",
+    recHint: "Turn REC on, then click nodes in order",
+    playing: "● playing",
+    clear: "Clear",
+    step: "step",
+    legCo: "Counseling — cool blue",
+    legCl: "Clinical — coral",
+    legSh: "Bridge hub — violet",
+    legStart: "● Entry hub (§1-2/§2-2)",
+    legKey: "◉ Key hub (§1-2/§2-2)",
+    legBridge: "⤳ Bridge (§3-1)"
+  }
+} as const;
+
+export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePathId, onPathSelect, recording, onToggleRecording, myPath, onClearMyPath, nodeLookup, lang = "ko" }: Props) {
+  const t = S[lang];
+  const dom = DOMAIN_LABEL[lang];
   const items: Array<"all" | Domain> = ["all", "counseling", "clinical", "shared"];
   return (
     <aside className="sidebar">
-      <div className="sidebar-section-label">Domains</div>
+      <div className="sidebar-section-label">{t.domains}</div>
       {items.map((d) => (
         <div
           key={d}
@@ -39,14 +80,14 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
           onClick={() => onDomainChange(d)}
         >
           <span className="dot" style={{ background: d === "all" ? "linear-gradient(135deg,var(--counseling),var(--clinical))" : DOMAIN_DOT[d] }} />
-          <span style={{ flex: 1 }}>{DOMAIN_LABEL[d]}</span>
+          <span style={{ flex: 1 }}>{dom[d]}</span>
           {stats && d !== "all" ? (
             <span className="count">{stats[d] ?? 0}</span>
           ) : null}
         </div>
       ))}
 
-      <div className="sidebar-section-label" style={{ marginTop: 6 }}>Seed learning paths</div>
+      <div className="sidebar-section-label" style={{ marginTop: 6 }}>{t.seedPaths}</div>
       <div style={{ overflow: "auto", flex: 1 }}>
         {paths.map((p) => {
           const active = activePathId === p.id;
@@ -65,7 +106,7 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
               <span style={{
                 overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1
               }}>{p.title}</span>
-              {active ? <span style={{ fontSize: 10, color: "var(--accent)" }}>● 재생중</span> : null}
+              {active ? <span style={{ fontSize: 10, color: "var(--accent)" }}>{t.playing}</span> : null}
             </div>
           );
         })}
@@ -74,16 +115,16 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
         ) : null}
       </div>
 
-      <div className="sidebar-section-label" style={{ marginTop: 6 }}>My path (record)</div>
+      <div className="sidebar-section-label" style={{ marginTop: 6 }}>{t.myPath}</div>
       <div style={{ padding: "2px 12px 10px", display: "grid", gap: 6 }}>
         <div style={{ display: "flex", gap: 6 }}>
           <button
             className={`segment ${recording ? "active" : ""}`}
             onClick={onToggleRecording}
             style={{ flex: 1, color: recording ? "#b91c1c" : undefined, fontWeight: 600, fontSize: 11 }}
-          >{recording ? "● REC · 클릭하여 경로 추가" : "⏺ 내 경로 기록"}</button>
+          >{recording ? t.recOn : t.recOff}</button>
           {myPath.length > 0 ? (
-            <button className="segment" onClick={onClearMyPath} style={{ fontSize: 11 }}>Clear</button>
+            <button className="segment" onClick={onClearMyPath} style={{ fontSize: 11 }}>{t.clear}</button>
           ) : null}
         </div>
         {myPath.length > 0 ? (
@@ -99,24 +140,24 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
               </span>
             ))}
             <div style={{ fontSize: 10, color: "var(--text-tertiary)", marginTop: 4 }}>
-              {myPath.length} step{myPath.length > 1 ? "s" : ""}
+              {myPath.length} {t.step}{myPath.length > 1 ? "s" : ""}
             </div>
           </div>
         ) : (
           <div style={{ fontSize: 10, color: "var(--text-tertiary)", padding: "0 2px" }}>
-            REC 켜고 그래프에서 노드를 순서대로 클릭하세요
+            {t.recHint}
           </div>
         )}
       </div>
 
-      <div className="sidebar-section-label">Legend</div>
+      <div className="sidebar-section-label">{t.legend}</div>
       <div style={{ padding: "2px 12px 10px", display: "grid", gap: 6, fontSize: 11, color: "var(--text-secondary)" }}>
-        <LegendRow color="var(--counseling)" label="상담 — 쿨 블루" />
-        <LegendRow color="var(--clinical)"   label="임상 — 코랄" />
-        <LegendRow color="var(--shared)"     label="공통 허브 — 바이올렛" />
-        <LegendRow ring label="● 시작점 (§1-2/§2-2)" />
-        <LegendRow keyHub label="◉ 중요 허브 (§1-2/§2-2)" />
-        <LegendRow dashed label="⤳ 브릿지 (§3-1)" />
+        <LegendRow color="var(--counseling)" label={t.legCo} />
+        <LegendRow color="var(--clinical)"   label={t.legCl} />
+        <LegendRow color="var(--shared)"     label={t.legSh} />
+        <LegendRow ring label={t.legStart} />
+        <LegendRow keyHub label={t.legKey} />
+        <LegendRow dashed label={t.legBridge} />
       </div>
 
       <div style={{

@@ -47,7 +47,7 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
         <button
           className={`segment ${bridgesOnly ? "active" : ""}`}
           onClick={() => onBridgesOnlyChange(!bridgesOnly)}
-          title="§3-1 상담↔임상 브릿지만 강조"
+          title={lang === "ko" ? "§3-1 상담↔임상 브릿지만 강조" : "§3-1 — highlight counseling↔clinical bridges only"}
           style={{ color: bridgesOnly ? "var(--shared)" : undefined, fontWeight: 600 }}
         >
           ⟷ Bridges
@@ -56,7 +56,7 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
           <button
             className={`segment ${lang === "ko" ? "active" : ""}`}
             onClick={() => onLangChange("ko")}
-            title="한국어 라벨"
+            title={lang === "ko" ? "한국어 라벨" : "Korean labels"}
           >한</button>
           <button
             className={`segment ${lang === "en" ? "active" : ""}`}

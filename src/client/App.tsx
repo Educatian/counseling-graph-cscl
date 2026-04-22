@@ -121,7 +121,8 @@ export default function App() {
           onToggleRecording={handleToggleRecording}
           myPath={myPath}
           onClearMyPath={handleClearMyPath}
-          nodeLookup={new Map((data?.nodes ?? []).map(n => [n.id, n.labelKo]))}
+          nodeLookup={new Map((data?.nodes ?? []).map(n => [n.id, (lang === "en" && n.labelEn) ? n.labelEn : n.labelKo]))}
+          lang={lang}
         />
         <main style={{ position: "relative", flex: 1, overflow: "hidden" }}>
           {err ? (
@@ -144,7 +145,7 @@ export default function App() {
                 myPath={myPath}
                 lang={lang}
               />
-              <AlignmentGauge myPath={myPath} seedPaths={data.paths} />
+              <AlignmentGauge myPath={myPath} seedPaths={data.paths} lang={lang} />
               <NodeDetailPanel node={selected} onClose={() => setSelected(null)} lang={lang} />
             </>
           ) : (

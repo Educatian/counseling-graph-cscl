@@ -1,19 +1,27 @@
 import { useMemo } from "react";
 import { alignmentScore } from "../lib/alignment";
+import type { Lang } from "./TitleBar";
 
 interface SeedPath { id: string; title: string; nodeSequence: string[]; }
 
 interface Props {
   myPath: string[];
   seedPaths: SeedPath[];
+  lang?: Lang;
 }
+
+const AG_STR = {
+  ko: { heading: "정합도 · 내 경로 ↔ 가장 가까운 시드", overlap: "겹침", order: "순서" },
+  en: { heading: "Alignment · MyPath ↔ closest seed", overlap: "overlap", order: "order" }
+} as const;
 
 /**
  * B9 — Mirror-Mode seed: live gauge 0..1 comparing the learner's recorded path
  * to the best-matching expert seed path. Shows which seed is closest + score
  * breakdown (set overlap / order-sensitive LCS). Zero UI when myPath is empty.
  */
-export function AlignmentGauge({ myPath, seedPaths }: Props) {
+export function AlignmentGauge({ myPath, seedPaths, lang = "ko" }: Props) {
+  const t = AG_STR[lang];
   const result = useMemo(() => {
     if (myPath.length === 0 || seedPaths.length === 0) return null;
     let best: { seed: SeedPath; score: number; j: number; l: number } | null = null;
@@ -42,7 +50,7 @@ export function AlignmentGauge({ myPath, seedPaths }: Props) {
       <div style={{
         fontSize: 9, fontWeight: 700, letterSpacing: "0.08em",
         textTransform: "uppercase", color: "var(--text-tertiary)", marginBottom: 6
-      }}>Alignment · MyPath ↔ closest seed</div>
+      }}>{t.heading}</div>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <div style={{ position: "relative", width: 56, height: 56 }}>
           <svg width={56} height={56} viewBox="0 0 56 56">
@@ -68,7 +76,7 @@ export function AlignmentGauge({ myPath, seedPaths }: Props) {
           </div>
           <div style={{ fontSize: 10, color: "var(--text-tertiary)", marginTop: 2,
                         fontVariantNumeric: "tabular-nums" }}>
-            overlap {result.j.toFixed(2)} · order {result.l.toFixed(2)}
+            {t.overlap} {result.j.toFixed(2)} · {t.order} {result.l.toFixed(2)}
           </div>
         </div>
       </div>
