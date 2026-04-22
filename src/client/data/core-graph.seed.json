@@ -6,7 +6,8 @@
       "level": "top_hub",
       "labelKo": "인간발달",
       "labelEn": "Human development",
-      "description": "내담자 이해의 기초가 되는 발달적 틀"
+      "description": "내담자 이해의 기초가 되는 발달적 틀",
+      "descriptionEn": "Developmental framework underlying client understanding"
     },
     {
       "id": "c_human_development__신체인지정서사회성_발달",
@@ -54,7 +55,8 @@
       "level": "top_hub",
       "labelKo": "개인차",
       "labelEn": "Individual differences",
-      "description": "사람마다 다른 비교적 안정적 특성"
+      "description": "사람마다 다른 비교적 안정적 특성",
+      "descriptionEn": "Relatively stable traits that vary across individuals"
     },
     {
       "id": "c_individual_differences__성격_특성",
@@ -110,7 +112,8 @@
       "level": "top_hub",
       "labelKo": "문제영역",
       "labelEn": "Problem areas",
-      "description": "상담이 다루는 주요 어려움과 주제 — 학생 탐색의 시작점 (§1-2)"
+      "description": "상담이 다루는 주요 어려움과 주제 — 학생 탐색의 시작점 (§1-2)",
+      "descriptionEn": "Core difficulties and themes addressed in counseling — entry point for student inquiry (§1-2)"
     },
     {
       "id": "c_problem_areas__학업문제",
@@ -182,7 +185,8 @@
       "level": "top_hub",
       "labelKo": "상담이론",
       "labelEn": "Counseling theories",
-      "description": "문제를 해석하고 개입하는 관점 — 같은 문제도 이론에 따라 다르게 해석 (§1-2)"
+      "description": "문제를 해석하고 개입하는 관점 — 같은 문제도 이론에 따라 다르게 해석 (§1-2)",
+      "descriptionEn": "Perspectives for interpreting and intervening — the same issue differs by theory (§1-2)"
     },
     {
       "id": "c_counseling_theories__인지행동치료cbt",
@@ -254,7 +258,8 @@
       "level": "top_hub",
       "labelKo": "상담과정",
       "labelEn": "Counseling process",
-      "description": "상담이 진행되는 시간적 구조 — 기법이 아닌 관계·목표의 연속적 과정 (§1-2)"
+      "description": "상담이 진행되는 시간적 구조 — 기법이 아닌 관계·목표의 연속적 과정 (§1-2)",
+      "descriptionEn": "Temporal structure of counseling — a continuous relational/goal process, not technique (§1-2)"
     },
     {
       "id": "c_counseling_process__관계형성",
@@ -326,7 +331,8 @@
       "level": "top_hub",
       "labelKo": "상담기술",
       "labelEn": "Counseling skills",
-      "description": "상담자가 실제로 사용하는 미시적 행동"
+      "description": "상담자가 실제로 사용하는 미시적 행동",
+      "descriptionEn": "Micro-level behaviors counselors actually use"
     },
     {
       "id": "c_counseling_skills__공감",
@@ -414,7 +420,8 @@
       "level": "top_hub",
       "labelKo": "평가 및 사정",
       "labelEn": "Assessment (counseling)",
-      "description": "문제 파악과 의사결정을 위한 평가"
+      "description": "문제 파악과 의사결정을 위한 평가",
+      "descriptionEn": "Assessment for case understanding and decision-making"
     },
     {
       "id": "c_counseling_assessment__면담",
@@ -486,7 +493,8 @@
       "level": "top_hub",
       "labelKo": "교육맥락",
       "labelEn": "Educational context",
-      "description": "학교 및 교육 제도 안에서의 환경 변수 — 개인 내부 문제만이 아닌 맥락 상호작용 (§1-2)"
+      "description": "학교 및 교육 제도 안에서의 환경 변수 — 개인 내부 문제만이 아닌 맥락 상호작용 (§1-2)",
+      "descriptionEn": "Environmental variables within school/education systems — contextual interaction, not solely intrapersonal (§1-2)"
     },
     {
       "id": "c_educational_context__학생",
@@ -566,7 +574,8 @@
       "level": "top_hub",
       "labelKo": "예방 및 프로그램",
       "labelEn": "Prevention & programs",
-      "description": "문제 발생 전후의 집단적 지원 체계"
+      "description": "문제 발생 전후의 집단적 지원 체계",
+      "descriptionEn": "Collective support systems before and after problem onset"
     },
     {
       "id": "c_prevention_programs__정서행동_예방교육",
@@ -622,7 +631,8 @@
       "level": "top_hub",
       "labelKo": "진로 및 생애설계",
       "labelEn": "Career & life design",
-      "description": "교육상담에서 특히 강조되는 축 — 독립 허브로 둘 가치 (§1-2)"
+      "description": "교육상담에서 특히 강조되는 축 — 독립 허브로 둘 가치 (§1-2)",
+      "descriptionEn": "Axis especially emphasized in educational counseling — worth treating as an independent hub (§1-2)"
     },
     {
       "id": "c_career_life_design__진로발달이론",
@@ -678,7 +688,8 @@
       "level": "top_hub",
       "labelKo": "다문화·다양성",
       "labelEn": "Multicultural & diversity",
-      "description": "문화적 맥락과 차이를 반영하는 범주"
+      "description": "문화적 맥락과 차이를 반영하는 범주",
+      "descriptionEn": "Categories reflecting cultural context and difference"
     },
     {
       "id": "c_multicultural_diversity__문화적_정체성",
@@ -726,7 +737,8 @@
       "level": "top_hub",
       "labelKo": "윤리 및 전문성",
       "labelEn": "Ethics & professionalism",
-      "description": "상담 실행의 규범과 전문가 역할"
+      "description": "상담 실행의 규범과 전문가 역할",
+      "descriptionEn": "Norms and professional roles in counseling practice"
     },
     {
       "id": "c_ethics_professionalism__비밀보장",
@@ -790,7 +802,8 @@
       "level": "top_hub",
       "labelKo": "성과 및 변화",
       "labelEn": "Outcomes & change",
-      "description": "상담 결과와 변화 메커니즘"
+      "description": "상담 결과와 변화 메커니즘",
+      "descriptionEn": "Counseling outcomes and mechanisms of change"
     },
     {
       "id": "c_outcomes_change__상담만족도",
@@ -838,7 +851,8 @@
       "level": "top_hub",
       "labelKo": "정신병리",
       "labelEn": "Psychopathology",
-      "description": "임상심리의 핵심 대상 — 학생이 장애 체계를 분류적으로 이해하는 출발점 (§2-2)"
+      "description": "임상심리의 핵심 대상 — 학생이 장애 체계를 분류적으로 이해하는 출발점 (§2-2)",
+      "descriptionEn": "Core focus of clinical psychology — entry point for classifying the disorder system (§2-2)"
     },
     {
       "id": "cl_psychopathology__우울장애",
@@ -926,7 +940,8 @@
       "level": "top_hub",
       "labelKo": "증상 및 징후",
       "labelEn": "Symptoms & signs",
-      "description": "장애를 구성하는 관찰 가능/보고 가능 요소"
+      "description": "장애를 구성하는 관찰 가능/보고 가능 요소",
+      "descriptionEn": "Observable and reportable components that constitute a disorder"
     },
     {
       "id": "cl_symptoms_signs__우울기분",
@@ -1014,7 +1029,8 @@
       "level": "top_hub",
       "labelKo": "병인론",
       "labelEn": "Etiology",
-      "description": "장애의 원인을 설명하는 다층 구조"
+      "description": "장애의 원인을 설명하는 다층 구조",
+      "descriptionEn": "Multilevel structure explaining the etiology of disorders"
     },
     {
       "id": "cl_etiology__유전적_취약성",
@@ -1078,7 +1094,8 @@
       "level": "top_hub",
       "labelKo": "평가 및 진단",
       "labelEn": "Clinical assessment",
-      "description": "진단적 판단과 사례이해를 위한 체계 — 체계적 사정·판단이 임상심리의 핵심 (§2-2)"
+      "description": "진단적 판단과 사례이해를 위한 체계 — 체계적 사정·판단이 임상심리의 핵심 (§2-2)",
+      "descriptionEn": "System for diagnostic judgment and case understanding — systematic assessment is central to clinical psychology (§2-2)"
     },
     {
       "id": "cl_clinical_assessment__임상면담",
@@ -1158,7 +1175,8 @@
       "level": "top_hub",
       "labelKo": "사례개념화",
       "labelEn": "Case conceptualization",
-      "description": "내담자별 문제 구조의 통합적 이해 — 동일 진단도 촉발·유지·보호 요인이 다름 (§2-2)"
+      "description": "내담자별 문제 구조의 통합적 이해 — 동일 진단도 촉발·유지·보호 요인이 다름 (§2-2)",
+      "descriptionEn": "Integrated understanding of each client's problem structure — precipitating/perpetuating/protective factors vary within the same diagnosis (§2-2)"
     },
     {
       "id": "cl_case_conceptualization__주호소",
@@ -1222,7 +1240,8 @@
       "level": "top_hub",
       "labelKo": "치료접근",
       "labelEn": "Treatment approaches",
-      "description": "장애나 문제에 적용되는 개입 체계"
+      "description": "장애나 문제에 적용되는 개입 체계",
+      "descriptionEn": "Intervention system applied to disorders or problems"
     },
     {
       "id": "cl_treatment_approaches__인지행동치료cbt",
@@ -1278,7 +1297,8 @@
       "level": "top_hub",
       "labelKo": "치료과정",
       "labelEn": "Treatment process",
-      "description": "치료가 진행되는 단계와 변화 과정"
+      "description": "치료가 진행되는 단계와 변화 과정",
+      "descriptionEn": "Stages of treatment and the change process"
     },
     {
       "id": "cl_treatment_process__초기평가",
@@ -1342,7 +1362,8 @@
       "level": "top_hub",
       "labelKo": "위험 및 위기관리",
       "labelEn": "Risk & crisis",
-      "description": "응급성·자타해 위험·안전계획 — 독립 허브로 분리할 가치 (§2-2)"
+      "description": "응급성·자타해 위험·안전계획 — 독립 허브로 분리할 가치 (§2-2)",
+      "descriptionEn": "Urgency, risk of self/other harm, safety planning — worth treating as an independent hub (§2-2)"
     },
     {
       "id": "cl_risk_crisis__자살사고",
@@ -1398,7 +1419,8 @@
       "level": "top_hub",
       "labelKo": "신경심리 및 생물학적 기초",
       "labelEn": "Neuro & biological basis",
-      "description": "뇌, 인지 기능, 생물학적 기반"
+      "description": "뇌, 인지 기능, 생물학적 기반",
+      "descriptionEn": "Brain, cognitive function, and biological substrates"
     },
     {
       "id": "cl_neuro_biological__주의",
@@ -1454,7 +1476,8 @@
       "level": "top_hub",
       "labelKo": "발달 및 생애주기",
       "labelEn": "Lifespan (clinical)",
-      "description": "연령에 따른 임상 양상의 변화"
+      "description": "연령에 따른 임상 양상의 변화",
+      "descriptionEn": "Age-related variation in clinical presentation"
     },
     {
       "id": "cl_lifespan_clinical__아동청소년_임상",
@@ -1494,7 +1517,8 @@
       "level": "top_hub",
       "labelKo": "윤리 및 법적 이슈",
       "labelEn": "Ethics & legal (clinical)",
-      "description": "임상 실천의 규범과 법적 책임"
+      "description": "임상 실천의 규범과 법적 책임",
+      "descriptionEn": "Norms and legal responsibilities of clinical practice"
     },
     {
       "id": "cl_clinical_ethics_legal__사전동의",
@@ -1550,7 +1574,8 @@
       "level": "top_hub",
       "labelKo": "다문화·다양성",
       "labelEn": "Multicultural (clinical)",
-      "description": "진단과 치료의 문화적 적합성"
+      "description": "진단과 치료의 문화적 적합성",
+      "descriptionEn": "Cultural appropriateness of diagnosis and treatment"
     },
     {
       "id": "cl_clinical_multicultural__문화적_표현_차이",
@@ -1598,7 +1623,8 @@
       "level": "top_hub",
       "labelKo": "근거기반실천",
       "labelEn": "Evidence-based practice",
-      "description": "연구 근거와 임상 판단의 통합 — 연구·임상 사이의 연결 노드 (§2-2)"
+      "description": "연구 근거와 임상 판단의 통합 — 연구·임상 사이의 연결 노드 (§2-2)",
+      "descriptionEn": "Integration of research evidence and clinical judgment — a bridge node between research and practice (§2-2)"
     },
     {
       "id": "cl_evidence_based_practice__무작위_대조연구",
@@ -1646,7 +1672,8 @@
       "level": "top_hub",
       "labelKo": "대상",
       "labelEn": "Target population",
-      "description": "상담: 학생, 내담자, 발달적 특성 ↔ 임상: 환자, 내담자, 생애주기 특성"
+      "description": "상담: 학생, 내담자, 발달적 특성 ↔ 임상: 환자, 내담자, 생애주기 특성",
+      "descriptionEn": "Counseling: students, clients, developmental characteristics ↔ Clinical: patients, clients, lifespan characteristics"
     },
     {
       "id": "s_problem",
@@ -1654,7 +1681,8 @@
       "level": "top_hub",
       "labelKo": "문제/증상",
       "labelEn": "Problem / Symptom",
-      "description": "상담: 학업·정서·관계 문제 ↔ 임상: 정신병리·증상·위험"
+      "description": "상담: 학업·정서·관계 문제 ↔ 임상: 정신병리·증상·위험",
+      "descriptionEn": "Counseling: academic, emotional, relational problems ↔ Clinical: psychopathology, symptoms, risk"
     },
     {
       "id": "s_mechanism",
@@ -1662,7 +1690,8 @@
       "level": "top_hub",
       "labelKo": "원인/기제",
       "labelEn": "Cause / Mechanism",
-      "description": "상담: 동기, 환경, 인지, 관계 ↔ 임상: 병인론, 유지요인, 생물학적 기초"
+      "description": "상담: 동기, 환경, 인지, 관계 ↔ 임상: 병인론, 유지요인, 생물학적 기초",
+      "descriptionEn": "Counseling: motivation, environment, cognition, relationships ↔ Clinical: etiology, perpetuating factors, biological basis"
     },
     {
       "id": "s_evaluation",
@@ -1670,7 +1699,8 @@
       "level": "top_hub",
       "labelKo": "평가",
       "labelEn": "Assessment",
-      "description": "상담: 면담, 학교 적응 평가, 진로검사 ↔ 임상: 진단면담, 심리검사, 신경심리검사"
+      "description": "상담: 면담, 학교 적응 평가, 진로검사 ↔ 임상: 진단면담, 심리검사, 신경심리검사",
+      "descriptionEn": "Counseling: interview, school adjustment assessment, career testing ↔ Clinical: diagnostic interview, psychological testing, neuropsychological testing"
     },
     {
       "id": "s_intervention",
@@ -1678,7 +1708,8 @@
       "level": "top_hub",
       "labelKo": "개입",
       "labelEn": "Intervention",
-      "description": "상담: 상담이론, 상담기술, 프로그램 ↔ 임상: 치료접근, 위기개입, 약물 협력"
+      "description": "상담: 상담이론, 상담기술, 프로그램 ↔ 임상: 치료접근, 위기개입, 약물 협력",
+      "descriptionEn": "Counseling: counseling theory, skills, programs ↔ Clinical: treatment approaches, crisis intervention, medication collaboration"
     },
     {
       "id": "s_process",
@@ -1686,7 +1717,8 @@
       "level": "top_hub",
       "labelKo": "과정",
       "labelEn": "Process",
-      "description": "상담: 상담과정, 학교 협력 과정 ↔ 임상: 치료과정, 사례개념화, 모니터링"
+      "description": "상담: 상담과정, 학교 협력 과정 ↔ 임상: 치료과정, 사례개념화, 모니터링",
+      "descriptionEn": "Counseling: counseling process, school collaboration ↔ Clinical: treatment process, case conceptualization, monitoring"
     },
     {
       "id": "s_context",
@@ -1694,7 +1726,8 @@
       "level": "top_hub",
       "labelKo": "맥락",
       "labelEn": "Context",
-      "description": "상담: 학교, 가족, 또래, 교육제도 ↔ 임상: 가족, 병원, 지역사회, 문화"
+      "description": "상담: 학교, 가족, 또래, 교육제도 ↔ 임상: 가족, 병원, 지역사회, 문화",
+      "descriptionEn": "Counseling: school, family, peers, education system ↔ Clinical: family, hospital, community, culture"
     },
     {
       "id": "s_ethics",
@@ -1702,7 +1735,8 @@
       "level": "top_hub",
       "labelKo": "윤리·전문성",
       "labelEn": "Ethics & professionalism",
-      "description": "상담: 비밀보장, 수퍼비전 ↔ 임상: 동의, 법적 이슈, 협진"
+      "description": "상담: 비밀보장, 수퍼비전 ↔ 임상: 동의, 법적 이슈, 협진",
+      "descriptionEn": "Counseling: confidentiality, supervision ↔ Clinical: informed consent, legal issues, consultation"
     },
     {
       "id": "s_outcome",
@@ -1710,7 +1744,8 @@
       "level": "top_hub",
       "labelKo": "성과",
       "labelEn": "Outcome",
-      "description": "상담: 적응, 자기이해, 진로발달 ↔ 임상: 증상감소, 기능회복, 재발예방"
+      "description": "상담: 적응, 자기이해, 진로발달 ↔ 임상: 증상감소, 기능회복, 재발예방",
+      "descriptionEn": "Counseling: adjustment, self-understanding, career development ↔ Clinical: symptom reduction, functional recovery, relapse prevention"
     }
   ],
   "edges": [

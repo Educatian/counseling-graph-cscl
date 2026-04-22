@@ -9,6 +9,7 @@ export const coreNodes = sqliteTable("core_nodes", {
   labelKo: text("label_ko").notNull(),
   labelEn: text("label_en"),
   description: text("description"),
+  descriptionEn: text("description_en"),
   parentHubId: text("parent_hub_id"),
   version: integer("version").notNull().default(1)
 }, (t) => ({

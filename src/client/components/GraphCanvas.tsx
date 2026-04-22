@@ -12,6 +12,7 @@ export interface GraphNode {
   labelKo: string;
   labelEn?: string;
   description?: string;
+  descriptionEn?: string;
   parentHubId?: string | null;
 }
 export interface GraphEdge {

@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS core_nodes (
   label_ko TEXT NOT NULL,
   label_en TEXT,
   description TEXT,
+  description_en TEXT,
   parent_hub_id TEXT,
   version INTEGER NOT NULL DEFAULT 1
 );
@@ -117,7 +118,7 @@ export async function loadSeedIfEmpty() {
 
   const seedPath = resolve(process.cwd(), "src/client/data/core-graph.seed.json");
   const seed = JSON.parse(readFileSync(seedPath, "utf8")) as {
-    nodes: Array<{ id: string; domain: "counseling" | "clinical" | "shared"; level: "top_hub" | "mid_hub" | "concept"; labelKo: string; labelEn?: string; description?: string; parentHubId?: string }>;
+    nodes: Array<{ id: string; domain: "counseling" | "clinical" | "shared"; level: "top_hub" | "mid_hub" | "concept"; labelKo: string; labelEn?: string; description?: string; descriptionEn?: string; parentHubId?: string }>;
     edges: Array<{ id: string; sourceId: string; targetId: string; relation: "contains" | "related_to" | "prerequisite_of" | "example_of" | "contrasts_with" | "bridges_to"; confidence?: number }>;
     paths: Array<{ id: string; title: string; titleEn?: string; kind: "seeded_template"; nodeSequence: string[] }>;
   };
@@ -125,7 +126,7 @@ export async function loadSeedIfEmpty() {
   for (const n of seed.nodes) {
     await db.insert(schema.coreNodes).values({
       id: n.id, domain: n.domain, level: n.level,
-      labelKo: n.labelKo, labelEn: n.labelEn, description: n.description,
+      labelKo: n.labelKo, labelEn: n.labelEn, description: n.description, descriptionEn: n.descriptionEn,
       parentHubId: n.parentHubId
     }).run();
   }

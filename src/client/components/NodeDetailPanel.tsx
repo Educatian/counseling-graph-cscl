@@ -19,12 +19,17 @@ const DOMAIN_LABEL: Record<"ko" | "en", Record<string, string>> = {
 };
 
 const TABS = ["Overview", "Discussion", "Cases", "Quiz", "Notes"] as const;
+const TAB_LABEL: Record<"ko" | "en", Record<(typeof TABS)[number], string>> = {
+  ko: { Overview: "개요", Discussion: "토론", Cases: "사례", Quiz: "퀴즈", Notes: "노트" },
+  en: { Overview: "Overview", Discussion: "Discussion", Cases: "Cases", Quiz: "Quiz", Notes: "Notes" }
+};
 
 const NDP_STR = {
   ko: {
     overviewEmpty: "이 노드의 설명은 아직 비어있습니다. (세부 개념 노드의 description은 Phase A-2에서 충전 예정)",
     quizPlaceholder: "Phase C에서 퀴즈 항목을 노드에 연결합니다.",
     rubricIntro: (<>이 노드에 사례를 붙이면 <b>C3 연구</b> — 사례 배치 위치가 사례개념화 품질을 예측 — 의 원자료가 됩니다.</>),
+    rubricLabels: { summary: "요약", precipitating: "촉발", perpetuating: "유지", protective: "보호", cultural: "문화·맥락" },
     rubricFields: { summary: "한 줄 요약", precipitating: "촉발 요인", perpetuating: "유지 요인", protective: "보호 요인", cultural: "문화·맥락" },
     attach: "사례 첨부",
     clear: "초기화",
@@ -43,6 +48,7 @@ const NDP_STR = {
     overviewEmpty: "This node has no description yet. (Detailed concept descriptions will be filled in Phase A-2.)",
     quizPlaceholder: "Quiz items will be linked to nodes in Phase C.",
     rubricIntro: (<>Anchoring a case here feeds the raw data for <b>Study C3</b> — where a case is attached predicts conceptualization quality.</>),
+    rubricLabels: { summary: "Summary", precipitating: "Precipitating", perpetuating: "Perpetuating", protective: "Protective", cultural: "Cultural" },
     rubricFields: { summary: "one-line summary", precipitating: "precipitating factors", perpetuating: "perpetuating factors", protective: "protective factors", cultural: "cultural / contextual" },
     attach: "Attach case",
     clear: "Clear",
@@ -69,7 +75,8 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
   const t = NDP_STR[lang];
   if (!node) return null;
 
-  const isSharedHub = node.domain === "shared" && !!node.description;
+  const shownDesc = lang === "en" && node.descriptionEn ? node.descriptionEn : node.description;
+  const isSharedHub = node.domain === "shared" && !!shownDesc;
 
   return (
     <aside className="detail-panel">
@@ -92,17 +99,17 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
 
       <div className="tab-row">
         {TABS.map((t) => (
-          <button key={t} className={tab === t ? "active" : ""} onClick={() => setTab(t)}>{t}</button>
+          <button key={t} className={tab === t ? "active" : ""} onClick={() => setTab(t)}>{TAB_LABEL[lang][t]}</button>
         ))}
       </div>
 
       {tab === "Overview" && (
         <>
           {isSharedHub ? (
-            <SharedContrast desc={node.description!} lang={lang} />
-          ) : node.description ? (
+            <SharedContrast desc={shownDesc!} lang={lang} />
+          ) : shownDesc ? (
             <div className="body" style={{ marginTop: 12 }}>
-              {node.description}
+              {shownDesc}
             </div>
           ) : (
             <div className="body" style={{ marginTop: 12, color: "var(--text-tertiary)" }}>
@@ -132,7 +139,8 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
 
 /** §3-1 대조 설명을 "상담 ↔ 임상" 2열 카드로 분리 표시 */
 function SharedContrast({ desc, lang }: { desc: string; lang: "ko" | "en" }) {
-  const match = desc.match(/상담:\s*(.+?)\s*↔\s*임상:\s*(.+)/);
+  const match = desc.match(/상담:\s*(.+?)\s*↔\s*임상:\s*(.+)/)
+             ?? desc.match(/Counseling:\s*(.+?)\s*↔\s*Clinical:\s*(.+)/i);
   if (!match) return <div className="body" style={{ marginTop: 12 }}>{desc}</div>;
   const [, coText, clText] = match;
   return (
@@ -206,11 +214,11 @@ function CaseRubric({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) {
       <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5 }}>
         {t.rubricIntro}
       </div>
-      {field("Summary", t.rubricFields.summary, "summary", 2)}
-      {field("Precipitating", t.rubricFields.precipitating, "precipitating", 2)}
-      {field("Perpetuating", t.rubricFields.perpetuating, "perpetuating", 2)}
-      {field("Protective", t.rubricFields.protective, "protective", 2)}
-      {field("Cultural", t.rubricFields.cultural, "cultural", 2)}
+      {field(t.rubricLabels.summary, t.rubricFields.summary, "summary", 2)}
+      {field(t.rubricLabels.precipitating, t.rubricFields.precipitating, "precipitating", 2)}
+      {field(t.rubricLabels.perpetuating, t.rubricFields.perpetuating, "perpetuating", 2)}
+      {field(t.rubricLabels.protective, t.rubricFields.protective, "protective", 2)}
+      {field(t.rubricLabels.cultural, t.rubricFields.cultural, "cultural", 2)}
       <div style={{ display: "flex", gap: 6, marginTop: 2 }}>
         <button className="segment active" onClick={save} style={{ flex: 1, fontWeight: 600 }}>{t.attach}</button>
         {r.updatedAt ? (
