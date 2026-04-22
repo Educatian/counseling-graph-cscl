@@ -168,6 +168,16 @@
     cursor: pointer; color: var(--muted); font-weight: 600;
   }
   .lang-switch button.on { background: var(--counsel); color: white; }
+  .back-to-app {
+    position: fixed; top: 18px; left: 18px; z-index: 10;
+    background: white; border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px; font-size: 13px; font-weight: 600;
+    color: var(--ink); text-decoration: none;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.08);
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+  .back-to-app:hover { color: var(--counsel); border-color: var(--counsel); }
   [data-en] { display: none; }
   body.en [data-en] { display: revert; }
   body.en [data-ko] { display: none; }
@@ -183,6 +193,10 @@
 </style>
 </head>
 <body class="ko">
+<a class="back-to-app" href="../" title="메인 앱으로 돌아가기 / Back to main app">
+  <span>←</span>
+  <span data-ko>앱으로</span><span data-en>App</span>
+</a>
 <div class="lang-switch">
   <button id="btn-ko" class="on">한국어</button>
   <button id="btn-en">English</button>

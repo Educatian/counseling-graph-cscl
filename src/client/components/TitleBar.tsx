@@ -44,6 +44,14 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
         </div>
       </div>
       <div className="right" style={{ gap: 8 }}>
+        <a
+          className="segment"
+          href={`${import.meta.env.BASE_URL}guide/index.html`}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={lang === "ko" ? "CSCL 사용 가이드북 (새 탭)" : "CSCL guidebook (new tab)"}
+          style={{ textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center" }}
+        >📘 {lang === "ko" ? "가이드" : "Guide"}</a>
         <button
           className={`segment ${bridgesOnly ? "active" : ""}`}
           onClick={() => onBridgesOnlyChange(!bridgesOnly)}
