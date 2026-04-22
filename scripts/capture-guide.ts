@@ -38,8 +38,8 @@ async function setStorage(page: any, entries: Record<string, string>) {
   await page.waitForTimeout(2000);
   await shot(page, "landing-en");
 
-  // Enter to main graph (ko)
-  await page.evaluate(() => { localStorage.setItem("lang","ko"); localStorage.setItem("entered","1"); });
+  // Enter to main graph (en — English interface)
+  await page.evaluate(() => { localStorage.setItem("lang","en"); localStorage.setItem("entered","1"); });
   await page.reload();
   await page.waitForTimeout(2500);
   await shot(page, "graph-overview");
@@ -90,18 +90,17 @@ async function setStorage(page: any, entries: Record<string, string>) {
   await shot(page, "node-detail-notes");
 
   // Close panel, show seed path expanded
-  await page.keyboard.press("Escape").catch(()=>{});
+  await page.locator(".detail-panel .close-btn").first().click().catch(()=>{});
   await page.waitForTimeout(300);
-  // Click a seed path title
-  const seedPath = page.locator("text=학업문제").first();
+  // Click the first seed path in the sidebar
+  const seedPath = page.locator(".sidebar .sidebar-item").filter({ hasText: "→" }).first();
   if (await seedPath.count()) {
     await seedPath.click();
     await page.waitForTimeout(1200);
     await shot(page, "seed-path-step");
   }
 
-  // Switch to EN
-  await page.evaluate(() => localStorage.setItem("lang", "en"));
+  // Snapshot full English graph view (same lang; kept for README reference)
   await page.reload();
   await page.waitForTimeout(2500);
   await shot(page, "graph-english");
