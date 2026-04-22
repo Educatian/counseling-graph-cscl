@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>가이드북 · 상담심리 × 임상심리 지식 그래프</title>
+<style>
+  :root {
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --counsel: #4f46e5;
+    --clinical: #dc2626;
+    --bridge: #7c3aed;
+    --bg: #fafaff;
+    --card: #ffffff;
+    --tag-q: #4f46e5;
+    --tag-c: #059669;
+    --tag-e: #d97706;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", Roboto, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #eef2ff 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, #fee2e2 0%, transparent 50%),
+      var(--bg);
+    line-height: 1.65;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 64px 28px 120px; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px;
+    color: var(--muted); font-weight: 600;
+  }
+  h1 {
+    margin: 8px 0 10px; font-size: 46px; line-height: 1.08; letter-spacing: -0.02em;
+    background: linear-gradient(110deg, var(--counsel) 0%, var(--bridge) 50%, var(--clinical) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { font-size: 18px; color: #334155; max-width: 72ch; }
+  h2 {
+    margin: 72px 0 6px; font-size: 26px; letter-spacing: -0.01em;
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  h2 .num {
+    display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: white;
+    background: linear-gradient(135deg, var(--counsel), var(--bridge));
+    border-radius: 8px;
+  }
+  h3 { margin: 28px 0 6px; font-size: 17px; }
+  p { margin: 10px 0; }
+  p.small { color: var(--muted); font-size: 14px; margin-top: -4px; }
+  .shot {
+    margin: 18px 0 8px;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 1px 0 rgba(15,23,42,0.04), 0 18px 36px -18px rgba(15,23,42,0.25);
+    border: 1px solid var(--line); background: var(--card);
+  }
+  .shot img { display: block; width: 100%; height: auto; }
+  .cap { color: var(--muted); font-size: 13px; margin: 6px 2px 0; }
+  .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; line-height: 1.6;
+    border: 1px solid currentColor;
+  }
+  .tag.q { color: var(--tag-q); }
+  .tag.c { color: var(--tag-c); }
+  .tag.e { color: var(--tag-e); }
+  .pill {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 12px; background: #eef2ff; color: var(--counsel); font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .pill.clinical { background: #fee2e2; color: var(--clinical); }
+  .pill.bridge { background: #ede9fe; color: var(--bridge); }
+  ul.steps {
+    list-style: none; padding: 0; margin: 12px 0;
+  }
+  ul.steps li {
+    position: relative; padding: 10px 14px 10px 44px;
+    border: 1px solid var(--line); background: white; border-radius: 10px;
+    margin: 8px 0;
+  }
+  ul.steps li::before {
+    content: counter(s); counter-increment: s;
+    position: absolute; left: 10px; top: 10px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--counsel); color: white; font-size: 12px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  ul.steps { counter-reset: s; }
+  .callout {
+    margin: 20px 0; padding: 16px 18px;
+    background: white; border: 1px solid var(--line); border-left: 4px solid var(--bridge);
+    border-radius: 10px; font-size: 15px;
+  }
+  .callout strong { color: var(--bridge); }
+  .learnmove {
+    margin: 14px 0; padding: 14px 16px 14px 18px;
+    background: linear-gradient(180deg, #f5f3ff 0%, #fdf2f8 100%);
+    border: 1px solid #e9d5ff; border-left: 4px solid var(--counsel);
+    border-radius: 10px; font-size: 14.5px;
+  }
+  .learnmove .lbl {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--counsel); margin-bottom: 6px;
+  }
+  .learnmove .lbl::before { content: "◆ "; }
+  .prompt {
+    margin: 10px 0 4px; padding: 10px 14px;
+    background: #f8fafc; border-left: 3px solid var(--muted);
+    border-radius: 6px; font-size: 14px; color: #334155;
+  }
+  .prompt::before {
+    content: "Q. "; color: var(--counsel); font-weight: 700;
+  }
+  .principles {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    margin: 16px 0;
+  }
+  .principles .p {
+    background: white; border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .principles .p h4 {
+    margin: 0 0 6px; font-size: 14px;
+    color: var(--counsel); letter-spacing: 0.02em;
+  }
+  .principles .p p { margin: 0; font-size: 13.5px; color: #334155; line-height: 1.55; }
+  .flow {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+    margin: 16px 0;
+  }
+  .flow .f {
+    background: white; border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 10px; font-size: 12.5px; color: #334155; text-align: center;
+    position: relative;
+  }
+  .flow .f strong { display: block; color: var(--counsel); font-size: 13px; margin-bottom: 4px; }
+  .flow .f + .f::before {
+    content: "→"; position: absolute; left: -14px; top: 50%;
+    transform: translateY(-50%); color: var(--muted); font-weight: 700;
+  }
+  @media (max-width: 720px) {
+    .principles { grid-template-columns: 1fr; }
+    .flow { grid-template-columns: 1fr; }
+    .flow .f + .f::before { content: "↓"; left: 50%; top: -14px; transform: translateX(-50%); }
+  }
+  .toc {
+    position: sticky; top: 20px;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px; margin: 28px 0; font-size: 14px;
+  }
+  .toc a { color: var(--ink); text-decoration: none; display: inline-block; margin: 3px 14px 3px 0; }
+  .toc a:hover { color: var(--counsel); }
+  .lang-switch {
+    position: fixed; top: 18px; right: 18px; z-index: 10;
+    background: white; border: 1px solid var(--line); border-radius: 999px;
+    padding: 4px; display: flex; gap: 2px; font-size: 13px;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.08);
+  }
+  .lang-switch button {
+    border: 0; background: transparent; padding: 4px 12px; border-radius: 999px;
+    cursor: pointer; color: var(--muted); font-weight: 600;
+  }
+  .lang-switch button.on { background: var(--counsel); color: white; }
+  [data-en] { display: none; }
+  body.en [data-en] { display: revert; }
+  body.en [data-ko] { display: none; }
+  footer {
+    margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 13px;
+  }
+  kbd {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px; padding: 2px 6px; border-radius: 4px;
+    background: #f1f5f9; border: 1px solid var(--line);
+  }
+</style>
+</head>
+<body class="ko">
+<div class="lang-switch">
+  <button id="btn-ko" class="on">한국어</button>
+  <button id="btn-en">English</button>
+</div>
+
+<div class="wrap">
+
+  <span class="eyebrow">CSCL · Guidebook</span>
+  <h1>
+    <span data-ko>상담심리 × 임상심리<br/>지식 그래프 사용법</span>
+    <span data-en>Counseling × Clinical<br/>Knowledge Graph Guide</span>
+  </h1>
+  <p class="lede">
+    <span data-ko>이 도구는 <strong>CSCL(Computer-Supported Collaborative Learning)</strong> 원리에 따라 설계됐습니다.
+      여러분은 "수동적 시청자"가 아니라 <strong>지식 공동체의 참여자</strong>로서 질문을 제기하고,
+      근거를 모으고, 경로를 남기며 — 다른 학습자·전문가의 지도와 자신의 지도를 비교해 나갑니다.
+      각 기능은 특정 <em>학습 행위(learning move)</em>를 유도하도록 만들어졌으니, 버튼을 누르기 전에
+      "지금 나는 어떤 인식 행위를 하고 있는가?"를 의식하며 사용해 보세요.</span>
+    <span data-en>This tool is designed around <strong>CSCL</strong> (Computer-Supported Collaborative Learning)
+      principles. You are not a passive viewer — you are a <strong>participant in a knowledge-building
+      community</strong>: asking questions, collecting evidence, recording paths, and comparing your
+      emerging map against peers and experts. Each feature is built to invite a specific
+      <em>learning move</em>, so before each click ask: <em>what epistemic act am I performing right now?</em></span>
+  </p>
+
+  <nav class="toc">
+    <strong data-ko>목차 · </strong><strong data-en>Contents · </strong>
+    <a href="#s0">0. <span data-ko>CSCL 원리</span><span data-en>CSCL principles</span></a>
+    <a href="#s1">1. Landing</a>
+    <a href="#s2">2. <span data-ko>그래프 개요</span><span data-en>Graph overview</span></a>
+    <a href="#s3">3. <span data-ko>브릿지</span><span data-en>Bridges</span></a>
+    <a href="#s4">4. <span data-ko>도메인 필터</span><span data-en>Domain filter</span></a>
+    <a href="#s5">5. <span data-ko>노드 상세</span><span data-en>Node detail</span></a>
+    <a href="#s6">6. Discussion · Q/C/E</a>
+    <a href="#s7">7. Case</a>
+    <a href="#s8">8. Notes</a>
+    <a href="#s9">9. <span data-ko>씨앗 경로</span><span data-en>Seed paths</span></a>
+    <a href="#s10">10. <span data-ko>언어 전환</span><span data-en>Language</span></a>
+    <a href="#s11">11. <span data-ko>협력 학습 워크플로우</span><span data-en>Collaborative workflow</span></a>
+  </nav>
+
+  <!-- 0 -->
+  <h2 id="s0"><span class="num">0</span> <span data-ko>CSCL 학습 원리</span><span data-en>CSCL learning principles</span></h2>
+  <p>
+    <span data-ko>본 도구가 전제하는 다섯 가지 학습 원리입니다. 기능 설명을 읽기 전에 먼저 이해해 두면,
+      각 버튼이 <em>왜 그 자리에 있는지</em> 의미를 잡을 수 있습니다.</span>
+    <span data-en>Five learning principles embedded in this tool. Reading them first helps you see
+      <em>why each button exists</em> — not just how to click it.</span>
+  </p>
+  <div class="principles">
+    <div class="p">
+      <h4 data-ko>① 지식 공동 구성</h4><h4 data-en>① Knowledge co-construction</h4>
+      <p data-ko>개념은 교재에서 "전달"되지 않습니다. Discussion·Case·Notes를 통해 동료들과 함께 <strong>집단적으로 구성</strong>되는 대상입니다.</p>
+      <p data-en>Concepts are not "delivered" from textbooks — they are <strong>collectively constructed</strong> through Discussion, Cases, and Notes alongside peers.</p>
+    </div>
+    <div class="p">
+      <h4 data-ko>② 인식론적 행위성</h4><h4 data-en>② Epistemic agency</h4>
+      <p data-ko>여러분은 질문(Q)·주장(C)·근거(E)를 직접 구분해 게시하며, 자신의 인식 활동을 <strong>스스로 분류·책임</strong>집니다.</p>
+      <p data-en>You tag your own posts as Question (Q), Claim (C), or Evidence (E) — taking <strong>explicit responsibility</strong> for your epistemic acts.</p>
+    </div>
+    <div class="p">
+      <h4 data-ko>③ 추적 가능한 학습 궤적</h4><h4 data-en>③ Traceable learning trajectories</h4>
+      <p data-ko>클릭·체류·경로 기록은 모두 이벤트 로그로 남아, 이후 <strong>전문가 경로와의 비교·자기성찰</strong>의 재료가 됩니다.</p>
+      <p data-en>Clicks, dwell time, and recorded paths are logged — becoming material for <strong>expert-path comparison and self-reflection</strong>.</p>
+    </div>
+    <div class="p">
+      <h4 data-ko>④ 메타인지 스캐폴딩</h4><h4 data-en>④ Metacognitive scaffolding</h4>
+      <p data-ko>좌하단의 정합도 게이지(Mirror Mode)는 <strong>"내 이해가 전문가와 얼마나 정렬되어 있는가"</strong>를 실시간으로 되돌려줍니다.</p>
+      <p data-en>The bottom-left alignment gauge (Mirror Mode) returns real-time feedback on <strong>how closely your understanding aligns with expert structure</strong>.</p>
+    </div>
+    <div class="p">
+      <h4 data-ko>⑤ 브릿지 기반 정체성 형성</h4><h4 data-en>⑤ Bridge-based identity formation</h4>
+      <p data-ko>상담↔임상의 공통 허브를 탐색하는 경험 자체가 <strong>경계를 넘나드는 전문가 정체성</strong>을 구성합니다.</p>
+      <p data-en>Exploring counseling↔clinical bridge hubs is itself a process of forming a <strong>boundary-crossing professional identity</strong>.</p>
+    </div>
+    <div class="p">
+      <h4 data-ko>⑥ 지식은 수정되는 것</h4><h4 data-en>⑥ Knowledge is revisable</h4>
+      <p data-ko>Delphi·카드소트 모드는 브릿지 관계의 신뢰도(confidence)를 <strong>투표로 갱신</strong>합니다 — 본 온톨로지 자체가 "작업 중인 가설"입니다.</p>
+      <p data-en>Delphi and card-sort modes <strong>update bridge-edge confidence by vote</strong> — the ontology itself is treated as a "working hypothesis".</p>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <h2 id="s1"><span class="num">1</span> <span data-ko>랜딩 페이지</span><span data-en>Landing page</span></h2>
+  <p>
+    <span data-ko>처음 진입하면 상담심리↔임상심리 두 도메인이 실시간 포스 시뮬레이션으로 움직이는 랜딩 화면을 만납니다. 네 가지 <strong>핵심 기여(C1–C3, S5)</strong>가 카드 형태로 소개됩니다.</span>
+    <span data-en>When you first enter, a live force-simulated landing screen connects the Counseling and Clinical domains. Four <strong>core contributions (C1–C3, S5)</strong> are introduced as cards.</span>
+  </p>
+  <div class="shot"><img src="img/landing-ko.png" alt="Landing page (Korean)" /></div>
+  <p class="cap" data-ko>한국어 랜딩 — 오른쪽 상단의 <kbd>한 / EN</kbd> 토글로 언어를 전환할 수 있습니다.</p>
+  <p class="cap" data-en>Korean landing — toggle <kbd>한 / EN</kbd> at top-right to switch language.</p>
+
+  <div class="shot"><img src="img/landing-en.png" alt="Landing page (English)" /></div>
+  <p class="cap" data-ko>같은 화면의 영어 버전. <kbd>Open the graph →</kbd> 버튼으로 진입합니다.</p>
+  <p class="cap" data-en>English version of the same page. Click <kbd>Open the graph →</kbd> to enter.</p>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 목표 설정(Orienting)</span>
+    <span class="lbl" data-en>Learning move · Orienting</span>
+    <p data-ko>랜딩은 단순 소개가 아니라 "오늘 나는 어떤 질문을 안고 들어가는가?"를 세워 두는 자리입니다. C1–C3·S5 카드를 읽고, 여러분이 가장 먼저 확인하고 싶은 가설을 하나만 메모장에 적어 두세요.</p>
+    <p data-en>Landing is not just an intro — it's where you set <em>"what question am I entering with today?"</em>. Read the C1–C3 / S5 cards, and jot down the one hypothesis you most want to check.</p>
+  </div>
+
+  <!-- 2 -->
+  <h2 id="s2"><span class="num">2</span> <span data-ko>그래프 개요</span><span data-en>Graph overview</span></h2>
+  <p>
+    <span data-ko>가운데 캔버스는 D3 포스 시뮬레이션입니다. 노드 크기·색은 계층(허브/개념)과 도메인(상담/임상/공통)을 나타내며, 줌 레벨에 따라 라벨이 <strong>점진적으로 드러납니다</strong>.</span>
+    <span data-en>The center canvas is a D3 force layout. Node size &amp; color encode tier (hub/concept) and domain (counseling/clinical/bridge); labels <strong>progressively reveal</strong> as you zoom in.</span>
+  </p>
+  <div class="shot"><img src="img/graph-overview.png" alt="Graph overview" /></div>
+  <p class="cap">
+    <span class="pill">상담</span>
+    <span class="pill clinical"><span data-ko>임상</span><span data-en>Clinical</span></span>
+    <span class="pill bridge"><span data-ko>공통 허브</span><span data-en>Bridge hub</span></span>
+  </p>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 전체 조망 → 구조 인식</span>
+    <span class="lbl" data-en>Learning move · Gaining a structural overview</span>
+    <p data-ko>줌 아웃 상태에서 먼저 "큰 덩어리"를 봅니다. 어디가 중심이고, 어디가 가장자리인가? 어느 쪽이 더 촘촘한가? 이 구조 감각이 이후 세부 학습의 <strong>스키마 틀</strong>이 됩니다.</p>
+    <p data-en>At full zoom-out, take in the "big shape" first — where is the center? where are the edges? which side is denser? This structural sense becomes the <strong>schema scaffold</strong> for later detail learning.</p>
+  </div>
+  <div class="prompt" data-ko>줌 인/아웃을 번갈아 하며: 내가 이미 알고 있는 개념은 어느 위치에 모여 있나요? 모르는 개념은 어디에 모여 있나요?</div>
+  <div class="prompt" data-en>Toggle zoom in/out: where do concepts I already know cluster? Where do the unknowns cluster?</div>
+
+  <!-- 3 -->
+  <h2 id="s3"><span class="num">3</span> <span data-ko>브릿지 오버레이</span><span data-en>Bridges overlay</span></h2>
+  <p>
+    <span data-ko>상단의 <kbd>⟷ Bridges</kbd> 토글을 켜면 <strong>두 도메인을 잇는 <code>bridges_to</code> 관계</strong>만 부각됩니다. 이것이 본 도구의 핵심 연구 가설(C1)입니다 — 공통 허브는 <em>주어진 것</em>이 아니라 Delphi·카드소트로 <em>검증되어야 할 가설</em>입니다.</span>
+    <span data-en>Toggle <kbd>⟷ Bridges</kbd> to highlight only the <strong><code>bridges_to</code> edges</strong> spanning the two domains. This is the research hypothesis (C1) — shared hubs are not <em>given</em>; they must be <em>validated</em> via Delphi / card-sort.</span>
+  </p>
+  <div class="shot"><img src="img/graph-bridges.png" alt="Bridges overlay" /></div>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 가설 비교(Confronting bridges)</span>
+    <span class="lbl" data-en>Learning move · Confronting bridges</span>
+    <p data-ko>브릿지는 "정답"이 아니라 <strong>검증 대상</strong>입니다. 여러분이 동의하지 않는 브릿지를 최소 한 개 찾아 Discussion에 문제 제기해 보세요 — 반증(E로 근거 제시)은 가장 강력한 CSCL 기여입니다.</p>
+    <p data-en>Bridges are not "correct answers" — they are <strong>claims to be tested</strong>. Find at least one bridge you disagree with and challenge it in Discussion. Providing counter-evidence (tagged E) is the most valuable CSCL contribution.</p>
+  </div>
+  <div class="prompt" data-ko>이 두 개념을 잇는 근거는 무엇인가요? 만약 잇지 않는다면 어떤 사례가 가능한가요?</div>
+  <div class="prompt" data-en>What grounds the link between these two concepts? What case would break the link?</div>
+
+  <!-- 4 -->
+  <h2 id="s4"><span class="num">4</span> <span data-ko>도메인 필터</span><span data-en>Domain filter</span></h2>
+  <p>
+    <span data-ko>우측 상단 <kbd>All · Counseling · Clinical</kbd> 버튼으로 표시 도메인을 좁힐 수 있습니다. 아래는 <em>상담심리</em>만 남긴 상태.</span>
+    <span data-en>Use <kbd>All · Counseling · Clinical</kbd> at the top to narrow the display. Below shows <em>Counseling</em> only.</span>
+  </p>
+  <div class="shot"><img src="img/graph-filter-counseling.png" alt="Counseling filter" /></div>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 비교(Comparative exploration)</span>
+    <span class="lbl" data-en>Learning move · Comparative exploration</span>
+    <p data-ko>한 도메인만 남겼을 때 어떤 개념이 <em>사라지는지</em>를 주목하세요. 그 "사라짐"이 바로 다른 도메인의 고유 영역입니다. 상담↔임상을 교차 전환하며 각 도메인의 정체성 윤곽을 감지합니다.</p>
+    <p data-en>When only one domain is visible, pay attention to what <em>disappears</em> — those absences are the other domain's unique territory. Toggle counseling↔clinical to sense each domain's identity contour.</p>
+  </div>
+
+  <!-- 5 -->
+  <h2 id="s5"><span class="num">5</span> <span data-ko>노드 상세 패널</span><span data-en>Node detail panel</span></h2>
+  <p>
+    <span data-ko>노드를 클릭하면 오른쪽에 상세 패널이 열립니다. 4개의 탭(<strong>Overview · Discussion · Cases · Notes</strong>)이 한 노드에 묶여 있어, 한 개념에 대한 <em>읽기·토론·사례·개인 메모</em>가 분리되지 않습니다.</span>
+    <span data-en>Clicking a node opens the right-side panel with four tabs (<strong>Overview · Discussion · Cases · Notes</strong>) — reading, discussion, case anchoring, and personal notes stay bound to the same concept.</span>
+  </p>
+  <div class="shot"><img src="img/node-detail-description.png" alt="Node detail — Overview" /></div>
+  <p class="cap"><span data-ko>Overview 탭에는 노드 설명과 공통 허브 여부, 연결된 도메인 정보가 표시됩니다.</span><span data-en>Overview shows the description, whether it's a bridge hub, and connected domains.</span></p>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 심화 진입(Deep reading)</span>
+    <span class="lbl" data-en>Learning move · Deep reading</span>
+    <p data-ko>한 노드의 네 탭은 <strong>"동일 개념에 대한 네 가지 접근"</strong>입니다. Overview(정의) → Discussion(집단 의미 협상) → Cases(실제 적용) → Notes(개인 통합). 이 순서대로 탭을 돌며 머무는 것이 CSCL의 "layered engagement"입니다.</p>
+    <p data-en>The four tabs are <strong>"four approaches to the same concept"</strong>: Overview (definition) → Discussion (group meaning negotiation) → Cases (real application) → Notes (personal integration). Cycling through them in order is what CSCL calls "layered engagement".</p>
+  </div>
+
+  <!-- 6 -->
+  <h2 id="s6"><span class="num">6</span> Discussion · <span data-ko>인식론적 태그</span><span data-en>epistemic tags</span></h2>
+  <p>
+    <span data-ko>토론 메시지마다 <span class="tag q">Q 질문</span> <span class="tag c">C 주장</span> <span class="tag e">E 근거</span> 중 하나를 선택합니다. 이 태그는 나중에 <strong>인식론적 움직임 분석(epistemic-move coding)</strong>에 쓰입니다. <kbd>⌘/Ctrl + Enter</kbd>로 빠르게 게시.</span>
+    <span data-en>Each discussion post carries one of <span class="tag q">Q Question</span> <span class="tag c">C Claim</span> <span class="tag e">E Evidence</span>. These feed later <strong>epistemic-move coding</strong> analytics. Use <kbd>⌘/Ctrl + Enter</kbd> to post quickly.</span>
+  </p>
+  <div class="shot"><img src="img/node-detail-discussion.png" alt="Discussion with Q/C/E tags" /></div>
+  <div class="callout">
+    <strong>Why it matters.</strong>
+    <span data-ko> 단순 댓글이 아니라 <em>인식 행위(질문–주장–근거)</em>의 구조화가 목적입니다. 학습자가 근거(E) 없이 주장(C)만 반복하는 패턴 등을 추적할 수 있습니다.</span>
+    <span data-en> The goal is not just comments — it's structuring <em>epistemic acts</em>. You can, for example, surface learners who post repeated claims (C) without evidence (E).</span>
+  </div>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 논증 참여(Argumentation)</span>
+    <span class="lbl" data-en>Learning move · Argumentation</span>
+    <p data-ko><strong>CSCL 담화 규범</strong>: ① 주장(C)은 반드시 근거(E)와 쌍으로 → ② 동료의 주장에는 동의보다 <em>반증 가능성</em>으로 반응 → ③ 답이 없는 질문(Q)도 가치 있는 기여 → ④ 내 주장이 반박되면 <em>수정</em>이 기본 반응. 이것이 Scardamalia의 "지식 구축 담론(KBDiscourse)" 규범입니다.</p>
+    <p data-en><strong>CSCL discourse norms</strong>: ① Every Claim (C) must be paired with Evidence (E) → ② respond to peers' claims with <em>falsifiability</em> rather than agreement → ③ unanswered Questions (Q) are themselves valuable contributions → ④ if your claim is challenged, <em>revise</em> by default. These are Scardamalia's Knowledge-Building discourse norms.</p>
+  </div>
+  <div class="prompt" data-ko>오늘 내 게시글 중에 C(주장)만 있고 E(근거)가 빠진 것이 있나요? 근거를 덧붙여 다시 올려 보세요.</div>
+  <div class="prompt" data-en>Any of your posts today a bare Claim (C) without Evidence (E)? Re-post with the evidence attached.</div>
+
+  <!-- 7 -->
+  <h2 id="s7"><span class="num">7</span> Case · <span data-ko>사례 첨부</span><span data-en>case anchoring</span></h2>
+  <p>
+    <span data-ko>사례를 개념 노드에 첨부합니다. <strong>"어느 노드에 붙였는가"</strong> 자체가 연구 변수(C3)입니다 — 사례개념화 품질을 예측하는 대리지표로 사용됩니다.</span>
+    <span data-en>Attach a case to a concept node. <strong>Which node you anchor to</strong> is itself a research variable (C3) — a proxy for case-conceptualization quality.</span>
+  </p>
+  <div class="shot"><img src="img/node-detail-case.png" alt="Case anchoring" /></div>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 사례개념화(Case conceptualization)</span>
+    <span class="lbl" data-en>Learning move · Case conceptualization</span>
+    <p data-ko>사례를 노드에 붙이는 일은 "정답 찾기"가 아니라 <strong>해석 행위</strong>입니다. 같은 내담자 사례를 친구는 어느 노드에 붙였나요? 차이를 비교하며 <em>선행–유지–보호–문화</em> 네 축으로 다시 논증해 보세요.</p>
+    <p data-en>Anchoring a case is not "finding the right answer" — it's an <strong>interpretive act</strong>. Where did your peer anchor the same case? Compare and re-argue along four axes: <em>precipitating · perpetuating · protective · cultural</em>.</p>
+  </div>
+  <div class="prompt" data-ko>만약 내가 붙인 노드가 아니라 <em>인접한 허브</em>에 붙였다면, 개념화가 어떻게 달라질까요?</div>
+  <div class="prompt" data-en>If you anchored not to this node but to an <em>adjacent hub</em>, how would the conceptualization shift?</div>
+
+  <!-- 8 -->
+  <h2 id="s8"><span class="num">8</span> Notes · <span data-ko>개인 메모</span><span data-en>personal notes</span></h2>
+  <p>
+    <span data-ko>노드별 개인 메모. 현재는 로컬 저장(localStorage)이며, 로그인 연동 시 사용자 단위로 분리됩니다. 저장 시 <code>note_save</code> 이벤트가 로그에 쌓입니다.</span>
+    <span data-en>Per-node private notes. Currently stored in localStorage; separated per user once auth is wired. Saving emits a <code>note_save</code> event to the log.</span>
+  </p>
+  <div class="shot"><img src="img/node-detail-notes.png" alt="Notes tab" /></div>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 자기설명(Self-explanation)</span>
+    <span class="lbl" data-en>Learning move · Self-explanation</span>
+    <p data-ko>Notes는 "내가 이 개념을 내 말로 다시 쓸 수 있는가?"를 시험하는 자리입니다. 교재 표현을 복사하지 말고, <strong>실제 내담자/사례 한 가지를 상상하며</strong> 서술해 보세요 — Chi(2018)의 self-explanation 효과가 가장 강하게 나타나는 조건입니다.</p>
+    <p data-en>Notes is where you test "can I re-state this concept in my own words?" Don't copy the textbook — write while <strong>imagining one specific client/case</strong>. This is the condition under which Chi (2018)'s self-explanation effect is strongest.</p>
+  </div>
+
+  <!-- 9 -->
+  <h2 id="s9"><span class="num">9</span> <span data-ko>씨앗 경로 따라가기</span><span data-en>Walking a seed path</span></h2>
+  <p>
+    <span data-ko>좌측 <em>SEED LEARNING PATHS</em> 목록에서 경로 하나를 선택하면, 그래프가 해당 노드 시퀀스를 단계별로 강조합니다. 전문가가 설계한 추천 경로와 내 탐색 경로를 나중에 비교할 수 있습니다 — 이것이 <strong>경로 시그니처(C2)</strong> 연구의 기반입니다.</span>
+    <span data-en>Pick a path in the left <em>SEED LEARNING PATHS</em> list and the graph steps through that sequence. Your traversal can later be compared to the expert-designed reference — the foundation of <strong>path signatures (C2)</strong>.</span>
+  </p>
+  <div class="shot"><img src="img/seed-path-step.png" alt="Seed path stepping" /></div>
+  <ul class="steps">
+    <li data-ko>좌측 목록에서 경로 제목을 클릭하면 패널이 펼쳐집니다.</li>
+    <li data-en>Click a path title in the left list to expand it.</li>
+    <li data-ko><kbd>Prev</kbd> / <kbd>Next</kbd> 버튼 또는 화살표로 단계 이동.</li>
+    <li data-en>Use <kbd>Prev</kbd> / <kbd>Next</kbd> (or arrow keys) to move between steps.</li>
+    <li data-ko><kbd>● REC</kbd>로 내 경로 기록을 시작 — 좌하단 게이지가 전문가 경로와의 정합도를 보여줍니다.</li>
+    <li data-en>Hit <kbd>● REC</kbd> to record your own path — the bottom-left gauge shows alignment to the expert reference.</li>
+  </ul>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 궤적 성찰(Trajectory reflection)</span>
+    <span class="lbl" data-en>Learning move · Trajectory reflection</span>
+    <p data-ko>씨앗 경로는 <strong>전문가가 개념을 연결한 순서</strong>입니다. 그대로 따라가기만 하면 CSCL이 아닙니다 — 전문가 순서와 내 순서가 <em>어디서 갈라지는지</em>를 주목하고, 그 분기점을 Discussion에 남기세요.</p>
+    <p data-en>A seed path is the <strong>order in which an expert connected the concepts</strong>. Merely replaying it is not CSCL — attend to <em>where your order diverges</em> from the expert's, and post that divergence point to Discussion.</p>
+  </div>
+  <div class="prompt" data-ko>내 경로와 전문가 경로가 처음으로 달라진 노드는 어디인가요? 왜 나는 다른 방향으로 갔을까요?</div>
+  <div class="prompt" data-en>At which node did your path first diverge from the expert's? Why did you turn that way?</div>
+
+  <!-- 10 -->
+  <h2 id="s10"><span class="num">10</span> <span data-ko>언어 전환</span><span data-en>Language toggle</span></h2>
+  <p>
+    <span data-ko>우측 상단 <kbd>한 / EN</kbd> 토글로 UI와 라벨을 전환합니다. 영문 라벨이 채워진 노드는 영어로, 그렇지 않은 개념 노드는 한글이 유지됩니다(현재 콘텐츠 작업 진행 중).</span>
+    <span data-en>Toggle <kbd>한 / EN</kbd> at the top-right. Nodes with English labels show in English; concept nodes missing translations fall back to Korean (labelEn population is ongoing).</span>
+  </p>
+  <div class="shot"><img src="img/graph-english.png" alt="English mode" /></div>
+  <div class="learnmove">
+    <span class="lbl" data-ko>학습 행위 · 이중 언어적 개념화</span>
+    <span class="lbl" data-en>Learning move · Bilingual conceptualization</span>
+    <p data-ko>국제 문헌의 용어(영문)와 임상 현장 언어(국문) 사이의 간극을 의식적으로 경험하도록 설계됐습니다. <em>같은 노드를 두 언어로 읽을 때 의미가 똑같이 남는가?</em>를 확인하세요.</p>
+    <p data-en>The toggle is designed to make you feel the gap between international-literature terminology (EN) and clinical-practice language (KO). Ask: <em>does the meaning survive intact across the two labels?</em></p>
+  </div>
+
+  <!-- 11 workflow -->
+  <h2 id="s11"><span class="num">11</span> <span data-ko>협력 학습 워크플로우</span><span data-en>Collaborative learning workflow</span></h2>
+  <p>
+    <span data-ko>각 기능을 낱개로 쓰는 것이 아니라, 한 회차(예: 90분 수업) 동안 다음 5단계를 <strong>한 사이클</strong>로 묶는 것이 권장됩니다. 이 사이클이 지식 구축 세션 한 단위입니다.</span>
+    <span data-en>Don't use the features in isolation — over a single session (e.g., 90 minutes), chain the five steps below into <strong>one knowledge-building cycle</strong>.</span>
+  </p>
+  <div class="flow">
+    <div class="f"><strong data-ko>① 진입</strong><strong data-en>① Enter</strong><span data-ko>질문 하나를 안고 그래프 열기</span><span data-en>Enter with one question</span></div>
+    <div class="f"><strong data-ko>② 조망</strong><strong data-en>② Survey</strong><span data-ko>브릿지 토글 · 도메인 비교</span><span data-en>Toggle bridges · compare domains</span></div>
+    <div class="f"><strong data-ko>③ 논증</strong><strong data-en>③ Argue</strong><span data-ko>Q/C/E 태그로 담화 남기기</span><span data-en>Post with Q/C/E tags</span></div>
+    <div class="f"><strong data-ko>④ 적용</strong><strong data-en>④ Apply</strong><span data-ko>사례 첨부 · 개인 메모 통합</span><span data-en>Anchor case · integrate notes</span></div>
+    <div class="f"><strong data-ko>⑤ 성찰</strong><strong data-en>⑤ Reflect</strong><span data-ko>경로 녹화 · 게이지로 자기 정렬</span><span data-en>Record path · gauge self-alignment</span></div>
+  </div>
+  <div class="callout">
+    <strong data-ko>조 편성 팁 · </strong><strong data-en>Grouping tip · </strong>
+    <span data-ko>같은 씨앗 경로를 2–3명이 동시에 탐색하면, ③단계 논증에서 자연스럽게 <em>해석의 차이</em>가 드러납니다. 혼자 탐색할 때는 이전 회차 동료들의 Discussion을 먼저 읽는 것이 같은 효과를 냅니다(비동기 협력).</span>
+    <span data-en>Having 2–3 learners explore the same seed path in parallel naturally surfaces <em>interpretive differences</em> at step ③. Solo learners achieve the same effect by first reading previous cohorts' Discussion threads (asynchronous collaboration).</span>
+  </div>
+  <div class="prompt" data-ko>이번 사이클에서 가장 많이 수정한 내 생각은 무엇이었나요? 그 수정의 촉발은 누구의(또는 어떤 데이터의) 기여였나요?</div>
+  <div class="prompt" data-en>Which of your ideas was most revised this cycle? Whose (or what data's) contribution triggered the revision?</div>
+
+  <div class="callout">
+    <strong data-ko>다음 단계 · </strong><strong data-en>Next · </strong>
+    <span data-ko>탐색을 마친 후 좌하단 <em>정합도 게이지</em>에서 내 경로와 전문가 경로의 차이를 확인하세요. 상세한 분석은 관리자 대시보드에서 CSV로 내보낼 수 있습니다.</span>
+    <span data-en>After exploring, check the <em>Alignment gauge</em> at bottom-left to see your path vs. the expert reference. The admin dashboard exports full analytics as CSV.</span>
+  </div>
+
+  <footer>
+    <p>
+      <span data-ko>Phase 0 · 로컬 · v0.0.1 — 소스·이슈: </span>
+      <span data-en>Phase 0 · Local · v0.0.1 — source &amp; issues: </span>
+      <a href="https://github.com/Educatian/counseling-graph-cscl">github.com/Educatian/counseling-graph-cscl</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+  const body = document.body;
+  const ko = document.getElementById("btn-ko");
+  const en = document.getElementById("btn-en");
+  const saved = localStorage.getItem("guide-lang") || "ko";
+  setLang(saved);
+  ko.onclick = () => setLang("ko");
+  en.onclick = () => setLang("en");
+  function setLang(l) {
+    body.classList.toggle("en", l === "en");
+    body.classList.toggle("ko", l === "ko");
+    ko.classList.toggle("on", l === "ko");
+    en.classList.toggle("on", l === "en");
+    document.documentElement.lang = l;
+    localStorage.setItem("guide-lang", l);
+  }
+</script>
+</body>
+</html>

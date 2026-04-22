@@ -10,6 +10,7 @@ interface Props {
   onBridgesOnlyChange: (v: boolean) => void;
   lang: Lang;
   onLangChange: (l: Lang) => void;
+  onHome?: () => void;
 }
 
 const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
@@ -18,7 +19,7 @@ const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
   { key: "clinical", label: "Clinical" }
 ];
 
-export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange }: Props) {
+export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome }: Props) {
   return (
     <div className="titlebar" style={{ gridTemplateColumns: "120px 1fr auto", gap: 16 }}>
       <div className="window-chrome">
@@ -26,10 +27,20 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
         <span className="traffic yellow" />
         <span className="traffic green" />
       </div>
-      <div className="title">
-        Counseling / Clinical Knowledge Graph
-        <div style={{ fontSize: 11, fontWeight: 400, color: "var(--text-tertiary)", marginTop: 1 }}>
-          {subtitle}
+      <div className="title" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        {onHome && (
+          <button
+            className="segment"
+            onClick={onHome}
+            title={lang === "ko" ? "랜딩으로 돌아가기" : "Back to landing"}
+            style={{ padding: "2px 8px", fontSize: 12, lineHeight: 1.4 }}
+          >← {lang === "ko" ? "홈" : "Home"}</button>
+        )}
+        <div>
+          Counseling / Clinical Knowledge Graph
+          <div style={{ fontSize: 11, fontWeight: 400, color: "var(--text-tertiary)", marginTop: 1 }}>
+            {subtitle}
+          </div>
         </div>
       </div>
       <div className="right" style={{ gap: 8 }}>

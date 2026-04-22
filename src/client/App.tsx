@@ -43,6 +43,11 @@ export default function App() {
     try { localStorage.setItem("entered", "1"); } catch {}
     void logEvent("landing_enter", {});
   };
+  const handleHome = () => {
+    setEntered(false);
+    try { localStorage.removeItem("entered"); } catch {}
+    void logEvent("landing_enter", { via: "home_button" });
+  };
 
   useEffect(() => {
     // In static (GitHub Pages) builds the Hono server isn't there; Vite's
@@ -102,6 +107,7 @@ export default function App() {
         onBridgesOnlyChange={(v) => { setBridgesOnly(v); void logEvent("filter_change", { bridgesOnly: v }); }}
         lang={lang}
         onLangChange={handleLangChange}
+        onHome={handleHome}
       />
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         <Sidebar
