@@ -1466,6 +1466,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "대상",
+      "labelEn": "Target population",
       "description": "상담: 학생, 내담자, 발달적 특성 ↔ 임상: 환자, 내담자, 생애주기 특성"
     },
     {
@@ -1473,6 +1474,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "문제/증상",
+      "labelEn": "Problem / Symptom",
       "description": "상담: 학업·정서·관계 문제 ↔ 임상: 정신병리·증상·위험"
     },
     {
@@ -1480,6 +1482,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "원인/기제",
+      "labelEn": "Cause / Mechanism",
       "description": "상담: 동기, 환경, 인지, 관계 ↔ 임상: 병인론, 유지요인, 생물학적 기초"
     },
     {
@@ -1487,6 +1490,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "평가",
+      "labelEn": "Assessment",
       "description": "상담: 면담, 학교 적응 평가, 진로검사 ↔ 임상: 진단면담, 심리검사, 신경심리검사"
     },
     {
@@ -1494,6 +1498,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "개입",
+      "labelEn": "Intervention",
       "description": "상담: 상담이론, 상담기술, 프로그램 ↔ 임상: 치료접근, 위기개입, 약물 협력"
     },
     {
@@ -1501,6 +1506,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "과정",
+      "labelEn": "Process",
       "description": "상담: 상담과정, 학교 협력 과정 ↔ 임상: 치료과정, 사례개념화, 모니터링"
     },
     {
@@ -1508,6 +1514,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "맥락",
+      "labelEn": "Context",
       "description": "상담: 학교, 가족, 또래, 교육제도 ↔ 임상: 가족, 병원, 지역사회, 문화"
     },
     {
@@ -1515,6 +1522,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "윤리·전문성",
+      "labelEn": "Ethics & professionalism",
       "description": "상담: 비밀보장, 수퍼비전 ↔ 임상: 동의, 법적 이슈, 협진"
     },
     {
@@ -1522,6 +1530,7 @@
       "domain": "shared",
       "level": "top_hub",
       "labelKo": "성과",
+      "labelEn": "Outcome",
       "description": "상담: 적응, 자기이해, 진로발달 ↔ 임상: 증상감소, 기능회복, 재발예방"
     }
   ],
