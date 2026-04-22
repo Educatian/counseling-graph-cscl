@@ -13,6 +13,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "신체·인지·정서·사회성 발달",
+      "labelEn": "Physical/cognitive/social dev.",
       "parentHubId": "c_human_development"
     },
     {
@@ -20,6 +21,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "청소년기 발달과업",
+      "labelEn": "Adolescent dev. tasks",
       "parentHubId": "c_human_development"
     },
     {
@@ -27,6 +29,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "성인초기 발달",
+      "labelEn": "Early adulthood dev.",
       "parentHubId": "c_human_development"
     },
     {
@@ -34,6 +37,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "정체성 형성",
+      "labelEn": "Identity formation",
       "parentHubId": "c_human_development"
     },
     {
@@ -41,6 +45,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "자율성 발달",
+      "labelEn": "Autonomy development",
       "parentHubId": "c_human_development"
     },
     {
@@ -56,6 +61,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "성격 특성",
+      "labelEn": "Personality traits",
       "parentHubId": "c_individual_differences"
     },
     {
@@ -63,6 +69,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "기질",
+      "labelEn": "Temperament",
       "parentHubId": "c_individual_differences"
     },
     {
@@ -70,6 +77,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "자아개념",
+      "labelEn": "Self-concept",
       "parentHubId": "c_individual_differences"
     },
     {
@@ -77,6 +85,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "자기효능감",
+      "labelEn": "Self-efficacy",
       "parentHubId": "c_individual_differences"
     },
     {
@@ -84,6 +93,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "회복탄력성",
+      "labelEn": "Resilience",
       "parentHubId": "c_individual_differences"
     },
     {
@@ -91,6 +101,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "강점 기반 관점",
+      "labelEn": "Strengths-based view",
       "parentHubId": "c_individual_differences"
     },
     {
@@ -106,6 +117,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학업문제",
+      "labelEn": "Academic problems",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -113,6 +125,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "진로문제",
+      "labelEn": "Career problems",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -120,6 +133,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "정서문제",
+      "labelEn": "Emotional problems",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -127,6 +141,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "대인관계문제",
+      "labelEn": "Interpersonal problems",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -134,6 +149,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "행동문제",
+      "labelEn": "Behavioral problems",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -141,6 +157,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학교폭력 관련 문제",
+      "labelEn": "School violence issues",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -148,6 +165,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학교부적응",
+      "labelEn": "School maladjustment",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -155,6 +173,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "가족 관련 문제",
+      "labelEn": "Family-related issues",
       "parentHubId": "c_problem_areas"
     },
     {
@@ -170,6 +189,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "인지행동치료(CBT)",
+      "labelEn": "CBT",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -177,6 +197,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "인간중심치료",
+      "labelEn": "Person-centered",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -184,6 +205,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "정신역동적 접근",
+      "labelEn": "Psychodynamic",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -191,6 +213,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "해결중심상담",
+      "labelEn": "Solution-focused",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -198,6 +221,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "내러티브상담",
+      "labelEn": "Narrative therapy",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -205,6 +229,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "현실치료",
+      "labelEn": "Reality therapy",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -212,6 +237,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "REBT",
+      "labelEn": "REBT",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -219,6 +245,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "애착 기반 관점",
+      "labelEn": "Attachment-based view",
       "parentHubId": "c_counseling_theories"
     },
     {
@@ -234,6 +261,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "관계형성",
+      "labelEn": "Rapport building",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -241,6 +269,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "초기면담",
+      "labelEn": "Intake interview",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -248,6 +277,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "문제 명료화",
+      "labelEn": "Problem clarification",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -255,6 +285,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "사정 및 개념화",
+      "labelEn": "Assessment & conceptualization",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -262,6 +293,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "목표설정",
+      "labelEn": "Goal setting",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -269,6 +301,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "개입",
+      "labelEn": "Intervention",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -276,6 +309,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "종결",
+      "labelEn": "Termination",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -283,6 +317,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "추수상담",
+      "labelEn": "Follow-up",
       "parentHubId": "c_counseling_process"
     },
     {
@@ -298,6 +333,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "공감",
+      "labelEn": "Empathy",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -305,6 +341,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "반영",
+      "labelEn": "Reflection",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -312,6 +349,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "재진술",
+      "labelEn": "Paraphrasing",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -319,6 +357,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "개방형 질문",
+      "labelEn": "Open-ended questions",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -326,6 +365,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "명료화",
+      "labelEn": "Clarification",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -333,6 +373,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "직면",
+      "labelEn": "Confrontation",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -340,6 +381,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "해석",
+      "labelEn": "Interpretation",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -347,6 +389,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "즉시성",
+      "labelEn": "Immediacy",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -354,6 +397,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "요약",
+      "labelEn": "Summarizing",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -361,6 +405,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "피드백",
+      "labelEn": "Feedback",
       "parentHubId": "c_counseling_skills"
     },
     {
@@ -376,6 +421,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "면담",
+      "labelEn": "Interview",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -383,6 +429,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "행동관찰",
+      "labelEn": "Behavioral observation",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -390,6 +437,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "사례개념화",
+      "labelEn": "Case conceptualization",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -397,6 +445,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "정서평가",
+      "labelEn": "Emotional assessment",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -404,6 +453,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "성격평가",
+      "labelEn": "Personality assessment",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -411,6 +461,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학습 및 적응 평가",
+      "labelEn": "Learning/adjustment assessment",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -418,6 +469,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "진로흥미검사",
+      "labelEn": "Career interest inventory",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -425,6 +477,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "강점평가",
+      "labelEn": "Strengths assessment",
       "parentHubId": "c_counseling_assessment"
     },
     {
@@ -440,6 +493,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학생",
+      "labelEn": "Student",
       "parentHubId": "c_educational_context"
     },
     {
@@ -447,6 +501,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "교사",
+      "labelEn": "Teacher",
       "parentHubId": "c_educational_context"
     },
     {
@@ -454,6 +509,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "부모",
+      "labelEn": "Parent",
       "parentHubId": "c_educational_context"
     },
     {
@@ -461,6 +517,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "또래",
+      "labelEn": "Peers",
       "parentHubId": "c_educational_context"
     },
     {
@@ -468,6 +525,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학급",
+      "labelEn": "Classroom",
       "parentHubId": "c_educational_context"
     },
     {
@@ -475,6 +533,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학교조직",
+      "labelEn": "School organization",
       "parentHubId": "c_educational_context"
     },
     {
@@ -482,6 +541,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학교문화",
+      "labelEn": "School culture",
       "parentHubId": "c_educational_context"
     },
     {
@@ -489,6 +549,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "상담실",
+      "labelEn": "Counseling office",
       "parentHubId": "c_educational_context"
     },
     {
@@ -496,6 +557,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "지역사회 연계",
+      "labelEn": "Community linkage",
       "parentHubId": "c_educational_context"
     },
     {
@@ -511,6 +573,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "정서행동 예방교육",
+      "labelEn": "Social-emotional prevention",
       "parentHubId": "c_prevention_programs"
     },
     {
@@ -518,6 +581,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "사회정서학습(SEL)",
+      "labelEn": "SEL",
       "parentHubId": "c_prevention_programs"
     },
     {
@@ -525,6 +589,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "집단상담",
+      "labelEn": "Group counseling",
       "parentHubId": "c_prevention_programs"
     },
     {
@@ -532,6 +597,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "또래상담",
+      "labelEn": "Peer counseling",
       "parentHubId": "c_prevention_programs"
     },
     {
@@ -539,6 +605,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학업동기 프로그램",
+      "labelEn": "Academic motivation program",
       "parentHubId": "c_prevention_programs"
     },
     {
@@ -546,6 +613,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "진로교육 프로그램",
+      "labelEn": "Career-ed program",
       "parentHubId": "c_prevention_programs"
     },
     {
@@ -561,6 +629,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "진로발달이론",
+      "labelEn": "Career dev. theory",
       "parentHubId": "c_career_life_design"
     },
     {
@@ -568,6 +637,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "진로정체성",
+      "labelEn": "Career identity",
       "parentHubId": "c_career_life_design"
     },
     {
@@ -575,6 +645,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "직업흥미",
+      "labelEn": "Vocational interests",
       "parentHubId": "c_career_life_design"
     },
     {
@@ -582,6 +653,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "진로결정 자기효능감",
+      "labelEn": "Career decision self-efficacy",
       "parentHubId": "c_career_life_design"
     },
     {
@@ -589,6 +661,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "의사결정",
+      "labelEn": "Decision-making",
       "parentHubId": "c_career_life_design"
     },
     {
@@ -596,6 +669,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "생애설계",
+      "labelEn": "Life design",
       "parentHubId": "c_career_life_design"
     },
     {
@@ -611,6 +685,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "문화적 정체성",
+      "labelEn": "Cultural identity",
       "parentHubId": "c_multicultural_diversity"
     },
     {
@@ -618,6 +693,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "문화적 민감성",
+      "labelEn": "Cultural sensitivity",
       "parentHubId": "c_multicultural_diversity"
     },
     {
@@ -625,6 +701,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "사회경제적 배경",
+      "labelEn": "Socioeconomic background",
       "parentHubId": "c_multicultural_diversity"
     },
     {
@@ -632,6 +709,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "장애와 접근성",
+      "labelEn": "Disability & access",
       "parentHubId": "c_multicultural_diversity"
     },
     {
@@ -639,6 +717,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "성별 및 다양성 이슈",
+      "labelEn": "Gender & diversity issues",
       "parentHubId": "c_multicultural_diversity"
     },
     {
@@ -654,6 +733,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "비밀보장",
+      "labelEn": "Confidentiality",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -661,6 +741,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "사전동의",
+      "labelEn": "Informed consent",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -668,6 +749,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "전문적 경계",
+      "labelEn": "Professional boundaries",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -675,6 +757,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "기록관리",
+      "labelEn": "Recordkeeping",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -682,6 +765,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "수퍼비전",
+      "labelEn": "Supervision",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -689,6 +773,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "의뢰와 협력",
+      "labelEn": "Referral & collaboration",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -696,6 +781,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "자기돌봄",
+      "labelEn": "Self-care",
       "parentHubId": "c_ethics_professionalism"
     },
     {
@@ -711,6 +797,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "상담만족도",
+      "labelEn": "Counseling satisfaction",
       "parentHubId": "c_outcomes_change"
     },
     {
@@ -718,6 +805,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "자기이해 향상",
+      "labelEn": "Improved self-understanding",
       "parentHubId": "c_outcomes_change"
     },
     {
@@ -725,6 +813,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "문제감소",
+      "labelEn": "Problem reduction",
       "parentHubId": "c_outcomes_change"
     },
     {
@@ -732,6 +821,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "학교적응 향상",
+      "labelEn": "Improved school adjustment",
       "parentHubId": "c_outcomes_change"
     },
     {
@@ -739,6 +829,7 @@
       "domain": "counseling",
       "level": "concept",
       "labelKo": "의사결정 능력 향상",
+      "labelEn": "Improved decision-making",
       "parentHubId": "c_outcomes_change"
     },
     {
@@ -754,6 +845,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "우울장애",
+      "labelEn": "Depressive disorders",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -761,6 +853,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "불안장애",
+      "labelEn": "Anxiety disorders",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -768,6 +861,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "강박 및 관련장애",
+      "labelEn": "OCD & related",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -775,6 +869,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "외상 및 스트레스 관련장애",
+      "labelEn": "Trauma/stress-related",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -782,6 +877,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "양극성장애",
+      "labelEn": "Bipolar disorders",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -789,6 +885,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "조현병스펙트럼 및 기타 정신병적 장애",
+      "labelEn": "Schizophrenia spectrum",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -796,6 +893,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "성격장애",
+      "labelEn": "Personality disorders",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -803,6 +901,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "신경발달장애",
+      "labelEn": "Neurodevelopmental",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -810,6 +909,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "섭식장애",
+      "labelEn": "Eating disorders",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -817,6 +917,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "물질사용장애",
+      "labelEn": "Substance use disorders",
       "parentHubId": "cl_psychopathology"
     },
     {
@@ -832,6 +933,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "우울기분",
+      "labelEn": "Depressed mood",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -839,6 +941,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "무쾌감",
+      "labelEn": "Anhedonia",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -846,6 +949,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "불안",
+      "labelEn": "Anxiety",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -853,6 +957,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "공황발작",
+      "labelEn": "Panic attack",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -860,6 +965,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "회피",
+      "labelEn": "Avoidance",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -867,6 +973,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "강박사고",
+      "labelEn": "Obsessions",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -874,6 +981,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "망상",
+      "labelEn": "Delusions",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -881,6 +989,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "환각",
+      "labelEn": "Hallucinations",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -888,6 +997,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "충동성",
+      "labelEn": "Impulsivity",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -895,6 +1005,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "주의집중곤란",
+      "labelEn": "Attention difficulty",
       "parentHubId": "cl_symptoms_signs"
     },
     {
@@ -910,6 +1021,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "유전적 취약성",
+      "labelEn": "Genetic vulnerability",
       "parentHubId": "cl_etiology"
     },
     {
@@ -917,6 +1029,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "신경전달물질 이상",
+      "labelEn": "Neurotransmitter dysregulation",
       "parentHubId": "cl_etiology"
     },
     {
@@ -924,6 +1037,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "인지왜곡",
+      "labelEn": "Cognitive distortions",
       "parentHubId": "cl_etiology"
     },
     {
@@ -931,6 +1045,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "학습이력",
+      "labelEn": "Learning history",
       "parentHubId": "cl_etiology"
     },
     {
@@ -938,6 +1053,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "애착과 가족요인",
+      "labelEn": "Attachment & family factors",
       "parentHubId": "cl_etiology"
     },
     {
@@ -945,6 +1061,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "스트레스 사건",
+      "labelEn": "Stressful life events",
       "parentHubId": "cl_etiology"
     },
     {
@@ -952,6 +1069,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "사회문화적 요인",
+      "labelEn": "Sociocultural factors",
       "parentHubId": "cl_etiology"
     },
     {
@@ -967,6 +1085,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "임상면담",
+      "labelEn": "Clinical interview",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -974,6 +1093,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "구조화면담(SCID 등)",
+      "labelEn": "Structured interview (SCID)",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -981,6 +1101,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "행동평가",
+      "labelEn": "Behavioral assessment",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -988,6 +1109,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "자기보고식 검사",
+      "labelEn": "Self-report inventory",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -995,6 +1117,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "투사검사",
+      "labelEn": "Projective tests",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -1002,6 +1125,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "지능검사(WAIS)",
+      "labelEn": "Intelligence test (WAIS)",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -1009,6 +1133,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "성격검사(MMPI)",
+      "labelEn": "Personality test (MMPI)",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -1016,6 +1141,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "우울/불안 척도",
+      "labelEn": "Depression/anxiety scales",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -1023,6 +1149,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "신경심리검사",
+      "labelEn": "Neuropsychological testing",
       "parentHubId": "cl_clinical_assessment"
     },
     {
@@ -1038,6 +1165,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "주호소",
+      "labelEn": "Presenting problem",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1045,6 +1173,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "촉발요인",
+      "labelEn": "Precipitating factors",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1052,6 +1181,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "유지요인",
+      "labelEn": "Maintaining factors",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1059,6 +1189,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "보호요인",
+      "labelEn": "Protective factors",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1066,6 +1197,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "공병",
+      "labelEn": "Comorbidity",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1073,6 +1205,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "기능수준",
+      "labelEn": "Functional level",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1080,6 +1213,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "치료목표",
+      "labelEn": "Treatment goals",
       "parentHubId": "cl_case_conceptualization"
     },
     {
@@ -1095,6 +1229,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "인지행동치료(CBT)",
+      "labelEn": "CBT",
       "parentHubId": "cl_treatment_approaches"
     },
     {
@@ -1102,6 +1237,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "변증법적 행동치료(DBT)",
+      "labelEn": "DBT",
       "parentHubId": "cl_treatment_approaches"
     },
     {
@@ -1109,6 +1245,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "수용전념치료(ACT)",
+      "labelEn": "ACT",
       "parentHubId": "cl_treatment_approaches"
     },
     {
@@ -1116,6 +1253,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "정신역동치료",
+      "labelEn": "Psychodynamic therapy",
       "parentHubId": "cl_treatment_approaches"
     },
     {
@@ -1123,6 +1261,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "가족치료",
+      "labelEn": "Family therapy",
       "parentHubId": "cl_treatment_approaches"
     },
     {
@@ -1130,6 +1269,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "약물치료 협력",
+      "labelEn": "Medication collaboration",
       "parentHubId": "cl_treatment_approaches"
     },
     {
@@ -1145,6 +1285,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "초기평가",
+      "labelEn": "Initial assessment",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1152,6 +1293,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "치료계획 수립",
+      "labelEn": "Treatment planning",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1159,6 +1301,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "치료동맹 형성",
+      "labelEn": "Therapeutic alliance",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1166,6 +1309,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "중재 수행",
+      "labelEn": "Intervention delivery",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1173,6 +1317,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "변화 모니터링",
+      "labelEn": "Progress monitoring",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1180,6 +1325,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "재발예방",
+      "labelEn": "Relapse prevention",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1187,6 +1333,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "종결",
+      "labelEn": "Termination",
       "parentHubId": "cl_treatment_process"
     },
     {
@@ -1202,6 +1349,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "자살사고",
+      "labelEn": "Suicidal ideation",
       "parentHubId": "cl_risk_crisis"
     },
     {
@@ -1209,6 +1357,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "자해",
+      "labelEn": "Self-harm",
       "parentHubId": "cl_risk_crisis"
     },
     {
@@ -1216,6 +1365,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "타해위험",
+      "labelEn": "Risk of harm to others",
       "parentHubId": "cl_risk_crisis"
     },
     {
@@ -1223,6 +1373,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "위기평가",
+      "labelEn": "Crisis assessment",
       "parentHubId": "cl_risk_crisis"
     },
     {
@@ -1230,6 +1381,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "안전계획",
+      "labelEn": "Safety planning",
       "parentHubId": "cl_risk_crisis"
     },
     {
@@ -1237,6 +1389,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "응급의뢰",
+      "labelEn": "Emergency referral",
       "parentHubId": "cl_risk_crisis"
     },
     {
@@ -1252,6 +1405,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "주의",
+      "labelEn": "Attention",
       "parentHubId": "cl_neuro_biological"
     },
     {
@@ -1259,6 +1413,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "기억",
+      "labelEn": "Memory",
       "parentHubId": "cl_neuro_biological"
     },
     {
@@ -1266,6 +1421,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "실행기능",
+      "labelEn": "Executive function",
       "parentHubId": "cl_neuro_biological"
     },
     {
@@ -1273,6 +1429,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "뇌손상",
+      "labelEn": "Brain injury",
       "parentHubId": "cl_neuro_biological"
     },
     {
@@ -1280,6 +1437,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "신경발달",
+      "labelEn": "Neurodevelopment",
       "parentHubId": "cl_neuro_biological"
     },
     {
@@ -1287,6 +1445,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "생리적 각성",
+      "labelEn": "Physiological arousal",
       "parentHubId": "cl_neuro_biological"
     },
     {
@@ -1302,6 +1461,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "아동청소년 임상",
+      "labelEn": "Child/adolescent clinical",
       "parentHubId": "cl_lifespan_clinical"
     },
     {
@@ -1309,6 +1469,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "성인 임상",
+      "labelEn": "Adult clinical",
       "parentHubId": "cl_lifespan_clinical"
     },
     {
@@ -1316,6 +1477,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "노인 임상",
+      "labelEn": "Geriatric clinical",
       "parentHubId": "cl_lifespan_clinical"
     },
     {
@@ -1323,6 +1485,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "발달단계에 따른 증상 표현",
+      "labelEn": "Dev.-stage symptom presentation",
       "parentHubId": "cl_lifespan_clinical"
     },
     {
@@ -1338,6 +1501,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "사전동의",
+      "labelEn": "Informed consent",
       "parentHubId": "cl_clinical_ethics_legal"
     },
     {
@@ -1345,6 +1509,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "비밀보장과 예외",
+      "labelEn": "Confidentiality & exceptions",
       "parentHubId": "cl_clinical_ethics_legal"
     },
     {
@@ -1352,6 +1517,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "기록관리",
+      "labelEn": "Recordkeeping",
       "parentHubId": "cl_clinical_ethics_legal"
     },
     {
@@ -1359,6 +1525,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "의무보고",
+      "labelEn": "Mandatory reporting",
       "parentHubId": "cl_clinical_ethics_legal"
     },
     {
@@ -1366,6 +1533,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "전문적 경계",
+      "labelEn": "Professional boundaries",
       "parentHubId": "cl_clinical_ethics_legal"
     },
     {
@@ -1373,6 +1541,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "협진과 의뢰",
+      "labelEn": "Consultation & referral",
       "parentHubId": "cl_clinical_ethics_legal"
     },
     {
@@ -1388,6 +1557,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "문화적 표현 차이",
+      "labelEn": "Cultural expression differences",
       "parentHubId": "cl_clinical_multicultural"
     },
     {
@@ -1395,6 +1565,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "진단 편향",
+      "labelEn": "Diagnostic bias",
       "parentHubId": "cl_clinical_multicultural"
     },
     {
@@ -1402,6 +1573,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "언어 접근성",
+      "labelEn": "Language access",
       "parentHubId": "cl_clinical_multicultural"
     },
     {
@@ -1409,6 +1581,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "낙인과 편견",
+      "labelEn": "Stigma & prejudice",
       "parentHubId": "cl_clinical_multicultural"
     },
     {
@@ -1416,6 +1589,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "치료 적합성",
+      "labelEn": "Treatment cultural fit",
       "parentHubId": "cl_clinical_multicultural"
     },
     {
@@ -1431,6 +1605,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "무작위 대조연구",
+      "labelEn": "RCT",
       "parentHubId": "cl_evidence_based_practice"
     },
     {
@@ -1438,6 +1613,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "메타분석",
+      "labelEn": "Meta-analysis",
       "parentHubId": "cl_evidence_based_practice"
     },
     {
@@ -1445,6 +1621,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "치료효과성",
+      "labelEn": "Treatment efficacy",
       "parentHubId": "cl_evidence_based_practice"
     },
     {
@@ -1452,6 +1629,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "측정기반 진료",
+      "labelEn": "Measurement-based care",
       "parentHubId": "cl_evidence_based_practice"
     },
     {
@@ -1459,6 +1637,7 @@
       "domain": "clinical",
       "level": "concept",
       "labelKo": "가이드라인",
+      "labelEn": "Clinical guidelines",
       "parentHubId": "cl_evidence_based_practice"
     },
     {

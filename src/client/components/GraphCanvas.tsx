@@ -465,12 +465,14 @@ function applyEmphasis(
     .attr("x1", (d) => d.s.x ?? 0).attr("y1", (d) => d.s.y ?? 0)
     .attr("x2", (d) => d.t.x ?? 0).attr("y2", (d) => d.t.y ?? 0)
     .attr("stroke", (d) => d.kind === "my" ? "#10b981" : "#1d4ed8")
-    .attr("stroke-width", (d) => d.revealed ? 3.5 : 2)
-    .attr("stroke-opacity", (d) => d.revealed ? 1 : 0.22)
-    .attr("stroke-dasharray", (d) => d.kind === "my" ? "6,4" : (d.revealed ? null : "4,4"))
+    .attr("stroke-width", (d) => d.revealed ? 4 : 0)
+    .attr("stroke-opacity", (d) => d.revealed ? 1 : 0)
+    .attr("stroke-dasharray", (d) => d.kind === "my" ? "6,4" : null)
+    .attr("stroke-linecap", "round")
     .attr("marker-end", (d) => d.revealed ? `url(#${d.kind === "my" ? "mypath" : "path"}-arrow)` : null)
     .attr("pointer-events", "none")
-    .style("filter", (d) => d.revealed && d.kind === "seed" ? "drop-shadow(0 0 4px rgba(29,78,216,0.45))" : null);
+    .style("filter", (d) => d.revealed && d.kind === "seed" ? "drop-shadow(0 0 6px rgba(29,78,216,0.6))" : null)
+    .style("transition", "stroke-width 260ms ease, stroke-opacity 260ms ease");
 
   // Compute neighbor set for selected. If selection is no longer in the visible
   // graph (e.g. after a domain-filter change), fall back to no emphasis.
