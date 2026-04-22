@@ -90,9 +90,9 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
             <span className="caption">{DOMAIN_LABEL[lang][node.domain] ?? node.domain} · {node.level}</span>
           </div>
           <h2>{lang === "en" && node.labelEn ? node.labelEn : node.labelKo}</h2>
-          {lang === "en"
-            ? <div className="subtitle">{node.labelKo}</div>
-            : (node.labelEn ? <div className="subtitle">{node.labelEn}</div> : null)}
+          {lang === "ko" && node.labelEn
+            ? <div className="subtitle">{node.labelEn}</div>
+            : null}
         </div>
         <button className="close-btn" onClick={onClose} aria-label="Close">✕</button>
       </div>
