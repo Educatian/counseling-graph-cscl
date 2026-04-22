@@ -3,7 +3,7 @@ import type { Lang } from "./TitleBar";
 
 interface Props {
   stats: Record<string, number> | null;
-  paths: Array<{ id: string; title: string; nodeSequence: string[] }>;
+  paths: Array<{ id: string; title: string; titleEn?: string; nodeSequence: string[] }>;
   domainFilter: "all" | Domain;
   onDomainChange: (d: "all" | Domain) => void;
   activePathId: string | null;
@@ -91,12 +91,13 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
       <div style={{ overflow: "auto", flex: 1 }}>
         {paths.map((p) => {
           const active = activePathId === p.id;
+          const shown = lang === "en" && p.titleEn ? p.titleEn : p.title;
           return (
             <div
               key={p.id}
               className={`sidebar-item${active ? " active" : ""}`}
               onClick={() => onPathSelect(active ? null : p.id, active ? null : p.nodeSequence)}
-              title={p.title}
+              title={shown}
               style={{ fontSize: 12, lineHeight: 1.35 }}
             >
               <span style={{
@@ -105,7 +106,7 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
               }} />
               <span style={{
                 overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1
-              }}>{p.title}</span>
+              }}>{shown}</span>
               {active ? <span style={{ fontSize: 10, color: "var(--accent)" }}>{t.playing}</span> : null}
             </div>
           );

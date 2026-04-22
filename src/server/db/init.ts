@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS learning_paths (
   id TEXT PRIMARY KEY,
   author_id TEXT NOT NULL,
   title TEXT NOT NULL,
+  title_en TEXT,
   node_sequence_json TEXT NOT NULL,
   kind TEXT NOT NULL,
   is_shared INTEGER NOT NULL DEFAULT 0,
@@ -118,7 +119,7 @@ export async function loadSeedIfEmpty() {
   const seed = JSON.parse(readFileSync(seedPath, "utf8")) as {
     nodes: Array<{ id: string; domain: "counseling" | "clinical" | "shared"; level: "top_hub" | "mid_hub" | "concept"; labelKo: string; labelEn?: string; description?: string; parentHubId?: string }>;
     edges: Array<{ id: string; sourceId: string; targetId: string; relation: "contains" | "related_to" | "prerequisite_of" | "example_of" | "contrasts_with" | "bridges_to"; confidence?: number }>;
-    paths: Array<{ id: string; title: string; kind: "seeded_template"; nodeSequence: string[] }>;
+    paths: Array<{ id: string; title: string; titleEn?: string; kind: "seeded_template"; nodeSequence: string[] }>;
   };
 
   for (const n of seed.nodes) {
@@ -136,7 +137,7 @@ export async function loadSeedIfEmpty() {
   }
   for (const p of seed.paths) {
     await db.insert(schema.learningPaths).values({
-      id: p.id, authorId: "seed", title: p.title,
+      id: p.id, authorId: "seed", title: p.title, titleEn: p.titleEn,
       nodeSequenceJson: JSON.stringify(p.nodeSequence),
       kind: p.kind, isShared: true, createdAt: new Date()
     }).run();

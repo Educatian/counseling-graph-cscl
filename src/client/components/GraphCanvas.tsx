@@ -465,11 +465,12 @@ function applyEmphasis(
     .attr("x1", (d) => d.s.x ?? 0).attr("y1", (d) => d.s.y ?? 0)
     .attr("x2", (d) => d.t.x ?? 0).attr("y2", (d) => d.t.y ?? 0)
     .attr("stroke", (d) => d.kind === "my" ? "#10b981" : "#1d4ed8")
-    .attr("stroke-width", 2.5)
-    .attr("stroke-opacity", (d) => d.revealed ? 0.9 : 0.18)
-    .attr("stroke-dasharray", (d) => d.kind === "my" ? "6,4" : null)
+    .attr("stroke-width", (d) => d.revealed ? 3.5 : 2)
+    .attr("stroke-opacity", (d) => d.revealed ? 1 : 0.22)
+    .attr("stroke-dasharray", (d) => d.kind === "my" ? "6,4" : (d.revealed ? null : "4,4"))
     .attr("marker-end", (d) => d.revealed ? `url(#${d.kind === "my" ? "mypath" : "path"}-arrow)` : null)
-    .attr("pointer-events", "none");
+    .attr("pointer-events", "none")
+    .style("filter", (d) => d.revealed && d.kind === "seed" ? "drop-shadow(0 0 4px rgba(29,78,216,0.45))" : null);
 
   // Compute neighbor set for selected. If selection is no longer in the visible
   // graph (e.g. after a domain-filter change), fall back to no emphasis.

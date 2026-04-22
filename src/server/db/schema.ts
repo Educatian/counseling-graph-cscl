@@ -69,6 +69,7 @@ export const learningPaths = sqliteTable("learning_paths", {
   id: text("id").primaryKey(),
   authorId: text("author_id").notNull(),
   title: text("title").notNull(),
+  titleEn: text("title_en"),
   nodeSequenceJson: text("node_sequence_json").notNull(),
   kind: text("kind", {
     enum: ["student_free", "student_assigned", "expert_reference", "seeded_template"]

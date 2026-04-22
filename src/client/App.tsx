@@ -12,7 +12,7 @@ import { logEvent } from "./lib/eventLogger";
 interface GraphResp {
   nodes: GraphNode[];
   edges: GraphEdge[];
-  paths: Array<{ id: string; title: string; nodeSequence: string[] }>;
+  paths: Array<{ id: string; title: string; titleEn?: string; nodeSequence: string[] }>;
 }
 
 export default function App() {

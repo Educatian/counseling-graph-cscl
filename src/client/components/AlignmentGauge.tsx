@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { alignmentScore } from "../lib/alignment";
 import type { Lang } from "./TitleBar";
 
-interface SeedPath { id: string; title: string; nodeSequence: string[]; }
+interface SeedPath { id: string; title: string; titleEn?: string; nodeSequence: string[]; }
 
 interface Props {
   myPath: string[];
@@ -72,7 +72,7 @@ export function AlignmentGauge({ myPath, seedPaths, lang = "ko" }: Props) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 11, fontWeight: 600, color: "var(--text-primary)",
                         overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {result.seed.title}
+            {lang === "en" && result.seed.titleEn ? result.seed.titleEn : result.seed.title}
           </div>
           <div style={{ fontSize: 10, color: "var(--text-tertiary)", marginTop: 2,
                         fontVariantNumeric: "tabular-nums" }}>
