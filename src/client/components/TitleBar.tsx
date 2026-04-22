@@ -1,0 +1,68 @@
+import type { Domain } from "./GraphCanvas";
+
+export type Lang = "ko" | "en";
+
+interface Props {
+  subtitle: string;
+  domainFilter: "all" | Domain;
+  onDomainChange: (d: "all" | Domain) => void;
+  bridgesOnly: boolean;
+  onBridgesOnlyChange: (v: boolean) => void;
+  lang: Lang;
+  onLangChange: (l: Lang) => void;
+}
+
+const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
+  { key: "all", label: "All" },
+  { key: "counseling", label: "Counseling" },
+  { key: "clinical", label: "Clinical" }
+];
+
+export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange }: Props) {
+  return (
+    <div className="titlebar" style={{ gridTemplateColumns: "120px 1fr auto", gap: 16 }}>
+      <div className="window-chrome">
+        <span className="traffic red" />
+        <span className="traffic yellow" />
+        <span className="traffic green" />
+      </div>
+      <div className="title">
+        Counseling / Clinical Knowledge Graph
+        <div style={{ fontSize: 11, fontWeight: 400, color: "var(--text-tertiary)", marginTop: 1 }}>
+          {subtitle}
+        </div>
+      </div>
+      <div className="right" style={{ gap: 8 }}>
+        <button
+          className={`segment ${bridgesOnly ? "active" : ""}`}
+          onClick={() => onBridgesOnlyChange(!bridgesOnly)}
+          title="§3-1 상담↔임상 브릿지만 강조"
+          style={{ color: bridgesOnly ? "var(--shared)" : undefined, fontWeight: 600 }}
+        >
+          ⟷ Bridges
+        </button>
+        <div className="segmented" role="group" aria-label="language">
+          <button
+            className={`segment ${lang === "ko" ? "active" : ""}`}
+            onClick={() => onLangChange("ko")}
+            title="한국어 라벨"
+          >한</button>
+          <button
+            className={`segment ${lang === "en" ? "active" : ""}`}
+            onClick={() => onLangChange("en")}
+            title="English labels"
+          >EN</button>
+        </div>
+        <div className="segmented">
+          {OPTIONS.map((o) => (
+            <button
+              key={o.key}
+              className={`segment ${domainFilter === o.key ? "active" : ""}`}
+              onClick={() => onDomainChange(o.key)}
+            >{o.label}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

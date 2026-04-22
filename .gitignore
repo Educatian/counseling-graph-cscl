@@ -1,0 +1,14 @@
+node_modules
+dist
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+.env
+.env.local
+.DS_Store
+*.log
+public/graph.json
+
+# tsc build artifacts (we check in .ts sources only)
+*.tsbuildinfo

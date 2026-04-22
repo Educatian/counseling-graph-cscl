@@ -1,0 +1,2854 @@
+{
+  "nodes": [
+    {
+      "id": "c_human_development",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "인간발달",
+      "labelEn": "human_development",
+      "description": "내담자 이해의 기초가 되는 발달적 틀"
+    },
+    {
+      "id": "c_human_development__신체인지정서사회성_발달",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "신체·인지·정서·사회성 발달",
+      "parentHubId": "c_human_development"
+    },
+    {
+      "id": "c_human_development__청소년기_발달과업",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "청소년기 발달과업",
+      "parentHubId": "c_human_development"
+    },
+    {
+      "id": "c_human_development__성인초기_발달",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "성인초기 발달",
+      "parentHubId": "c_human_development"
+    },
+    {
+      "id": "c_human_development__정체성_형성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "정체성 형성",
+      "parentHubId": "c_human_development"
+    },
+    {
+      "id": "c_human_development__자율성_발달",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "자율성 발달",
+      "parentHubId": "c_human_development"
+    },
+    {
+      "id": "c_individual_differences",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "개인차",
+      "labelEn": "individual_differences",
+      "description": "사람마다 다른 비교적 안정적 특성"
+    },
+    {
+      "id": "c_individual_differences__성격_특성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "성격 특성",
+      "parentHubId": "c_individual_differences"
+    },
+    {
+      "id": "c_individual_differences__기질",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "기질",
+      "parentHubId": "c_individual_differences"
+    },
+    {
+      "id": "c_individual_differences__자아개념",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "자아개념",
+      "parentHubId": "c_individual_differences"
+    },
+    {
+      "id": "c_individual_differences__자기효능감",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "자기효능감",
+      "parentHubId": "c_individual_differences"
+    },
+    {
+      "id": "c_individual_differences__회복탄력성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "회복탄력성",
+      "parentHubId": "c_individual_differences"
+    },
+    {
+      "id": "c_individual_differences__강점_기반_관점",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "강점 기반 관점",
+      "parentHubId": "c_individual_differences"
+    },
+    {
+      "id": "c_problem_areas",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "문제영역",
+      "labelEn": "problem_areas",
+      "description": "상담이 다루는 주요 어려움과 주제 — 학생 탐색의 시작점 (§1-2)"
+    },
+    {
+      "id": "c_problem_areas__학업문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학업문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__진로문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "진로문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__정서문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "정서문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__대인관계문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "대인관계문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__행동문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "행동문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__학교폭력_관련_문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학교폭력 관련 문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__학교부적응",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학교부적응",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_problem_areas__가족_관련_문제",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "가족 관련 문제",
+      "parentHubId": "c_problem_areas"
+    },
+    {
+      "id": "c_counseling_theories",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "상담이론",
+      "labelEn": "counseling_theories",
+      "description": "문제를 해석하고 개입하는 관점 — 같은 문제도 이론에 따라 다르게 해석 (§1-2)"
+    },
+    {
+      "id": "c_counseling_theories__인지행동치료cbt",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "인지행동치료(CBT)",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__인간중심치료",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "인간중심치료",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__정신역동적_접근",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "정신역동적 접근",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__해결중심상담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "해결중심상담",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__내러티브상담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "내러티브상담",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__현실치료",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "현실치료",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__rebt",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "REBT",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_theories__애착_기반_관점",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "애착 기반 관점",
+      "parentHubId": "c_counseling_theories"
+    },
+    {
+      "id": "c_counseling_process",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "상담과정",
+      "labelEn": "counseling_process",
+      "description": "상담이 진행되는 시간적 구조 — 기법이 아닌 관계·목표의 연속적 과정 (§1-2)"
+    },
+    {
+      "id": "c_counseling_process__관계형성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "관계형성",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__초기면담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "초기면담",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__문제_명료화",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "문제 명료화",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__사정_및_개념화",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "사정 및 개념화",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__목표설정",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "목표설정",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__개입",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "개입",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__종결",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "종결",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_process__추수상담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "추수상담",
+      "parentHubId": "c_counseling_process"
+    },
+    {
+      "id": "c_counseling_skills",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "상담기술",
+      "labelEn": "counseling_skills",
+      "description": "상담자가 실제로 사용하는 미시적 행동"
+    },
+    {
+      "id": "c_counseling_skills__공감",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "공감",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__반영",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "반영",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__재진술",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "재진술",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__개방형_질문",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "개방형 질문",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__명료화",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "명료화",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__직면",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "직면",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__해석",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "해석",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__즉시성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "즉시성",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__요약",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "요약",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_skills__피드백",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "피드백",
+      "parentHubId": "c_counseling_skills"
+    },
+    {
+      "id": "c_counseling_assessment",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "평가 및 사정",
+      "labelEn": "counseling_assessment",
+      "description": "문제 파악과 의사결정을 위한 평가"
+    },
+    {
+      "id": "c_counseling_assessment__면담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "면담",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__행동관찰",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "행동관찰",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__사례개념화",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "사례개념화",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__정서평가",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "정서평가",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__성격평가",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "성격평가",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__학습_및_적응_평가",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학습 및 적응 평가",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__진로흥미검사",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "진로흥미검사",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_counseling_assessment__강점평가",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "강점평가",
+      "parentHubId": "c_counseling_assessment"
+    },
+    {
+      "id": "c_educational_context",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "교육맥락",
+      "labelEn": "educational_context",
+      "description": "학교 및 교육 제도 안에서의 환경 변수 — 개인 내부 문제만이 아닌 맥락 상호작용 (§1-2)"
+    },
+    {
+      "id": "c_educational_context__학생",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학생",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__교사",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "교사",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__부모",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "부모",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__또래",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "또래",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__학급",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학급",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__학교조직",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학교조직",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__학교문화",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학교문화",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__상담실",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "상담실",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_educational_context__지역사회_연계",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "지역사회 연계",
+      "parentHubId": "c_educational_context"
+    },
+    {
+      "id": "c_prevention_programs",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "예방 및 프로그램",
+      "labelEn": "prevention_programs",
+      "description": "문제 발생 전후의 집단적 지원 체계"
+    },
+    {
+      "id": "c_prevention_programs__정서행동_예방교육",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "정서행동 예방교육",
+      "parentHubId": "c_prevention_programs"
+    },
+    {
+      "id": "c_prevention_programs__사회정서학습sel",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "사회정서학습(SEL)",
+      "parentHubId": "c_prevention_programs"
+    },
+    {
+      "id": "c_prevention_programs__집단상담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "집단상담",
+      "parentHubId": "c_prevention_programs"
+    },
+    {
+      "id": "c_prevention_programs__또래상담",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "또래상담",
+      "parentHubId": "c_prevention_programs"
+    },
+    {
+      "id": "c_prevention_programs__학업동기_프로그램",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학업동기 프로그램",
+      "parentHubId": "c_prevention_programs"
+    },
+    {
+      "id": "c_prevention_programs__진로교육_프로그램",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "진로교육 프로그램",
+      "parentHubId": "c_prevention_programs"
+    },
+    {
+      "id": "c_career_life_design",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "진로 및 생애설계",
+      "labelEn": "career_life_design",
+      "description": "교육상담에서 특히 강조되는 축 — 독립 허브로 둘 가치 (§1-2)"
+    },
+    {
+      "id": "c_career_life_design__진로발달이론",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "진로발달이론",
+      "parentHubId": "c_career_life_design"
+    },
+    {
+      "id": "c_career_life_design__진로정체성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "진로정체성",
+      "parentHubId": "c_career_life_design"
+    },
+    {
+      "id": "c_career_life_design__직업흥미",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "직업흥미",
+      "parentHubId": "c_career_life_design"
+    },
+    {
+      "id": "c_career_life_design__진로결정_자기효능감",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "진로결정 자기효능감",
+      "parentHubId": "c_career_life_design"
+    },
+    {
+      "id": "c_career_life_design__의사결정",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "의사결정",
+      "parentHubId": "c_career_life_design"
+    },
+    {
+      "id": "c_career_life_design__생애설계",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "생애설계",
+      "parentHubId": "c_career_life_design"
+    },
+    {
+      "id": "c_multicultural_diversity",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "다문화·다양성",
+      "labelEn": "multicultural_diversity",
+      "description": "문화적 맥락과 차이를 반영하는 범주"
+    },
+    {
+      "id": "c_multicultural_diversity__문화적_정체성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "문화적 정체성",
+      "parentHubId": "c_multicultural_diversity"
+    },
+    {
+      "id": "c_multicultural_diversity__문화적_민감성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "문화적 민감성",
+      "parentHubId": "c_multicultural_diversity"
+    },
+    {
+      "id": "c_multicultural_diversity__사회경제적_배경",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "사회경제적 배경",
+      "parentHubId": "c_multicultural_diversity"
+    },
+    {
+      "id": "c_multicultural_diversity__장애와_접근성",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "장애와 접근성",
+      "parentHubId": "c_multicultural_diversity"
+    },
+    {
+      "id": "c_multicultural_diversity__성별_및_다양성_이슈",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "성별 및 다양성 이슈",
+      "parentHubId": "c_multicultural_diversity"
+    },
+    {
+      "id": "c_ethics_professionalism",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "윤리 및 전문성",
+      "labelEn": "ethics_professionalism",
+      "description": "상담 실행의 규범과 전문가 역할"
+    },
+    {
+      "id": "c_ethics_professionalism__비밀보장",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "비밀보장",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_ethics_professionalism__사전동의",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "사전동의",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_ethics_professionalism__전문적_경계",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "전문적 경계",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_ethics_professionalism__기록관리",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "기록관리",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_ethics_professionalism__수퍼비전",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "수퍼비전",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_ethics_professionalism__의뢰와_협력",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "의뢰와 협력",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_ethics_professionalism__자기돌봄",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "자기돌봄",
+      "parentHubId": "c_ethics_professionalism"
+    },
+    {
+      "id": "c_outcomes_change",
+      "domain": "counseling",
+      "level": "top_hub",
+      "labelKo": "성과 및 변화",
+      "labelEn": "outcomes_change",
+      "description": "상담 결과와 변화 메커니즘"
+    },
+    {
+      "id": "c_outcomes_change__상담만족도",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "상담만족도",
+      "parentHubId": "c_outcomes_change"
+    },
+    {
+      "id": "c_outcomes_change__자기이해_향상",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "자기이해 향상",
+      "parentHubId": "c_outcomes_change"
+    },
+    {
+      "id": "c_outcomes_change__문제감소",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "문제감소",
+      "parentHubId": "c_outcomes_change"
+    },
+    {
+      "id": "c_outcomes_change__학교적응_향상",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "학교적응 향상",
+      "parentHubId": "c_outcomes_change"
+    },
+    {
+      "id": "c_outcomes_change__의사결정_능력_향상",
+      "domain": "counseling",
+      "level": "concept",
+      "labelKo": "의사결정 능력 향상",
+      "parentHubId": "c_outcomes_change"
+    },
+    {
+      "id": "cl_psychopathology",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "정신병리",
+      "labelEn": "psychopathology",
+      "description": "임상심리의 핵심 대상 — 학생이 장애 체계를 분류적으로 이해하는 출발점 (§2-2)"
+    },
+    {
+      "id": "cl_psychopathology__우울장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "우울장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__불안장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "불안장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__강박_및_관련장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "강박 및 관련장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__외상_및_스트레스_관련장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "외상 및 스트레스 관련장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__양극성장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "양극성장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__조현병스펙트럼_및_기타_정신병적_장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "조현병스펙트럼 및 기타 정신병적 장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__성격장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "성격장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__신경발달장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "신경발달장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__섭식장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "섭식장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_psychopathology__물질사용장애",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "물질사용장애",
+      "parentHubId": "cl_psychopathology"
+    },
+    {
+      "id": "cl_symptoms_signs",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "증상 및 징후",
+      "labelEn": "symptoms_signs",
+      "description": "장애를 구성하는 관찰 가능/보고 가능 요소"
+    },
+    {
+      "id": "cl_symptoms_signs__우울기분",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "우울기분",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__무쾌감",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "무쾌감",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__불안",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "불안",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__공황발작",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "공황발작",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__회피",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "회피",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__강박사고",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "강박사고",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__망상",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "망상",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__환각",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "환각",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__충동성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "충동성",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_symptoms_signs__주의집중곤란",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "주의집중곤란",
+      "parentHubId": "cl_symptoms_signs"
+    },
+    {
+      "id": "cl_etiology",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "병인론",
+      "labelEn": "etiology",
+      "description": "장애의 원인을 설명하는 다층 구조"
+    },
+    {
+      "id": "cl_etiology__유전적_취약성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "유전적 취약성",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_etiology__신경전달물질_이상",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "신경전달물질 이상",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_etiology__인지왜곡",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "인지왜곡",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_etiology__학습이력",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "학습이력",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_etiology__애착과_가족요인",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "애착과 가족요인",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_etiology__스트레스_사건",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "스트레스 사건",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_etiology__사회문화적_요인",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "사회문화적 요인",
+      "parentHubId": "cl_etiology"
+    },
+    {
+      "id": "cl_clinical_assessment",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "평가 및 진단",
+      "labelEn": "clinical_assessment",
+      "description": "진단적 판단과 사례이해를 위한 체계 — 체계적 사정·판단이 임상심리의 핵심 (§2-2)"
+    },
+    {
+      "id": "cl_clinical_assessment__임상면담",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "임상면담",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__구조화면담scid_등",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "구조화면담(SCID 등)",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__행동평가",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "행동평가",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__자기보고식_검사",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "자기보고식 검사",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__투사검사",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "투사검사",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__지능검사wais",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "지능검사(WAIS)",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__성격검사mmpi",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "성격검사(MMPI)",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__우울불안_척도",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "우울/불안 척도",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_clinical_assessment__신경심리검사",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "신경심리검사",
+      "parentHubId": "cl_clinical_assessment"
+    },
+    {
+      "id": "cl_case_conceptualization",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "사례개념화",
+      "labelEn": "case_conceptualization",
+      "description": "내담자별 문제 구조의 통합적 이해 — 동일 진단도 촉발·유지·보호 요인이 다름 (§2-2)"
+    },
+    {
+      "id": "cl_case_conceptualization__주호소",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "주호소",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_case_conceptualization__촉발요인",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "촉발요인",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_case_conceptualization__유지요인",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "유지요인",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_case_conceptualization__보호요인",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "보호요인",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_case_conceptualization__공병",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "공병",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_case_conceptualization__기능수준",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "기능수준",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_case_conceptualization__치료목표",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "치료목표",
+      "parentHubId": "cl_case_conceptualization"
+    },
+    {
+      "id": "cl_treatment_approaches",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "치료접근",
+      "labelEn": "treatment_approaches",
+      "description": "장애나 문제에 적용되는 개입 체계"
+    },
+    {
+      "id": "cl_treatment_approaches__인지행동치료cbt",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "인지행동치료(CBT)",
+      "parentHubId": "cl_treatment_approaches"
+    },
+    {
+      "id": "cl_treatment_approaches__변증법적_행동치료dbt",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "변증법적 행동치료(DBT)",
+      "parentHubId": "cl_treatment_approaches"
+    },
+    {
+      "id": "cl_treatment_approaches__수용전념치료act",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "수용전념치료(ACT)",
+      "parentHubId": "cl_treatment_approaches"
+    },
+    {
+      "id": "cl_treatment_approaches__정신역동치료",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "정신역동치료",
+      "parentHubId": "cl_treatment_approaches"
+    },
+    {
+      "id": "cl_treatment_approaches__가족치료",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "가족치료",
+      "parentHubId": "cl_treatment_approaches"
+    },
+    {
+      "id": "cl_treatment_approaches__약물치료_협력",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "약물치료 협력",
+      "parentHubId": "cl_treatment_approaches"
+    },
+    {
+      "id": "cl_treatment_process",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "치료과정",
+      "labelEn": "treatment_process",
+      "description": "치료가 진행되는 단계와 변화 과정"
+    },
+    {
+      "id": "cl_treatment_process__초기평가",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "초기평가",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_treatment_process__치료계획_수립",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "치료계획 수립",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_treatment_process__치료동맹_형성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "치료동맹 형성",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_treatment_process__중재_수행",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "중재 수행",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_treatment_process__변화_모니터링",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "변화 모니터링",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_treatment_process__재발예방",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "재발예방",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_treatment_process__종결",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "종결",
+      "parentHubId": "cl_treatment_process"
+    },
+    {
+      "id": "cl_risk_crisis",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "위험 및 위기관리",
+      "labelEn": "risk_crisis",
+      "description": "응급성·자타해 위험·안전계획 — 독립 허브로 분리할 가치 (§2-2)"
+    },
+    {
+      "id": "cl_risk_crisis__자살사고",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "자살사고",
+      "parentHubId": "cl_risk_crisis"
+    },
+    {
+      "id": "cl_risk_crisis__자해",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "자해",
+      "parentHubId": "cl_risk_crisis"
+    },
+    {
+      "id": "cl_risk_crisis__타해위험",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "타해위험",
+      "parentHubId": "cl_risk_crisis"
+    },
+    {
+      "id": "cl_risk_crisis__위기평가",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "위기평가",
+      "parentHubId": "cl_risk_crisis"
+    },
+    {
+      "id": "cl_risk_crisis__안전계획",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "안전계획",
+      "parentHubId": "cl_risk_crisis"
+    },
+    {
+      "id": "cl_risk_crisis__응급의뢰",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "응급의뢰",
+      "parentHubId": "cl_risk_crisis"
+    },
+    {
+      "id": "cl_neuro_biological",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "신경심리 및 생물학적 기초",
+      "labelEn": "neuro_biological",
+      "description": "뇌, 인지 기능, 생물학적 기반"
+    },
+    {
+      "id": "cl_neuro_biological__주의",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "주의",
+      "parentHubId": "cl_neuro_biological"
+    },
+    {
+      "id": "cl_neuro_biological__기억",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "기억",
+      "parentHubId": "cl_neuro_biological"
+    },
+    {
+      "id": "cl_neuro_biological__실행기능",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "실행기능",
+      "parentHubId": "cl_neuro_biological"
+    },
+    {
+      "id": "cl_neuro_biological__뇌손상",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "뇌손상",
+      "parentHubId": "cl_neuro_biological"
+    },
+    {
+      "id": "cl_neuro_biological__신경발달",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "신경발달",
+      "parentHubId": "cl_neuro_biological"
+    },
+    {
+      "id": "cl_neuro_biological__생리적_각성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "생리적 각성",
+      "parentHubId": "cl_neuro_biological"
+    },
+    {
+      "id": "cl_lifespan_clinical",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "발달 및 생애주기",
+      "labelEn": "lifespan_clinical",
+      "description": "연령에 따른 임상 양상의 변화"
+    },
+    {
+      "id": "cl_lifespan_clinical__아동청소년_임상",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "아동청소년 임상",
+      "parentHubId": "cl_lifespan_clinical"
+    },
+    {
+      "id": "cl_lifespan_clinical__성인_임상",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "성인 임상",
+      "parentHubId": "cl_lifespan_clinical"
+    },
+    {
+      "id": "cl_lifespan_clinical__노인_임상",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "노인 임상",
+      "parentHubId": "cl_lifespan_clinical"
+    },
+    {
+      "id": "cl_lifespan_clinical__발달단계에_따른_증상_표현",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "발달단계에 따른 증상 표현",
+      "parentHubId": "cl_lifespan_clinical"
+    },
+    {
+      "id": "cl_clinical_ethics_legal",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "윤리 및 법적 이슈",
+      "labelEn": "clinical_ethics_legal",
+      "description": "임상 실천의 규범과 법적 책임"
+    },
+    {
+      "id": "cl_clinical_ethics_legal__사전동의",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "사전동의",
+      "parentHubId": "cl_clinical_ethics_legal"
+    },
+    {
+      "id": "cl_clinical_ethics_legal__비밀보장과_예외",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "비밀보장과 예외",
+      "parentHubId": "cl_clinical_ethics_legal"
+    },
+    {
+      "id": "cl_clinical_ethics_legal__기록관리",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "기록관리",
+      "parentHubId": "cl_clinical_ethics_legal"
+    },
+    {
+      "id": "cl_clinical_ethics_legal__의무보고",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "의무보고",
+      "parentHubId": "cl_clinical_ethics_legal"
+    },
+    {
+      "id": "cl_clinical_ethics_legal__전문적_경계",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "전문적 경계",
+      "parentHubId": "cl_clinical_ethics_legal"
+    },
+    {
+      "id": "cl_clinical_ethics_legal__협진과_의뢰",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "협진과 의뢰",
+      "parentHubId": "cl_clinical_ethics_legal"
+    },
+    {
+      "id": "cl_clinical_multicultural",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "다문화·다양성",
+      "labelEn": "clinical_multicultural",
+      "description": "진단과 치료의 문화적 적합성"
+    },
+    {
+      "id": "cl_clinical_multicultural__문화적_표현_차이",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "문화적 표현 차이",
+      "parentHubId": "cl_clinical_multicultural"
+    },
+    {
+      "id": "cl_clinical_multicultural__진단_편향",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "진단 편향",
+      "parentHubId": "cl_clinical_multicultural"
+    },
+    {
+      "id": "cl_clinical_multicultural__언어_접근성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "언어 접근성",
+      "parentHubId": "cl_clinical_multicultural"
+    },
+    {
+      "id": "cl_clinical_multicultural__낙인과_편견",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "낙인과 편견",
+      "parentHubId": "cl_clinical_multicultural"
+    },
+    {
+      "id": "cl_clinical_multicultural__치료_적합성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "치료 적합성",
+      "parentHubId": "cl_clinical_multicultural"
+    },
+    {
+      "id": "cl_evidence_based_practice",
+      "domain": "clinical",
+      "level": "top_hub",
+      "labelKo": "근거기반실천",
+      "labelEn": "evidence_based_practice",
+      "description": "연구 근거와 임상 판단의 통합 — 연구·임상 사이의 연결 노드 (§2-2)"
+    },
+    {
+      "id": "cl_evidence_based_practice__무작위_대조연구",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "무작위 대조연구",
+      "parentHubId": "cl_evidence_based_practice"
+    },
+    {
+      "id": "cl_evidence_based_practice__메타분석",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "메타분석",
+      "parentHubId": "cl_evidence_based_practice"
+    },
+    {
+      "id": "cl_evidence_based_practice__치료효과성",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "치료효과성",
+      "parentHubId": "cl_evidence_based_practice"
+    },
+    {
+      "id": "cl_evidence_based_practice__측정기반_진료",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "측정기반 진료",
+      "parentHubId": "cl_evidence_based_practice"
+    },
+    {
+      "id": "cl_evidence_based_practice__가이드라인",
+      "domain": "clinical",
+      "level": "concept",
+      "labelKo": "가이드라인",
+      "parentHubId": "cl_evidence_based_practice"
+    },
+    {
+      "id": "s_target",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "대상",
+      "description": "상담: 학생, 내담자, 발달적 특성 ↔ 임상: 환자, 내담자, 생애주기 특성"
+    },
+    {
+      "id": "s_problem",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "문제/증상",
+      "description": "상담: 학업·정서·관계 문제 ↔ 임상: 정신병리·증상·위험"
+    },
+    {
+      "id": "s_mechanism",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "원인/기제",
+      "description": "상담: 동기, 환경, 인지, 관계 ↔ 임상: 병인론, 유지요인, 생물학적 기초"
+    },
+    {
+      "id": "s_evaluation",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "평가",
+      "description": "상담: 면담, 학교 적응 평가, 진로검사 ↔ 임상: 진단면담, 심리검사, 신경심리검사"
+    },
+    {
+      "id": "s_intervention",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "개입",
+      "description": "상담: 상담이론, 상담기술, 프로그램 ↔ 임상: 치료접근, 위기개입, 약물 협력"
+    },
+    {
+      "id": "s_process",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "과정",
+      "description": "상담: 상담과정, 학교 협력 과정 ↔ 임상: 치료과정, 사례개념화, 모니터링"
+    },
+    {
+      "id": "s_context",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "맥락",
+      "description": "상담: 학교, 가족, 또래, 교육제도 ↔ 임상: 가족, 병원, 지역사회, 문화"
+    },
+    {
+      "id": "s_ethics",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "윤리·전문성",
+      "description": "상담: 비밀보장, 수퍼비전 ↔ 임상: 동의, 법적 이슈, 협진"
+    },
+    {
+      "id": "s_outcome",
+      "domain": "shared",
+      "level": "top_hub",
+      "labelKo": "성과",
+      "description": "상담: 적응, 자기이해, 진로발달 ↔ 임상: 증상감소, 기능회복, 재발예방"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_c_human_development_contains_c_human_development__신체인지정서사회성_발달",
+      "sourceId": "c_human_development",
+      "targetId": "c_human_development__신체인지정서사회성_발달",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_human_development_contains_c_human_development__청소년기_발달과업",
+      "sourceId": "c_human_development",
+      "targetId": "c_human_development__청소년기_발달과업",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_human_development_contains_c_human_development__성인초기_발달",
+      "sourceId": "c_human_development",
+      "targetId": "c_human_development__성인초기_발달",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_human_development_contains_c_human_development__정체성_형성",
+      "sourceId": "c_human_development",
+      "targetId": "c_human_development__정체성_형성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_human_development_contains_c_human_development__자율성_발달",
+      "sourceId": "c_human_development",
+      "targetId": "c_human_development__자율성_발달",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_individual_differences_contains_c_individual_differences__성격_특성",
+      "sourceId": "c_individual_differences",
+      "targetId": "c_individual_differences__성격_특성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_individual_differences_contains_c_individual_differences__기질",
+      "sourceId": "c_individual_differences",
+      "targetId": "c_individual_differences__기질",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_individual_differences_contains_c_individual_differences__자아개념",
+      "sourceId": "c_individual_differences",
+      "targetId": "c_individual_differences__자아개념",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_individual_differences_contains_c_individual_differences__자기효능감",
+      "sourceId": "c_individual_differences",
+      "targetId": "c_individual_differences__자기효능감",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_individual_differences_contains_c_individual_differences__회복탄력성",
+      "sourceId": "c_individual_differences",
+      "targetId": "c_individual_differences__회복탄력성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_individual_differences_contains_c_individual_differences__강점_기반_관점",
+      "sourceId": "c_individual_differences",
+      "targetId": "c_individual_differences__강점_기반_관점",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__학업문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__학업문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__진로문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__진로문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__정서문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__정서문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__대인관계문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__대인관계문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__행동문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__행동문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__학교폭력_관련_문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__학교폭력_관련_문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__학교부적응",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__학교부적응",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_problem_areas_contains_c_problem_areas__가족_관련_문제",
+      "sourceId": "c_problem_areas",
+      "targetId": "c_problem_areas__가족_관련_문제",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__인지행동치료cbt",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__인지행동치료cbt",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__인간중심치료",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__인간중심치료",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__정신역동적_접근",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__정신역동적_접근",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__해결중심상담",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__해결중심상담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__내러티브상담",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__내러티브상담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__현실치료",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__현실치료",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__rebt",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__rebt",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_theories_contains_c_counseling_theories__애착_기반_관점",
+      "sourceId": "c_counseling_theories",
+      "targetId": "c_counseling_theories__애착_기반_관점",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__관계형성",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__관계형성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__초기면담",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__초기면담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__문제_명료화",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__문제_명료화",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__사정_및_개념화",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__사정_및_개념화",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__목표설정",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__목표설정",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__개입",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__개입",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__종결",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__종결",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_process_contains_c_counseling_process__추수상담",
+      "sourceId": "c_counseling_process",
+      "targetId": "c_counseling_process__추수상담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__공감",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__공감",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__반영",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__반영",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__재진술",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__재진술",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__개방형_질문",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__개방형_질문",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__명료화",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__명료화",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__직면",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__직면",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__해석",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__해석",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__즉시성",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__즉시성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__요약",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__요약",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_skills_contains_c_counseling_skills__피드백",
+      "sourceId": "c_counseling_skills",
+      "targetId": "c_counseling_skills__피드백",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__면담",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__면담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__행동관찰",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__행동관찰",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__사례개념화",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__사례개념화",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__정서평가",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__정서평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__성격평가",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__성격평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__학습_및_적응_평가",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__학습_및_적응_평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__진로흥미검사",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__진로흥미검사",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_counseling_assessment_contains_c_counseling_assessment__강점평가",
+      "sourceId": "c_counseling_assessment",
+      "targetId": "c_counseling_assessment__강점평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__학생",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__학생",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__교사",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__교사",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__부모",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__부모",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__또래",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__또래",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__학급",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__학급",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__학교조직",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__학교조직",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__학교문화",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__학교문화",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__상담실",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__상담실",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_educational_context_contains_c_educational_context__지역사회_연계",
+      "sourceId": "c_educational_context",
+      "targetId": "c_educational_context__지역사회_연계",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_prevention_programs_contains_c_prevention_programs__정서행동_예방교육",
+      "sourceId": "c_prevention_programs",
+      "targetId": "c_prevention_programs__정서행동_예방교육",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_prevention_programs_contains_c_prevention_programs__사회정서학습sel",
+      "sourceId": "c_prevention_programs",
+      "targetId": "c_prevention_programs__사회정서학습sel",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_prevention_programs_contains_c_prevention_programs__집단상담",
+      "sourceId": "c_prevention_programs",
+      "targetId": "c_prevention_programs__집단상담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_prevention_programs_contains_c_prevention_programs__또래상담",
+      "sourceId": "c_prevention_programs",
+      "targetId": "c_prevention_programs__또래상담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_prevention_programs_contains_c_prevention_programs__학업동기_프로그램",
+      "sourceId": "c_prevention_programs",
+      "targetId": "c_prevention_programs__학업동기_프로그램",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_prevention_programs_contains_c_prevention_programs__진로교육_프로그램",
+      "sourceId": "c_prevention_programs",
+      "targetId": "c_prevention_programs__진로교육_프로그램",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_career_life_design_contains_c_career_life_design__진로발달이론",
+      "sourceId": "c_career_life_design",
+      "targetId": "c_career_life_design__진로발달이론",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_career_life_design_contains_c_career_life_design__진로정체성",
+      "sourceId": "c_career_life_design",
+      "targetId": "c_career_life_design__진로정체성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_career_life_design_contains_c_career_life_design__직업흥미",
+      "sourceId": "c_career_life_design",
+      "targetId": "c_career_life_design__직업흥미",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_career_life_design_contains_c_career_life_design__진로결정_자기효능감",
+      "sourceId": "c_career_life_design",
+      "targetId": "c_career_life_design__진로결정_자기효능감",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_career_life_design_contains_c_career_life_design__의사결정",
+      "sourceId": "c_career_life_design",
+      "targetId": "c_career_life_design__의사결정",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_career_life_design_contains_c_career_life_design__생애설계",
+      "sourceId": "c_career_life_design",
+      "targetId": "c_career_life_design__생애설계",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_multicultural_diversity_contains_c_multicultural_diversity__문화적_정체성",
+      "sourceId": "c_multicultural_diversity",
+      "targetId": "c_multicultural_diversity__문화적_정체성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_multicultural_diversity_contains_c_multicultural_diversity__문화적_민감성",
+      "sourceId": "c_multicultural_diversity",
+      "targetId": "c_multicultural_diversity__문화적_민감성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_multicultural_diversity_contains_c_multicultural_diversity__사회경제적_배경",
+      "sourceId": "c_multicultural_diversity",
+      "targetId": "c_multicultural_diversity__사회경제적_배경",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_multicultural_diversity_contains_c_multicultural_diversity__장애와_접근성",
+      "sourceId": "c_multicultural_diversity",
+      "targetId": "c_multicultural_diversity__장애와_접근성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_multicultural_diversity_contains_c_multicultural_diversity__성별_및_다양성_이슈",
+      "sourceId": "c_multicultural_diversity",
+      "targetId": "c_multicultural_diversity__성별_및_다양성_이슈",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__비밀보장",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__비밀보장",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__사전동의",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__사전동의",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__전문적_경계",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__전문적_경계",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__기록관리",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__기록관리",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__수퍼비전",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__수퍼비전",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__의뢰와_협력",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__의뢰와_협력",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_ethics_professionalism_contains_c_ethics_professionalism__자기돌봄",
+      "sourceId": "c_ethics_professionalism",
+      "targetId": "c_ethics_professionalism__자기돌봄",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_outcomes_change_contains_c_outcomes_change__상담만족도",
+      "sourceId": "c_outcomes_change",
+      "targetId": "c_outcomes_change__상담만족도",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_outcomes_change_contains_c_outcomes_change__자기이해_향상",
+      "sourceId": "c_outcomes_change",
+      "targetId": "c_outcomes_change__자기이해_향상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_outcomes_change_contains_c_outcomes_change__문제감소",
+      "sourceId": "c_outcomes_change",
+      "targetId": "c_outcomes_change__문제감소",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_outcomes_change_contains_c_outcomes_change__학교적응_향상",
+      "sourceId": "c_outcomes_change",
+      "targetId": "c_outcomes_change__학교적응_향상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_c_outcomes_change_contains_c_outcomes_change__의사결정_능력_향상",
+      "sourceId": "c_outcomes_change",
+      "targetId": "c_outcomes_change__의사결정_능력_향상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__우울장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__우울장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__불안장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__불안장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__강박_및_관련장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__강박_및_관련장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__외상_및_스트레스_관련장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__외상_및_스트레스_관련장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__양극성장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__양극성장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__조현병스펙트럼_및_기타_정신병적_장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__조현병스펙트럼_및_기타_정신병적_장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__성격장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__성격장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__신경발달장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__신경발달장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__섭식장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__섭식장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_psychopathology_contains_cl_psychopathology__물질사용장애",
+      "sourceId": "cl_psychopathology",
+      "targetId": "cl_psychopathology__물질사용장애",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__우울기분",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__우울기분",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__무쾌감",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__무쾌감",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__불안",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__불안",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__공황발작",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__공황발작",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__회피",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__회피",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__강박사고",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__강박사고",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__망상",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__망상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__환각",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__환각",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__충동성",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__충동성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_symptoms_signs_contains_cl_symptoms_signs__주의집중곤란",
+      "sourceId": "cl_symptoms_signs",
+      "targetId": "cl_symptoms_signs__주의집중곤란",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__유전적_취약성",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__유전적_취약성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__신경전달물질_이상",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__신경전달물질_이상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__인지왜곡",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__인지왜곡",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__학습이력",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__학습이력",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__애착과_가족요인",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__애착과_가족요인",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__스트레스_사건",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__스트레스_사건",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_etiology_contains_cl_etiology__사회문화적_요인",
+      "sourceId": "cl_etiology",
+      "targetId": "cl_etiology__사회문화적_요인",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__임상면담",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__임상면담",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__구조화면담scid_등",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__구조화면담scid_등",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__행동평가",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__행동평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__자기보고식_검사",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__자기보고식_검사",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__투사검사",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__투사검사",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__지능검사wais",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__지능검사wais",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__성격검사mmpi",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__성격검사mmpi",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__우울불안_척도",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__우울불안_척도",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_assessment_contains_cl_clinical_assessment__신경심리검사",
+      "sourceId": "cl_clinical_assessment",
+      "targetId": "cl_clinical_assessment__신경심리검사",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__주호소",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__주호소",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__촉발요인",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__촉발요인",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__유지요인",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__유지요인",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__보호요인",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__보호요인",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__공병",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__공병",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__기능수준",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__기능수준",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_case_conceptualization_contains_cl_case_conceptualization__치료목표",
+      "sourceId": "cl_case_conceptualization",
+      "targetId": "cl_case_conceptualization__치료목표",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_approaches_contains_cl_treatment_approaches__인지행동치료cbt",
+      "sourceId": "cl_treatment_approaches",
+      "targetId": "cl_treatment_approaches__인지행동치료cbt",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_approaches_contains_cl_treatment_approaches__변증법적_행동치료dbt",
+      "sourceId": "cl_treatment_approaches",
+      "targetId": "cl_treatment_approaches__변증법적_행동치료dbt",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_approaches_contains_cl_treatment_approaches__수용전념치료act",
+      "sourceId": "cl_treatment_approaches",
+      "targetId": "cl_treatment_approaches__수용전념치료act",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_approaches_contains_cl_treatment_approaches__정신역동치료",
+      "sourceId": "cl_treatment_approaches",
+      "targetId": "cl_treatment_approaches__정신역동치료",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_approaches_contains_cl_treatment_approaches__가족치료",
+      "sourceId": "cl_treatment_approaches",
+      "targetId": "cl_treatment_approaches__가족치료",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_approaches_contains_cl_treatment_approaches__약물치료_협력",
+      "sourceId": "cl_treatment_approaches",
+      "targetId": "cl_treatment_approaches__약물치료_협력",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__초기평가",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__초기평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__치료계획_수립",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__치료계획_수립",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__치료동맹_형성",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__치료동맹_형성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__중재_수행",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__중재_수행",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__변화_모니터링",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__변화_모니터링",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__재발예방",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__재발예방",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_treatment_process_contains_cl_treatment_process__종결",
+      "sourceId": "cl_treatment_process",
+      "targetId": "cl_treatment_process__종결",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_risk_crisis_contains_cl_risk_crisis__자살사고",
+      "sourceId": "cl_risk_crisis",
+      "targetId": "cl_risk_crisis__자살사고",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_risk_crisis_contains_cl_risk_crisis__자해",
+      "sourceId": "cl_risk_crisis",
+      "targetId": "cl_risk_crisis__자해",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_risk_crisis_contains_cl_risk_crisis__타해위험",
+      "sourceId": "cl_risk_crisis",
+      "targetId": "cl_risk_crisis__타해위험",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_risk_crisis_contains_cl_risk_crisis__위기평가",
+      "sourceId": "cl_risk_crisis",
+      "targetId": "cl_risk_crisis__위기평가",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_risk_crisis_contains_cl_risk_crisis__안전계획",
+      "sourceId": "cl_risk_crisis",
+      "targetId": "cl_risk_crisis__안전계획",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_risk_crisis_contains_cl_risk_crisis__응급의뢰",
+      "sourceId": "cl_risk_crisis",
+      "targetId": "cl_risk_crisis__응급의뢰",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_neuro_biological_contains_cl_neuro_biological__주의",
+      "sourceId": "cl_neuro_biological",
+      "targetId": "cl_neuro_biological__주의",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_neuro_biological_contains_cl_neuro_biological__기억",
+      "sourceId": "cl_neuro_biological",
+      "targetId": "cl_neuro_biological__기억",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_neuro_biological_contains_cl_neuro_biological__실행기능",
+      "sourceId": "cl_neuro_biological",
+      "targetId": "cl_neuro_biological__실행기능",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_neuro_biological_contains_cl_neuro_biological__뇌손상",
+      "sourceId": "cl_neuro_biological",
+      "targetId": "cl_neuro_biological__뇌손상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_neuro_biological_contains_cl_neuro_biological__신경발달",
+      "sourceId": "cl_neuro_biological",
+      "targetId": "cl_neuro_biological__신경발달",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_neuro_biological_contains_cl_neuro_biological__생리적_각성",
+      "sourceId": "cl_neuro_biological",
+      "targetId": "cl_neuro_biological__생리적_각성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_lifespan_clinical_contains_cl_lifespan_clinical__아동청소년_임상",
+      "sourceId": "cl_lifespan_clinical",
+      "targetId": "cl_lifespan_clinical__아동청소년_임상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_lifespan_clinical_contains_cl_lifespan_clinical__성인_임상",
+      "sourceId": "cl_lifespan_clinical",
+      "targetId": "cl_lifespan_clinical__성인_임상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_lifespan_clinical_contains_cl_lifespan_clinical__노인_임상",
+      "sourceId": "cl_lifespan_clinical",
+      "targetId": "cl_lifespan_clinical__노인_임상",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_lifespan_clinical_contains_cl_lifespan_clinical__발달단계에_따른_증상_표현",
+      "sourceId": "cl_lifespan_clinical",
+      "targetId": "cl_lifespan_clinical__발달단계에_따른_증상_표현",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_ethics_legal_contains_cl_clinical_ethics_legal__사전동의",
+      "sourceId": "cl_clinical_ethics_legal",
+      "targetId": "cl_clinical_ethics_legal__사전동의",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_ethics_legal_contains_cl_clinical_ethics_legal__비밀보장과_예외",
+      "sourceId": "cl_clinical_ethics_legal",
+      "targetId": "cl_clinical_ethics_legal__비밀보장과_예외",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_ethics_legal_contains_cl_clinical_ethics_legal__기록관리",
+      "sourceId": "cl_clinical_ethics_legal",
+      "targetId": "cl_clinical_ethics_legal__기록관리",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_ethics_legal_contains_cl_clinical_ethics_legal__의무보고",
+      "sourceId": "cl_clinical_ethics_legal",
+      "targetId": "cl_clinical_ethics_legal__의무보고",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_ethics_legal_contains_cl_clinical_ethics_legal__전문적_경계",
+      "sourceId": "cl_clinical_ethics_legal",
+      "targetId": "cl_clinical_ethics_legal__전문적_경계",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_ethics_legal_contains_cl_clinical_ethics_legal__협진과_의뢰",
+      "sourceId": "cl_clinical_ethics_legal",
+      "targetId": "cl_clinical_ethics_legal__협진과_의뢰",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_multicultural_contains_cl_clinical_multicultural__문화적_표현_차이",
+      "sourceId": "cl_clinical_multicultural",
+      "targetId": "cl_clinical_multicultural__문화적_표현_차이",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_multicultural_contains_cl_clinical_multicultural__진단_편향",
+      "sourceId": "cl_clinical_multicultural",
+      "targetId": "cl_clinical_multicultural__진단_편향",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_multicultural_contains_cl_clinical_multicultural__언어_접근성",
+      "sourceId": "cl_clinical_multicultural",
+      "targetId": "cl_clinical_multicultural__언어_접근성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_multicultural_contains_cl_clinical_multicultural__낙인과_편견",
+      "sourceId": "cl_clinical_multicultural",
+      "targetId": "cl_clinical_multicultural__낙인과_편견",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_clinical_multicultural_contains_cl_clinical_multicultural__치료_적합성",
+      "sourceId": "cl_clinical_multicultural",
+      "targetId": "cl_clinical_multicultural__치료_적합성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_evidence_based_practice_contains_cl_evidence_based_practice__무작위_대조연구",
+      "sourceId": "cl_evidence_based_practice",
+      "targetId": "cl_evidence_based_practice__무작위_대조연구",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_evidence_based_practice_contains_cl_evidence_based_practice__메타분석",
+      "sourceId": "cl_evidence_based_practice",
+      "targetId": "cl_evidence_based_practice__메타분석",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_evidence_based_practice_contains_cl_evidence_based_practice__치료효과성",
+      "sourceId": "cl_evidence_based_practice",
+      "targetId": "cl_evidence_based_practice__치료효과성",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_evidence_based_practice_contains_cl_evidence_based_practice__측정기반_진료",
+      "sourceId": "cl_evidence_based_practice",
+      "targetId": "cl_evidence_based_practice__측정기반_진료",
+      "relation": "contains"
+    },
+    {
+      "id": "e_cl_evidence_based_practice_contains_cl_evidence_based_practice__가이드라인",
+      "sourceId": "cl_evidence_based_practice",
+      "targetId": "cl_evidence_based_practice__가이드라인",
+      "relation": "contains"
+    },
+    {
+      "id": "e_s_target__c_educational_context",
+      "sourceId": "s_target",
+      "targetId": "c_educational_context",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_target__cl_lifespan_clinical",
+      "sourceId": "s_target",
+      "targetId": "cl_lifespan_clinical",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_problem__c_problem_areas",
+      "sourceId": "s_problem",
+      "targetId": "c_problem_areas",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_problem__cl_psychopathology",
+      "sourceId": "s_problem",
+      "targetId": "cl_psychopathology",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_problem__cl_symptoms_signs",
+      "sourceId": "s_problem",
+      "targetId": "cl_symptoms_signs",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_mechanism__c_individual_differences",
+      "sourceId": "s_mechanism",
+      "targetId": "c_individual_differences",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_mechanism__c_human_development",
+      "sourceId": "s_mechanism",
+      "targetId": "c_human_development",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_mechanism__cl_etiology",
+      "sourceId": "s_mechanism",
+      "targetId": "cl_etiology",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_mechanism__cl_neuro_biological",
+      "sourceId": "s_mechanism",
+      "targetId": "cl_neuro_biological",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_evaluation__c_counseling_assessment",
+      "sourceId": "s_evaluation",
+      "targetId": "c_counseling_assessment",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_evaluation__cl_clinical_assessment",
+      "sourceId": "s_evaluation",
+      "targetId": "cl_clinical_assessment",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_intervention__c_counseling_theories",
+      "sourceId": "s_intervention",
+      "targetId": "c_counseling_theories",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_intervention__c_counseling_skills",
+      "sourceId": "s_intervention",
+      "targetId": "c_counseling_skills",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_intervention__c_prevention_programs",
+      "sourceId": "s_intervention",
+      "targetId": "c_prevention_programs",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_intervention__cl_treatment_approaches",
+      "sourceId": "s_intervention",
+      "targetId": "cl_treatment_approaches",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_process__c_counseling_process",
+      "sourceId": "s_process",
+      "targetId": "c_counseling_process",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_process__cl_treatment_process",
+      "sourceId": "s_process",
+      "targetId": "cl_treatment_process",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_process__cl_case_conceptualization",
+      "sourceId": "s_process",
+      "targetId": "cl_case_conceptualization",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_context__c_educational_context",
+      "sourceId": "s_context",
+      "targetId": "c_educational_context",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_context__c_multicultural_diversity",
+      "sourceId": "s_context",
+      "targetId": "c_multicultural_diversity",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_context__cl_clinical_multicultural",
+      "sourceId": "s_context",
+      "targetId": "cl_clinical_multicultural",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_ethics__c_ethics_professionalism",
+      "sourceId": "s_ethics",
+      "targetId": "c_ethics_professionalism",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_ethics__cl_clinical_ethics_legal",
+      "sourceId": "s_ethics",
+      "targetId": "cl_clinical_ethics_legal",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_outcome__c_outcomes_change",
+      "sourceId": "s_outcome",
+      "targetId": "c_outcomes_change",
+      "relation": "bridges_to"
+    },
+    {
+      "id": "e_s_outcome__cl_evidence_based_practice",
+      "sourceId": "s_outcome",
+      "targetId": "cl_evidence_based_practice",
+      "relation": "bridges_to"
+    }
+  ],
+  "paths": [
+    {
+      "id": "p_c1",
+      "kind": "seeded_template",
+      "title": "학업문제 → 자기효능감 → CBT → 상담기술 → 성과",
+      "nodeSequence": [
+        "c_problem_areas__학업문제",
+        "c_individual_differences__자기효능감",
+        "c_counseling_theories__인지행동치료cbt",
+        "c_counseling_skills",
+        "c_outcomes_change"
+      ]
+    },
+    {
+      "id": "p_c2",
+      "kind": "seeded_template",
+      "title": "진로문제 → 진로정체성 → 진로흥미검사 → 진로교육 프로그램 → 의사결정 능력 향상",
+      "nodeSequence": [
+        "c_problem_areas__진로문제",
+        "c_career_life_design__진로정체성",
+        "c_counseling_assessment__진로흥미검사",
+        "c_prevention_programs__진로교육_프로그램",
+        "c_outcomes_change__의사결정_능력_향상"
+      ]
+    },
+    {
+      "id": "p_c3",
+      "kind": "seeded_template",
+      "title": "정서문제 → 평가 및 사정 → 상담과정 → 개입 → 학교적응 향상",
+      "nodeSequence": [
+        "c_problem_areas__정서문제",
+        "c_counseling_assessment",
+        "c_counseling_process",
+        "c_counseling_process__개입",
+        "c_outcomes_change__학교적응_향상"
+      ]
+    },
+    {
+      "id": "p_c4",
+      "kind": "seeded_template",
+      "title": "대인관계문제 → 애착 기반 관점 → 공감 → 집단상담 → 성과",
+      "nodeSequence": [
+        "c_problem_areas__대인관계문제",
+        "c_counseling_theories__애착_기반_관점",
+        "c_counseling_skills__공감",
+        "c_prevention_programs__집단상담",
+        "c_outcomes_change"
+      ]
+    },
+    {
+      "id": "p_l1",
+      "kind": "seeded_template",
+      "title": "우울장애 → 우울기분 → 인지왜곡 → 임상면담 → CBT → 재발예방",
+      "nodeSequence": [
+        "cl_psychopathology__우울장애",
+        "cl_symptoms_signs__우울기분",
+        "cl_etiology__인지왜곡",
+        "cl_clinical_assessment__임상면담",
+        "cl_treatment_approaches__인지행동치료cbt",
+        "cl_treatment_process__재발예방"
+      ]
+    },
+    {
+      "id": "p_l2",
+      "kind": "seeded_template",
+      "title": "불안장애 → 공황발작 → 사례개념화 → CBT → 중재 수행 → 변화 모니터링",
+      "nodeSequence": [
+        "cl_psychopathology__불안장애",
+        "cl_symptoms_signs__공황발작",
+        "cl_case_conceptualization",
+        "cl_treatment_approaches__인지행동치료cbt",
+        "cl_treatment_process__중재_수행",
+        "cl_treatment_process__변화_모니터링"
+      ]
+    },
+    {
+      "id": "p_l3",
+      "kind": "seeded_template",
+      "title": "성격장애 → 충동성 → 위험 및 위기관리 → DBT → 치료과정",
+      "nodeSequence": [
+        "cl_psychopathology__성격장애",
+        "cl_symptoms_signs__충동성",
+        "cl_risk_crisis",
+        "cl_treatment_approaches__변증법적_행동치료dbt",
+        "cl_treatment_process"
+      ]
+    },
+    {
+      "id": "p_l4",
+      "kind": "seeded_template",
+      "title": "신경발달장애 → 아동청소년 임상 → 평가 및 진단 → 협진과 의뢰 → 치료계획 수립",
+      "nodeSequence": [
+        "cl_psychopathology__신경발달장애",
+        "cl_lifespan_clinical__아동청소년_임상",
+        "cl_clinical_assessment",
+        "cl_clinical_ethics_legal__협진과_의뢰",
+        "cl_treatment_process__치료계획_수립"
+      ]
+    }
+  ]
+}
