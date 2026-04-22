@@ -9,6 +9,44 @@ An instrumented, bilingual (ko/en) knowledge graph of Korean 상담심리 (couns
 
 ---
 
+## Screenshots
+
+### Full graph — counseling × clinical with bridge hubs
+
+![Graph overview](public/guide/img/graph-overview.png)
+
+### Bridge overlay — §3-1 shared hubs highlighted
+
+![Bridges only](public/guide/img/graph-bridges.png)
+
+### Domain filter — counseling subgraph
+
+![Counseling filter](public/guide/img/graph-filter-counseling.png)
+
+### English labels (language toggle)
+
+![English mode](public/guide/img/graph-english.png)
+
+### Node detail — description, discussion, cases, notes
+
+| Description | Discussion (Q/C/E moves) |
+|---|---|
+| ![Node description](public/guide/img/node-detail-description.png) | ![Discussion](public/guide/img/node-detail-discussion.png) |
+| **Case rubric (C3)** | **Personal notes (C4)** |
+| ![Case rubric](public/guide/img/node-detail-case.png) | ![Notes](public/guide/img/node-detail-notes.png) |
+
+### Seed-path replay — progressive step reveal
+
+![Seed path step](public/guide/img/seed-path-step.png)
+
+### Landing page (ko / en)
+
+| Korean | English |
+|---|---|
+| ![Landing KO](public/guide/img/landing-ko.png) | ![Landing EN](public/guide/img/landing-en.png) |
+
+---
+
 ## Why this exists
 
 Top-tier CSCL / LAK venues (ijCSCL, *Journal of the Learning Sciences*, *Computers & Education*, *Counselor Education and Supervision*, *Training and Education in Professional Psychology*) rarely see counseling- or clinical-psych-specific knowledge-graph work. This project treats that absence as an opportunity and ships a system whose very affordances are research instruments.
