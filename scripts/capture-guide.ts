@@ -62,7 +62,6 @@ async function setStorage(page: any, entries: Record<string, string>) {
 
   // Click a node — find the first concept node in SVG and click
   await page.evaluate(() => {
-    const nodes = document.querySelectorAll("g.node, circle");
     // find a hub-ish node by picking one with a label text nearby
     const pick = Array.from(document.querySelectorAll<SVGTextElement>("svg text")).find(
       (t) => t.textContent && t.textContent.length > 2 && t.textContent.length < 12
