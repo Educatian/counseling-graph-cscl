@@ -131,7 +131,7 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
         marginTop: 16, paddingTop: 10, borderTop: "1px solid var(--border-soft)",
         fontSize: 10, color: "var(--text-tertiary)", fontFamily: "var(--font-mono)"
       }}>
-        id: {node.id}
+        id: {lang === "en" ? node.id.split("__")[0] : node.id}
       </div>
     </aside>
   );
