@@ -1,0 +1,74 @@
+{
+  "_phase0_placeholder_note": "Phase 0 placeholder set, to be replaced by Lim/Moon-curated questions in Phase A. Each prompt couples an inquiry question with manually-curated related node IDs (drawn from core-graph.seed.json) and an optional reference seed path.",
+  "prompts": [
+    {
+      "id": "p_school_depression",
+      "domain": "shared",
+      "question": {
+        "ko": "고등학생의 학업 부진과 우울은 어떻게 연결될까?",
+        "en": "How is academic underperformance linked to depression in high school students?"
+      },
+      "objective": {
+        "ko": "교육 맥락(학업·학교부적응)과 임상적 우울이 어떻게 양방향으로 작동하는지, CBT 관점으로 인지왜곡까지 연결해서 살펴봅니다.",
+        "en": "Trace how the educational context (academic difficulty, school maladjustment) interacts bidirectionally with clinical depression, linking through CBT-lens cognitive distortions."
+      },
+      "relatedNodeIds": [
+        "c_problem_areas__학업문제",
+        "c_problem_areas__학교부적응",
+        "c_educational_context__학생",
+        "c_educational_context__학급",
+        "cl_psychopathology__우울장애",
+        "cl_symptoms_signs__우울기분",
+        "cl_symptoms_signs__주의집중곤란",
+        "cl_etiology__인지왜곡",
+        "c_counseling_theories__인지행동치료cbt"
+      ],
+      "optionalSeedPathId": null
+    },
+    {
+      "id": "p_school_violence_trauma",
+      "domain": "shared",
+      "question": {
+        "ko": "학교폭력 피해 학생의 트라우마는 상담과 임상에서 각각 어떻게 다뤄질까?",
+        "en": "How is the trauma of a school-violence victim addressed differently in counseling vs clinical practice?"
+      },
+      "objective": {
+        "ko": "또래·학교문화 같은 환경 변수와 임상적 외상 진단 체계를 동시에 보면서, 두 영역이 같은 학생을 다른 렌즈로 바라보는 방식을 비교합니다.",
+        "en": "Examine environmental variables (peers, school culture) alongside the clinical trauma diagnostic system to compare how each lens views the same student."
+      },
+      "relatedNodeIds": [
+        "c_problem_areas__학교폭력_관련_문제",
+        "c_problem_areas__대인관계문제",
+        "c_educational_context__또래",
+        "c_educational_context__학교문화",
+        "cl_psychopathology__외상_및_스트레스_관련장애",
+        "cl_symptoms_signs__회피",
+        "cl_symptoms_signs__불안",
+        "cl_etiology__스트레스_사건"
+      ],
+      "optionalSeedPathId": null
+    },
+    {
+      "id": "p_career_motivation",
+      "domain": "counseling",
+      "question": {
+        "ko": "진로 결정에 어려움을 겪는 학생을 어떻게 도울 수 있을까?",
+        "en": "How can we support a student struggling with career decisions?"
+      },
+      "objective": {
+        "ko": "진로문제를 단일 증상이 아닌 동기·맥락·이론이 얽힌 구조로 보고, 예방 프로그램과 상담이론(해결중심·내러티브)을 함께 동원하는 사고를 연습합니다.",
+        "en": "Treat career difficulty as a structure of motivation × context × theory rather than a single symptom — practice mobilizing prevention programs alongside solution-focused and narrative approaches."
+      },
+      "relatedNodeIds": [
+        "c_problem_areas__진로문제",
+        "c_career_life_design",
+        "c_prevention_programs__학업동기_프로그램",
+        "c_prevention_programs__진로교육_프로그램",
+        "c_counseling_theories__해결중심상담",
+        "c_counseling_theories__내러티브상담",
+        "c_educational_context__학생"
+      ],
+      "optionalSeedPathId": null
+    }
+  ]
+}

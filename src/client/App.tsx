@@ -8,7 +8,12 @@ import { TitleBar, type Lang } from "./components/TitleBar";
 import { Landing } from "./components/Landing";
 import { AlignmentGauge } from "./components/AlignmentGauge";
 import { TutorialOverlay, type TutorialStep } from "./components/TutorialOverlay";
+import { DiscoveryPromptPanel } from "./components/DiscoveryPromptPanel";
+import type { DiscoveryPrompt } from "./components/DiscoveryPrompts";
+import discoveryData from "./data/discovery-prompts.seed.json";
 import { logEvent } from "./lib/eventLogger";
+
+const DISCOVERY_PROMPTS = (discoveryData.prompts as DiscoveryPrompt[]);
 
 /**
  * Spotlight onboarding for low-agency learners (per Lim/Moon UX discussion).
@@ -16,18 +21,32 @@ import { logEvent } from "./lib/eventLogger";
  */
 const TUTORIAL_STEPS: TutorialStep[] = [
   {
+    id: "discovery",
+    targetSelector: '[data-tutorial="discovery-section"]',
+    shape: "rect",
+    pad: 6,
+    title: {
+      ko: "오늘의 탐구 질문에서 출발하기",
+      en: "Start from today's discovery question"
+    },
+    body: {
+      ko: "막막하다면 좌측 ‘오늘의 탐구 질문’ 카드를 하나 골라보세요. 관련 노드들이 강조돼서 어디서부터 살펴볼지 보입니다.",
+      en: "Stuck? Pick a card under ‘Today's discovery questions’ on the left — its related nodes light up so you can see where to dig in."
+    }
+  },
+  {
     id: "enter",
     targetSelector: '[data-tutorial="entry-hub"]',
     shape: "circle",
     pad: 14,
     multi: true,
     title: {
-      ko: "여기서 시작하세요",
-      en: "Start here"
+      ko: "또는 진입 허브에서 시작",
+      en: "Or start from an entry hub"
     },
     body: {
-      ko: "펄스로 빛나는 두 노드 — 상담 ‘문제영역’ · 임상 ‘정신병리’ — 가 진입 허브입니다. 하나를 클릭해 첫 노드를 열어보세요.",
-      en: "The two pulsing nodes — counseling ‘problem areas’ · clinical ‘psychopathology’ — are the entry hubs. Click one to open your first node."
+      ko: "펄스로 빛나는 두 노드 — 상담 ‘문제영역’ · 임상 ‘정신병리’ — 도 자유 탐색의 시작점입니다. 하나를 클릭해 첫 노드를 열어보세요.",
+      en: "The two pulsing nodes — counseling ‘problem areas’ · clinical ‘psychopathology’ — are entry points for free exploration. Click one to open your first node."
     }
   },
   {
@@ -114,6 +133,41 @@ export default function App() {
   });
   const [tutorialOpen, setTutorialOpen] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
+  const [activeDiscovery, setActiveDiscovery] = useState<DiscoveryPrompt | null>(null);
+  // "engaged" = learner has experienced (clicked or been shown) at least one
+  // discovery prompt. Until then, the cards pulse to draw attention.
+  const [discoveryEngaged, setDiscoveryEngaged] = useState<boolean>(() => {
+    try { return localStorage.getItem("discovery_engaged") === "1"; } catch { return false; }
+  });
+  const markDiscoveryEngaged = () => {
+    setDiscoveryEngaged(true);
+    try { localStorage.setItem("discovery_engaged", "1"); } catch {}
+  };
+  const handleDiscoverySelect = (p: DiscoveryPrompt | null) => {
+    setActiveDiscovery((cur) => {
+      const next = p && cur?.id === p.id ? null : p;
+      if (next) void logEvent("discovery_prompt_open", { id: next.id, nodeCount: next.relatedNodeIds.length });
+      else if (cur) void logEvent("discovery_prompt_close", { id: cur.id });
+      return next;
+    });
+    if (p) {
+      // Activating a discovery prompt clears any seed-path replay so the graph
+      // shows a single coherent emphasis state.
+      setActivePathId(null); setActivePath(null);
+      // First contact (manual or auto) stops the pulse; the card has done its job.
+      if (!discoveryEngaged) markDiscoveryEngaged();
+    }
+  };
+  const handleDiscoveryClose = () => handleDiscoverySelect(null);
+  const handleDiscoveryPlayPath = (pathId: string) => {
+    const seed = data?.paths.find((p) => p.id === pathId);
+    if (seed) {
+      setActiveDiscovery(null);
+      setActivePathId(seed.id);
+      setActivePath(seed.nodeSequence);
+      void logEvent("path_step", { pathId: seed.id, length: seed.nodeSequence.length, via: "discovery_prompt" });
+    }
+  };
   const openTutorial = () => {
     setTutorialStep(0);
     setTutorialOpen(true);
@@ -121,8 +175,22 @@ export default function App() {
   };
   const closeTutorial = () => {
     setTutorialOpen(false);
-    try { localStorage.setItem("tutorial_seen", "1"); } catch {}
+    let wasFirstClose = false;
+    try {
+      wasFirstClose = localStorage.getItem("tutorial_seen") !== "1";
+      localStorage.setItem("tutorial_seen", "1");
+    } catch {}
     void logEvent("tutorial_close", { atStep: tutorialStep });
+    // First-visit follow-through: auto-activate the first discovery prompt so
+    // a low-agency learner doesn't end the tutorial staring at an empty graph.
+    if (wasFirstClose && DISCOVERY_PROMPTS.length > 0 && !activeDiscovery) {
+      handleDiscoverySelect(DISCOVERY_PROMPTS[0]);
+      void logEvent("discovery_prompt_open", {
+        id: DISCOVERY_PROMPTS[0].id,
+        nodeCount: DISCOVERY_PROMPTS[0].relatedNodeIds.length,
+        trigger: "auto_after_tutorial"
+      });
+    }
   };
   const nextTutorial = () => setTutorialStep((s) => Math.min(TUTORIAL_STEPS.length - 1, s + 1));
   const prevTutorial = () => setTutorialStep((s) => Math.max(0, s - 1));
@@ -232,6 +300,10 @@ export default function App() {
           myPath={myPath}
           onClearMyPath={handleClearMyPath}
           nodeLookup={new Map((data?.nodes ?? []).map(n => [n.id, (lang === "en" && n.labelEn) ? n.labelEn : n.labelKo]))}
+          discoveryPrompts={DISCOVERY_PROMPTS}
+          activeDiscoveryId={activeDiscovery?.id ?? null}
+          onDiscoverySelect={handleDiscoverySelect}
+          discoveryPulse={!discoveryEngaged}
           lang={lang}
         />
         <main style={{ position: "relative", flex: 1, overflow: "hidden" }}>
@@ -253,6 +325,13 @@ export default function App() {
                 recording={recording}
                 onRecordStep={handleRecordStep}
                 myPath={myPath}
+                discoveryNodes={activeDiscovery?.relatedNodeIds ?? null}
+                lang={lang}
+              />
+              <DiscoveryPromptPanel
+                prompt={activeDiscovery}
+                onClose={handleDiscoveryClose}
+                onPlayPath={handleDiscoveryPlayPath}
                 lang={lang}
               />
               <AlignmentGauge myPath={myPath} seedPaths={data.paths} lang={lang} />

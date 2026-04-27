@@ -1,5 +1,6 @@
 import type { Domain } from "./GraphCanvas";
 import type { Lang } from "./TitleBar";
+import { DiscoveryPrompts, type DiscoveryPrompt } from "./DiscoveryPrompts";
 
 interface Props {
   stats: Record<string, number> | null;
@@ -13,6 +14,10 @@ interface Props {
   myPath: string[];
   onClearMyPath: () => void;
   nodeLookup: Map<string, string>;
+  discoveryPrompts: DiscoveryPrompt[];
+  activeDiscoveryId: string | null;
+  onDiscoverySelect: (p: DiscoveryPrompt | null) => void;
+  discoveryPulse?: boolean;
   lang?: Lang;
 }
 
@@ -66,12 +71,21 @@ const S = {
   }
 } as const;
 
-export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePathId, onPathSelect, recording, onToggleRecording, myPath, onClearMyPath, nodeLookup, lang = "ko" }: Props) {
+export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePathId, onPathSelect, recording, onToggleRecording, myPath, onClearMyPath, nodeLookup, discoveryPrompts, activeDiscoveryId, onDiscoverySelect, discoveryPulse, lang = "ko" }: Props) {
   const t = S[lang];
   const dom = DOMAIN_LABEL[lang];
   const items: Array<"all" | Domain> = ["all", "counseling", "clinical", "shared"];
   return (
     <aside className="sidebar">
+      {discoveryPrompts.length > 0 ? (
+        <DiscoveryPrompts
+          prompts={discoveryPrompts}
+          activeId={activeDiscoveryId}
+          onSelect={onDiscoverySelect}
+          pulse={!!discoveryPulse}
+          lang={lang}
+        />
+      ) : null}
       <div className="sidebar-section-label">{t.domains}</div>
       {items.map((d) => (
         <div

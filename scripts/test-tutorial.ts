@@ -101,65 +101,88 @@ async function clearLocal(page: Page) {
   check("tutorial auto-opened on first visit", await overlayDialog.isVisible());
   await shot(page, "03-tutorial-auto-step1");
 
-  // -------- 3. Step 1 — entry hub spotlight (multi: both hubs) --------
+  // -------- 3. Step 1 — Discovery prompt section spotlight --------
+  check("Step 1 KO title rendered (discovery)",
+    await overlayDialog.locator("text=오늘의 탐구 질문에서 출발하기").count() > 0);
+  // Progress label "1 / 6단계" (now six steps)
+  const progress1 = await overlayDialog.locator("text=/1\\s*\\/\\s*6단계/").count();
+  check("Step 1 progress label '1 / 6단계'", progress1 > 0);
+  check("discovery-section anchor present in DOM",
+    await page.locator('[data-tutorial="discovery-section"]').count() > 0);
+
+  // -------- 4. Next → Step 2 (entry hub multi-spotlight) --------
+  await overlayDialog.locator("button", { hasText: /다음|Next/ }).click();
+  await page.waitForTimeout(400);
   const entryAnchorCount = await page.locator('[data-tutorial="entry-hub"]').count();
   check("entry-hub anchors present in DOM (expect 2)", entryAnchorCount === 2,
     `found ${entryAnchorCount}`);
-  // Step title in KO
-  const step1Title = await overlayDialog.locator("text=여기서 시작하세요").count();
-  check("Step 1 KO title rendered", step1Title > 0);
-  // Progress label "1 / 5단계"
-  const progress1 = await overlayDialog.locator("text=/1\\s*\\/\\s*5단계/").count();
-  check("Step 1 progress label '1 / 5단계'", progress1 > 0);
-  // Multi-spotlight: SVG mask should contain 2 cutout circles (one per entry hub)
+  check("Step 2 KO title 'entry hub'",
+    await overlayDialog.locator("text=또는 진입 허브에서 시작").count() > 0);
   const cutoutCircles = await page.locator("mask#tutorial-mask circle").count();
   check("multi-spotlight renders 2 mask circles for entry hubs", cutoutCircles === 2,
     `found ${cutoutCircles}`);
-  // And 2 stroke rings overlaid
   const strokeRings = await page.locator('svg circle[stroke="rgba(91,141,239,0.95)"]').count();
   check("multi-spotlight renders 2 stroke rings", strokeRings === 2,
     `found ${strokeRings}`);
 
-  // -------- 4. Next → Step 2 (Bridges) --------
+  // -------- 5. Next → Step 3 (Bridges) --------
   await overlayDialog.locator("button", { hasText: /다음|Next/ }).click();
   await page.waitForTimeout(400);
-  check("Step 2 title 'Bridges'", await overlayDialog.locator("text=두 영역을 잇는 다리 보기").count() > 0);
+  check("Step 3 title 'Bridges'", await overlayDialog.locator("text=두 영역을 잇는 다리 보기").count() > 0);
   check("bridges-toggle anchor present",
     await page.locator('[data-tutorial="bridges-toggle"]').count() > 0);
-  await shot(page, "04-tutorial-step2-bridges");
+  await shot(page, "04-tutorial-step3-bridges");
 
-  // -------- 5. Next → Step 3 (Discussion, NDP not open → no-target hint) --------
+  // -------- 6. Next → Step 4 (Discussion, NDP not open → no-target hint) --------
   await overlayDialog.locator("button", { hasText: /다음|Next/ }).click();
   await page.waitForTimeout(400);
   const noTargetHint = await overlayDialog
     .locator("text=이 단계의 UI가 아직 화면에 없습니다").count();
-  check("Step 3 shows 'UI not yet on screen' hint (NDP closed)", noTargetHint > 0);
-  await shot(page, "05-tutorial-step3-notarget");
+  check("Step 4 shows 'UI not yet on screen' hint (NDP closed)", noTargetHint > 0);
+  await shot(page, "05-tutorial-step4-notarget");
 
-  // -------- 6. Next → Step 4 (Cases, also NDP-dependent) --------
+  // -------- 7. Next → Step 5 (Cases) --------
   await overlayDialog.locator("button", { hasText: /다음|Next/ }).click();
   await page.waitForTimeout(400);
-  check("Step 4 title 'Anchor a case'",
+  check("Step 5 title 'Anchor a case'",
     await overlayDialog.locator("text=사례를 노드에 붙이기").count() > 0);
 
-  // -------- 7. Next → Step 5 (REC button) --------
+  // -------- 8. Next → Step 6 (REC button, last) --------
   await overlayDialog.locator("button", { hasText: /다음|Next/ }).click();
   await page.waitForTimeout(400);
-  check("Step 5 title 'Record path & alignment'",
+  check("Step 6 title 'Record path & alignment'",
     await overlayDialog.locator("text=내 경로 기록").count() > 0);
   check("rec-button anchor present",
     await page.locator('[data-tutorial="rec-button"]').count() > 0);
-  // The Done button should appear instead of Next
   const doneBtn = overlayDialog.locator("button", { hasText: /끝내기|Done/ });
   check("Done button replaces Next on last step", await doneBtn.count() > 0);
-  await shot(page, "06-tutorial-step5-rec");
+  await shot(page, "06-tutorial-step6-rec");
 
-  // -------- 8. Done → tutorial_seen flag set, overlay closes --------
+  // -------- 8. Done → tutorial_seen flag set, overlay closes,
+  //                 first discovery prompt auto-activates (option 1) --------
+  // Before Done: discovery cards should be pulsing (not yet engaged).
+  const earlyPulseCount = await page.locator(".discovery-card-pulse").count();
+  check("discovery cards pulse on first visit (before engagement)",
+    earlyPulseCount === 3, `found ${earlyPulseCount}`);
   await doneBtn.click();
   await page.waitForTimeout(400);
   check("overlay hidden after Done", !(await overlayDialog.isVisible().catch(() => false)));
   const seenFlag = await page.evaluate(() => localStorage.getItem("tutorial_seen"));
   check("localStorage.tutorial_seen === '1'", seenFlag === "1");
+  // Auto-activation: first prompt panel should now be visible.
+  const autoPanel = page.locator('[data-tutorial="discovery-panel"]');
+  await autoPanel.waitFor({ state: "visible", timeout: 1500 }).catch(() => {});
+  check("auto-activates first discovery prompt after first-visit tutorial close",
+    await autoPanel.isVisible().catch(() => false));
+  const engagedFlag = await page.evaluate(() => localStorage.getItem("discovery_engaged"));
+  check("auto-activation marks discovery_engaged='1'", engagedFlag === "1");
+  // Pulse must stop once engaged.
+  const postPulseCount = await page.locator(".discovery-card-pulse").count();
+  check("discovery card pulse stops after engagement", postPulseCount === 0,
+    `still pulsing: ${postPulseCount}`);
+  // Close the auto-popped panel so subsequent steps in this script don't see it.
+  await autoPanel.locator("button.close-btn").click().catch(() => {});
+  await page.waitForTimeout(200);
 
   // -------- 9. Reload — auto-launch must NOT fire again --------
   await page.reload();
@@ -174,8 +197,8 @@ async function clearLocal(page: Page) {
   check("🎯 Tutorial button visible in titlebar", await tutorialBtn.count() > 0);
   await tutorialBtn.click();
   await overlayDialog.waitFor({ state: "visible", timeout: 3000 });
-  check("manual trigger reopens overlay at step 1",
-    await overlayDialog.locator("text=여기서 시작하세요").count() > 0);
+  check("manual trigger reopens overlay at step 1 (discovery)",
+    await overlayDialog.locator("text=오늘의 탐구 질문에서 출발하기").count() > 0);
   await shot(page, "08-tutorial-manual-trigger");
   // close it
   await overlayDialog.locator("button", { hasText: /건너뛰기|Skip/ }).click();
@@ -209,6 +232,58 @@ async function clearLocal(page: Page) {
   } else {
     check("entry-hub SVG circle clickable", false, "no entry-hub circle in DOM");
   }
+
+  // -------- 12. Discovery prompts: card click → panel + graph emphasis --------
+  // Sidebar should render 3 prompt cards (Phase 0 placeholder set).
+  const cards = page.locator('[data-tutorial^="discovery-card-"]');
+  const cardCount = await cards.count();
+  check("3 discovery prompt cards rendered in sidebar", cardCount === 3,
+    `found ${cardCount}`);
+
+  // Click the first card → DiscoveryPromptPanel becomes visible
+  await cards.first().click();
+  await page.waitForTimeout(400);
+  const panel = page.locator('[data-tutorial="discovery-panel"]');
+  check("DiscoveryPromptPanel visible after card click",
+    await panel.isVisible().catch(() => false));
+  check("Panel shows curated question text",
+    await panel.locator("text=학업 부진과 우울").count() > 0);
+  check("Panel shows objective block",
+    await panel.locator("text=이 질문이 노리는 것").count() > 0);
+  await shot(page, "10-discovery-prompt-active");
+
+  // Graph should now have many dimmed nodes (everything outside the prompt set).
+  // Sample check: count node-groups whose computed opacity is below 0.5.
+  const dimmedNodes = await page.evaluate(() => {
+    const groups = Array.from(document.querySelectorAll<SVGGElement>(".node-group"));
+    let dim = 0, lit = 0;
+    for (const g of groups) {
+      const op = parseFloat(getComputedStyle(g).opacity || "1");
+      if (op < 0.5) dim++; else lit++;
+    }
+    return { dim, lit, total: groups.length };
+  });
+  check("graph emphasis: most nodes dimmed when prompt active",
+    dimmedNodes.dim > dimmedNodes.lit,
+    `dim=${dimmedNodes.dim} lit=${dimmedNodes.lit} total=${dimmedNodes.total}`);
+  check("graph emphasis: highlighted node count matches prompt's relatedNodeIds",
+    dimmedNodes.lit >= 9,  // first prompt has 9 related nodes; allow >= for shared filter overlap
+    `expected >=9 lit, got ${dimmedNodes.lit}`);
+
+  // Close via panel close button
+  await panel.locator("button.close-btn").click();
+  await page.waitForTimeout(300);
+  check("panel closes via × button",
+    !(await panel.isVisible().catch(() => false)));
+
+  // Re-open, then dismiss by clicking the same card again (toggle)
+  await cards.first().click();
+  await page.waitForTimeout(200);
+  check("card re-opens panel", await panel.isVisible().catch(() => false));
+  await cards.first().click();
+  await page.waitForTimeout(200);
+  check("clicking active card closes panel (toggle)",
+    !(await panel.isVisible().catch(() => false)));
 
   // -------- page-error sanity --------
   check("no uncaught page errors during run",

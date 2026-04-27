@@ -33,6 +33,8 @@ interface Props {
   recording?: boolean;                 // B8 — append clicks to myPath
   onRecordStep?: (nodeId: string) => void;
   myPath?: string[] | null;            // B8 — user's recorded path
+  /** Discovery-prompt highlight: when set, dim everything outside this set. */
+  discoveryNodes?: string[] | null;
   lang?: "ko" | "en";
 }
 
@@ -74,7 +76,7 @@ function baseRadius(d: SimNode): number {
 
 export function GraphCanvas({
   nodes, edges, domainFilter, bridgesOnly, activePath, selectedId, onSelect,
-  recording, onRecordStep, myPath, lang = "ko"
+  recording, onRecordStep, myPath, discoveryNodes, lang = "ko"
 }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   // B6 — seed path step-through index (-1 = inactive, 0..n-1 = revealed through this index)
@@ -308,9 +310,10 @@ export function GraphCanvas({
     //      cluttered with 170+ concept labels before the user zooms.
     applyTier(1);
 
-    // ------- emphasis application (bridgesOnly / activePath / selection) -------
+    // ------- emphasis application (bridgesOnly / activePath / discovery / selection) -------
     applyEmphasis(g, {
       bridgesOnly, activePath, selectedId, myPath: myPath ?? null,
+      discoveryNodes: discoveryNodes ?? null,
       pathStep, nodeIndex: new Map(visibleNodes.map((n) => [n.id, n])),
       edges: visibleLinks
     });
@@ -374,9 +377,10 @@ export function GraphCanvas({
     g.selectAll<SVGGElement, SimNode>(".node-group").each(function (d) { nodeIndex.set(d.id, d); });
     applyEmphasis(g, {
       bridgesOnly, activePath, selectedId, myPath: myPath ?? null,
+      discoveryNodes: discoveryNodes ?? null,
       pathStep, nodeIndex, edges: visibleLinks
     });
-  }, [bridgesOnly, activePath, selectedId, pathStep, myPath]);
+  }, [bridgesOnly, activePath, selectedId, pathStep, myPath, discoveryNodes]);
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -424,12 +428,13 @@ function applyEmphasis(
     activePath: string[] | null;
     selectedId: string | null;
     myPath: string[] | null;
+    discoveryNodes: string[] | null;
     pathStep: number;
     nodeIndex: Map<string, SimNode>;
     edges: Array<{ source: string | number | SimNode; target: string | number | SimNode; relation: string }>;
   }
 ) {
-  const { bridgesOnly, activePath, selectedId, myPath, pathStep, nodeIndex, edges } = opts;
+  const { bridgesOnly, activePath, selectedId, myPath, discoveryNodes, pathStep, nodeIndex, edges } = opts;
 
   // B6 — only nodes up to & including pathStep count as "revealed"
   const revealed = activePath ? activePath.slice(0, pathStep + 1) : [];
@@ -498,6 +503,12 @@ function applyEmphasis(
   const effectiveSelectedId = selectionVisible ? selectedId : null;
 
   const dimmed = 0.12;
+  // Discovery-prompt set: if active, dim everything outside this set + its
+  // induced subgraph edges. Sits at the same precedence as bridgesOnly (a
+  // deliberate "lens" mode); pathSet still wins (it's a step-by-step replay).
+  const discoverySet = discoveryNodes && discoveryNodes.length > 0
+    ? new Set(discoveryNodes)
+    : null;
 
   g.selectAll<SVGGElement, SimNode>(".node-group")
     .style("opacity", (d) => {
@@ -506,6 +517,7 @@ function applyEmphasis(
         if (pathSet.has(d.id)) return 0.35;   // future steps: ghost-visible
         return dimmed;
       }
+      if (discoverySet) return discoverySet.has(d.id) ? 1 : dimmed;
       if (bridgesOnly) {
         if (d.domain === "shared") return 1;
         return d.level === "top_hub" ? 0.55 : dimmed;
@@ -519,6 +531,11 @@ function applyEmphasis(
       const s = typeof d.source === "object" ? (d.source as SimNode).id : d.source;
       const t = typeof d.target === "object" ? (d.target as SimNode).id : d.target;
       if (pathSet) return pathEdgeSet.has(`${s}|${t}`) ? 1 : dimmed * 0.5;
+      if (discoverySet) {
+        const sid = typeof s === "string" ? s : String(s);
+        const tid = typeof t === "string" ? t : String(t);
+        return discoverySet.has(sid) && discoverySet.has(tid) ? 1 : dimmed * 0.4;
+      }
       if (bridgesOnly) return d.relation === "bridges_to" ? 1 : dimmed * 0.4;
       if (effectiveSelectedId) return (s === effectiveSelectedId || t === effectiveSelectedId) ? 1 : dimmed * 0.5;
       return 1;

@@ -16,7 +16,9 @@ export type EventKind =
   // S5 — Mirror Mode metacognitive events
   | "mirror_glance" | "mirror_toggle" | "alignment_update"
   // Onboarding — UX scaffold for low-agency learners (not yet a research var)
-  | "tutorial_open" | "tutorial_step" | "tutorial_close";
+  | "tutorial_open" | "tutorial_step" | "tutorial_close"
+  // Discovery prompts — epistemic onboarding (which inquiry question a learner picks)
+  | "discovery_prompt_open" | "discovery_prompt_close" | "discovery_prompt_path_play";
 
 declare const __STATIC_MODE__: boolean;
 const STATIC = typeof __STATIC_MODE__ !== "undefined" && __STATIC_MODE__;
