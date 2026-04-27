@@ -37,7 +37,9 @@ export function AlignmentGauge({ myPath, seedPaths, lang = "ko" }: Props) {
   const color = result.score >= 0.6 ? "#10b981" : result.score >= 0.3 ? "#f59e0b" : "#94a3b8";
 
   return (
-    <div style={{
+    <div
+      data-tutorial="alignment-gauge"
+      style={{
       position: "absolute", bottom: 16, left: 16,
       padding: "10px 12px", minWidth: 200,
       borderRadius: 12,

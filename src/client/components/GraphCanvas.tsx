@@ -240,13 +240,15 @@ export function GraphCanvas({
       .attr("stroke-opacity", 0.6)
       .attr("filter", "url(#soft-glow)");
 
-    // Main circle
+    // Main circle. Entry-hub circles also carry a `data-tutorial` anchor so the
+    // onboarding overlay can spotlight them via document.querySelector.
     node.append("circle")
       .attr("class", "node")
       .attr("r", (d) => baseRadius(d))
       .attr("fill", (d) => DOMAIN_COLOR[d.domain])
       .attr("stroke", (d) => KEY_HUBS.has(d.id) ? "rgba(15,23,42,0.20)" : "rgba(255,255,255,0.7)")
-      .attr("stroke-width", (d) => KEY_HUBS.has(d.id) ? 2 : 1);
+      .attr("stroke-width", (d) => KEY_HUBS.has(d.id) ? 2 : 1)
+      .attr("data-tutorial", (d) => ENTRY_HUBS.has(d.id) ? "entry-hub" : null);
 
     // Entry-hub marker: white core dot
     node.filter((d) => ENTRY_HUBS.has(d.id))

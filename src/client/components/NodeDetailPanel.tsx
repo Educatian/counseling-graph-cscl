@@ -97,9 +97,18 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
         <button className="close-btn" onClick={onClose} aria-label="Close">✕</button>
       </div>
 
-      <div className="tab-row">
-        {TABS.map((t) => (
-          <button key={t} className={tab === t ? "active" : ""} onClick={() => setTab(t)}>{TAB_LABEL[lang][t]}</button>
+      <div className="tab-row" data-tutorial="ndp-tabs">
+        {TABS.map((tabKey) => (
+          <button
+            key={tabKey}
+            className={tab === tabKey ? "active" : ""}
+            onClick={() => setTab(tabKey)}
+            data-tutorial={
+              tabKey === "Discussion" ? "ndp-discussion"
+              : tabKey === "Cases" ? "ndp-cases"
+              : undefined
+            }
+          >{TAB_LABEL[lang][tabKey]}</button>
         ))}
       </div>
 

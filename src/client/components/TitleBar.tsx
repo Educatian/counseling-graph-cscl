@@ -11,6 +11,7 @@ interface Props {
   lang: Lang;
   onLangChange: (l: Lang) => void;
   onHome?: () => void;
+  onTutorial?: () => void;
 }
 
 const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
@@ -19,7 +20,7 @@ const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
   { key: "clinical", label: "Clinical" }
 ];
 
-export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome }: Props) {
+export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome, onTutorial }: Props) {
   return (
     <div className="titlebar" style={{ gridTemplateColumns: "120px 1fr auto", gap: 16 }}>
       <div className="window-chrome">
@@ -44,6 +45,14 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
         </div>
       </div>
       <div className="right" style={{ gap: 8 }}>
+        {onTutorial && (
+          <button
+            className="segment"
+            onClick={onTutorial}
+            title={lang === "ko" ? "앱 안에서 5단계 안내 (스포트라이트)" : "5-step in-app walkthrough (spotlight)"}
+            style={{ fontWeight: 600 }}
+          >🎯 {lang === "ko" ? "튜토리얼" : "Tutorial"}</button>
+        )}
         <a
           className="segment"
           href={`${import.meta.env.BASE_URL}guide/index.html`}
@@ -57,6 +66,7 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
           onClick={() => onBridgesOnlyChange(!bridgesOnly)}
           title={lang === "ko" ? "§3-1 상담↔임상 브릿지만 강조" : "§3-1 — highlight counseling↔clinical bridges only"}
           style={{ color: bridgesOnly ? "var(--shared)" : undefined, fontWeight: 600 }}
+          data-tutorial="bridges-toggle"
         >
           ⟷ Bridges
         </button>

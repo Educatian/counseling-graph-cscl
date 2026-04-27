@@ -123,6 +123,7 @@ export function Sidebar({ stats, paths, domainFilter, onDomainChange, activePath
             className={`segment ${recording ? "active" : ""}`}
             onClick={onToggleRecording}
             style={{ flex: 1, color: recording ? "#b91c1c" : undefined, fontWeight: 600, fontSize: 11 }}
+            data-tutorial="rec-button"
           >{recording ? t.recOn : t.recOff}</button>
           {myPath.length > 0 ? (
             <button className="segment" onClick={onClearMyPath} style={{ fontSize: 11 }}>{t.clear}</button>

@@ -12,3 +12,6 @@ public/graph.json
 
 # tsc build artifacts (we check in .ts sources only)
 *.tsbuildinfo
+
+# Playwright test output
+scripts/test-out/
