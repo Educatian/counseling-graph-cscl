@@ -445,6 +445,21 @@ Acceptable for a research instrument; revisit with HTTP-PostgREST
 (`@supabase/supabase-js`) or `@neondatabase/serverless` only if cold
 starts become a UX problem.
 
+### ⚠️ Gotcha: do NOT commit `wrangler.toml`
+
+If `wrangler.toml` is checked into the repo, Cloudflare Pages misclassifies
+the project as a Hono Workers app and auto-deploy fails with:
+
+```
+✘ The detected framework ("Hono") cannot be automatically configured.
+Failed: error occurred while running deploy command
+```
+
+CF's framework auto-detector sees `wrangler.toml` + `hono` in package.json
+deps and runs the wrong deploy flow. Keep `wrangler.toml` gitignored
+(for local `wrangler pages dev` use only) and let CF Pages read its config
+from the dashboard.
+
 ### Connecting to Cloudflare Pages — what the user does
 
 1. **dash.cloudflare.com** → Workers & Pages → **Create** → Pages → Connect to Git → authorize Cloudflare's GitHub OAuth app → pick **`Educatian/counseling-graph-cscl`**.
