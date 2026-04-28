@@ -12,6 +12,8 @@ interface Props {
   onLangChange: (l: Lang) => void;
   onHome?: () => void;
   onTutorial?: () => void;
+  userEmail?: string | null;
+  onSignOut?: () => void;
 }
 
 const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
@@ -20,7 +22,7 @@ const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
   { key: "clinical", label: "Clinical" }
 ];
 
-export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome, onTutorial }: Props) {
+export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome, onTutorial, userEmail, onSignOut }: Props) {
   return (
     <div className="titlebar" style={{ gridTemplateColumns: "120px 1fr auto", gap: 16 }}>
       <div className="window-chrome">
@@ -91,6 +93,14 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
             >{o.label}</button>
           ))}
         </div>
+        {userEmail && onSignOut && (
+          <button
+            className="segment"
+            onClick={onSignOut}
+            title={userEmail}
+            style={{ fontSize: 11, color: "var(--text-tertiary)" }}
+          >{lang === "ko" ? "로그아웃" : "Sign out"}</button>
+        )}
       </div>
     </div>
   );

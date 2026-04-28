@@ -4,8 +4,16 @@ data/*.db
 data/*.db-journal
 data/*.db-wal
 data/*.db-shm
+data/*.json
 .env
 .env.local
+.dev.vars
+.wrangler
+# wrangler.toml is intentionally gitignored — having it at the project root
+# triggers Cloudflare Pages to misclassify the project as Hono-on-Workers and
+# fail auto-deploy. Pages reads its config from the dashboard. Keep a local
+# wrangler.toml only if you need `wrangler pages dev` with persistent flags.
+wrangler.toml
 .DS_Store
 *.log
 public/graph.json

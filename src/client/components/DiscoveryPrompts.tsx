@@ -18,12 +18,10 @@ const DOMAIN_DOT: Record<string, string> = {
 const STR = {
   ko: {
     section: "오늘의 탐구 질문",
-    placeholder: "(Phase 0 placeholder · 임재서 선생님 큐레이션 대기)",
     nodes: (n: number) => `노드 ${n}개 강조`
   },
   en: {
     section: "Today's discovery questions",
-    placeholder: "(Phase 0 placeholder — awaiting expert curation)",
     nodes: (n: number) => `${n} nodes highlighted`
   }
 } as const;
@@ -100,10 +98,6 @@ export function DiscoveryPrompts({ prompts, activeId, onSelect, pulse, lang }: P
             </button>
           );
         })}
-        <div style={{
-          fontSize: 10, color: "var(--text-tertiary)",
-          padding: "2px 4px 0", lineHeight: 1.4
-        }}>{t.placeholder}</div>
       </div>
     </>
   );
