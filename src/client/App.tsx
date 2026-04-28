@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-declare const __STATIC_MODE__: boolean;
 import "./styles.css";
-import { GraphCanvas, type GraphNode, type GraphEdge, type Domain } from "./components/GraphCanvas";
+import { GraphCanvas, type GraphNode, type Domain } from "./components/GraphCanvas";
 import { NodeDetailPanel } from "./components/NodeDetailPanel";
 import { Sidebar } from "./components/Sidebar";
 import { TitleBar, type Lang } from "./components/TitleBar";
@@ -13,6 +12,7 @@ import type { DiscoveryPrompt } from "./components/DiscoveryPrompts";
 import discoveryData from "./data/discovery-prompts.seed.json";
 import { logEvent } from "./lib/eventLogger";
 import { useAuth } from "./lib/useAuth";
+import { fetchGraph, type GraphResp } from "./lib/graphClient";
 
 const DISCOVERY_PROMPTS = (discoveryData.prompts as DiscoveryPrompt[]);
 
@@ -107,12 +107,6 @@ const TUTORIAL_STEPS: TutorialStep[] = [
     }
   }
 ];
-
-interface GraphResp {
-  nodes: GraphNode[];
-  edges: GraphEdge[];
-  paths: Array<{ id: string; title: string; titleEn?: string; nodeSequence: string[] }>;
-}
 
 export default function App() {
   const auth = useAuth();
@@ -222,16 +216,19 @@ export default function App() {
   };
 
   useEffect(() => {
-    // In static (GitHub Pages) builds the Hono server isn't there; Vite's
-    // import.meta.env.BASE_URL + "graph.json" serves the pre-dumped graph.
-    // Dev + any server-backed build keeps using /api/graph.
-    const staticMode = typeof __STATIC_MODE__ !== "undefined" && __STATIC_MODE__;
-    const url = staticMode ? `${import.meta.env.BASE_URL}graph.json` : "/api/graph";
-    fetch(url)
-      .then((r) => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
-      .then((d: GraphResp) => { setData(d); void logEvent("app_ready", { nodes: d.nodes.length, edges: d.edges.length }); })
+    // Static (GH-Pages) builds load public/graph.json; full app reads from
+    // Supabase PostgREST. Both paths return the same GraphResp shape.
+    // Wait for auth state to resolve in non-static mode so the authed
+    // learning_paths SELECT carries the JWT.
+    const staticMode = typeof window !== "undefined" && (window as { __STATIC_MODE__?: boolean }).__STATIC_MODE__ === true;
+    if (!staticMode && auth.authConfigured && auth.loading) return;
+    fetchGraph()
+      .then((d) => {
+        setData(d);
+        void logEvent("app_ready", { nodes: d.nodes.length, edges: d.edges.length });
+      })
       .catch((e) => setErr(String(e)));
-  }, []);
+  }, [auth.authConfigured, auth.loading]);
 
   // Auto-launch the tutorial on a learner's first time inside the graph view
   // (delayed so the D3 force-sim has time to settle and the entry-hub circle

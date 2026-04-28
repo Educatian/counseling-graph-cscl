@@ -3,8 +3,16 @@
  * research-relevant MUST go through logEvent() so Phase D analytics can be
  * computed without instrumenting each call-site retroactively.
  *
- * In auth mode the server derives user_id and cohort_id from the bearer token,
- * so the client only needs to send sessionId + kind + payload.
+ * Three transport modes:
+ *   - Static (GH-Pages demo) — localStorage ring buffer, no server contact.
+ *   - Auth mode (default)    — supabase-js insert into event_log directly.
+ *                              The trigger event_log_stamp_identity_trg
+ *                              (migration 0004) overwrites user_id and
+ *                              cohort_id from the verified JWT, so a
+ *                              malicious client can't spoof either field.
+ *   - Unauthed (auth-mode)   — drop the event silently. RLS would reject
+ *                              the insert anyway; better to no-op than to
+ *                              spam the console.
  */
 import { supabase } from "./supabase";
 
@@ -39,8 +47,6 @@ const STATIC = typeof __STATIC_MODE__ !== "undefined" && __STATIC_MODE__;
 
 export async function logEvent(kind: EventKind, payload?: Record<string, unknown>) {
   if (STATIC) {
-    // GitHub Pages demo: no server to POST to. Keep a rolling local ring buffer
-    // so a curious user/inspector can still see events via devtools.
     try {
       const key = "eventLog";
       const raw = localStorage.getItem(key);
@@ -51,20 +57,20 @@ export async function logEvent(kind: EventKind, payload?: Record<string, unknown
     } catch {}
     return;
   }
+  if (!supabase) return; // misconfigured env; nothing to do
+  // Drop pre-login events; RLS rejects them anyway. user_id and cohort_id
+  // are filled by the BEFORE INSERT trigger from auth.uid() + JWT metadata.
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return;
   try {
-    const headers: Record<string, string> = { "content-type": "application/json" };
-    if (supabase) {
-      const { data } = await supabase.auth.getSession();
-      const token = data.session?.access_token;
-      if (token) headers.authorization = `Bearer ${token}`;
-    }
-    await fetch("/api/events", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ sessionId, kind, payload })
+    const { error } = await supabase.from("event_log").insert({
+      session_id: sessionId,
+      kind,
+      payload_json: payload ?? null
     });
+    if (error) console.warn("[eventLogger] insert failed", kind, error.message);
   } catch (e) {
-    console.warn("[eventLogger] failed", kind, e);
+    console.warn("[eventLogger] threw", kind, e);
   }
 }
 

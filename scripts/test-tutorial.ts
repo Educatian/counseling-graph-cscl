@@ -35,15 +35,14 @@ async function shot(page: Page, name: string) {
 }
 
 async function waitForApiReady(page: Page) {
-  // Poll /api/health until it responds. dev:api boots a few seconds after dev:web.
+  // Browser-direct architecture: no /api/ to ping. Wait for Supabase client
+  // bundle to be ready by polling for window.__supabase__ shorthand if set,
+  // otherwise just wait for the landing page to render.
   const deadline = Date.now() + 30000;
   while (Date.now() < deadline) {
     try {
-      const ok = await page.evaluate(async () => {
-        try {
-          const r = await fetch("/api/health");
-          return r.ok;
-        } catch { return false; }
+      const ok = await page.evaluate(() => {
+        return !!document.querySelector('input[type=email], button[disabled]');
       });
       if (ok) return true;
     } catch {}

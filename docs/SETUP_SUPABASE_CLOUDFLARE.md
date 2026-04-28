@@ -1,15 +1,27 @@
-# Setup tutorial — Supabase + Cloudflare Pages
+# Setup tutorial — Supabase (browser-direct, no Cloudflare)
 
 Tutorial-grade record of how `counseling-graph-cscl` was migrated from a local
-libSQL Phase-0 scaffold to a Supabase Postgres + Cloudflare Pages deployment.
-Captures every command, every failed syntax, and every gotcha so the next
-project (or the next person setting this one up) skips the same potholes.
+libSQL Phase-0 scaffold to a **browser-direct Supabase architecture** —
+GitHub Pages serves the static SPA, the browser talks to Supabase via
+`@supabase/supabase-js` for both auth and DB queries. Zero hosting overhead.
 
-> **TL;DR for the impatient.** Pick **Route S** (Supabase + Cloudflare Pages):
-> Postgres SQL is a hard requirement for the analytics layer (lag-sequential,
-> HMM, graph-edit-distance), and Supabase RLS expresses the IRB-required
-> "student A ≠ student B" boundary as policies instead of hand-rolled checks.
-> This doc walks the full migration end-to-end.
+> **Final architecture decision (2026-04-28):** the Hono backend was ported
+> to Cloudflare Pages Functions and verified working, then **deleted** in
+> favor of browser-direct Supabase calls. Reasoning:
+>
+> 1. All four `/api/*` endpoints had near-trivial 1:1 supabase-js equivalents.
+> 2. Server-side enforcement of `user_id` and `cohort_id` is preserved by
+>    a Postgres trigger (migration 0004), not by middleware code.
+> 3. Cloudflare Pages added complexity (Workers vs Pages classification,
+>    `wrangler.toml` traps, framework auto-detect surprises) for ~zero
+>    architectural benefit on this app's load profile.
+> 4. Future heavy server-side analytics jobs (S5 alignment batch, S6 KoNLPy
+>    pipeline) can land as Supabase Edge Functions — same vendor, same
+>    dashboard, no hosting added.
+>
+> Sections 1–11 still capture the Phase-0→A migration story (Supabase
+> setup, schema port, RLS, IRB consents) — those remain accurate. Section 12
+> documents the dead-end Cloudflare Pages experiment for posterity.
 
 ---
 
@@ -424,10 +436,81 @@ to every `POST /api/events` so the server can resolve the user.
 
 ---
 
-## 12. Cloudflare Pages — Hono ported, dashboard step pending
+## 12. Cloudflare Pages — abandoned in favor of browser-direct Supabase
 
-**Status:** Hono is ported. The Pages Function entrypoint lives at
-`functions/api/[[catchall]].ts` and uses `hono/cloudflare-pages`.
+**Status: backed out 2026-04-28.** This section is preserved for posterity
+and to inform anyone who might be tempted to add hosting. The decision and
+the gotchas we hit are the value here, not the recipe.
+
+### Why we backed out
+
+The Hono server was successfully ported to Cloudflare Pages Functions —
+verified working with `wrangler pages dev` against the real Supabase
+project (postgres-js connecting via `cloudflare:sockets` with the
+`nodejs_compat` flag, all four endpoints returning correct data). What
+killed the path was on the deploy side, not the code side:
+
+1. **Pages vs Workers classification.** When connecting to GitHub via
+   the dashboard, CF defaulted to creating a Worker project, not a
+   Pages project. Workers expect `wrangler.jsonc` with an `assets`
+   binding and a `main` entrypoint; we had a Pages-shaped repo
+   (`functions/`, `dist/` from Vite). Deploy failed with:
+   `✘ The detected framework ("Hono") cannot be automatically configured.`
+2. **wrangler.toml at repo root** triggered framework auto-detection to
+   classify the project as "Hono Workers" even when we'd connected as
+   Pages. Fix was to gitignore wrangler.toml; works now but adds a hidden
+   dependency on the user knowing this gotcha.
+3. **Cold-start cost.** ~2s on first request per isolate as
+   postgres-js dials the Supabase pooler. Acceptable but not free.
+4. **No architectural benefit.** Every endpoint we hosted —
+   `/api/health`, `/api/me`, `/api/graph`, `/api/events` — has a near-
+   trivial supabase-js equivalent. Hosting them was duplication.
+
+### What replaced it
+
+- `src/client/lib/graphClient.ts` — `fetchGraph()` does three
+  `supabase.from(...).select(...)` calls in parallel.
+- `src/client/lib/eventLogger.ts` — `logEvent(...)` does
+  `supabase.from('event_log').insert({...})` directly. The migration
+  0004 trigger overwrites `user_id` and `cohort_id` from the verified
+  JWT before the row lands, so security is identical to the prior
+  middleware setup.
+- `src/server/index.ts`, `src/server/app.ts`, `src/server/lib/auth.ts`,
+  `functions/api/[[catchall]].ts` — all deleted.
+- `@hono/node-server`, `hono`, `@hono/cloudflare-pages` — deleted from
+  `dependencies`.
+- `src/server/db/` — kept; it's Node tooling (migrate, seed, dump)
+  not runtime.
+
+### Hono port — kept here for the next person who needs to add a backend
+
+When you do eventually need a server (heavy analytics jobs, custom
+auth flows, websocket-only features), the path is documented in PR #1
+commit `f43c20b` ("port Hono server to Cloudflare Pages Functions").
+Or, more likely, use **Supabase Edge Functions** (Deno-based, deploys
+via `supabase functions deploy`, env vars via `supabase secrets set`).
+That keeps everything in one vendor.
+
+### Cleanup checklist after backing out
+
+- [x] Delete `functions/api/[[catchall]].ts` and the `functions/`
+      directory tree from the repo
+- [x] Delete `src/server/index.ts`, `src/server/app.ts`,
+      `src/server/lib/auth.ts`
+- [x] Drop runtime deps (`@hono/node-server`, `hono`,
+      `@hono/cloudflare-pages`) from `package.json` `dependencies`
+- [x] Remove `dev:api` from `package.json` scripts; `npm run dev` is
+      now just Vite
+- [x] Apply migration 0004 to add the `event_log_stamp_identity` trigger
+- [ ] **You: delete the dead Cloudflare Worker `counseling-graph-cscl`**
+      from your CF dashboard if you created one. Do not delete
+      `ai-ethics-voyage` (different project).
+- [ ] **You: revoke the Supabase PAT** at
+      https://supabase.com/dashboard/account/tokens
+
+---
+
+## (legacy) 12.bak — Cloudflare Pages connection — what would have come next
 `src/server/app.ts` is the runtime-agnostic factory; both Node
 (`src/server/index.ts` via `@hono/node-server`) and CF Pages Functions
 share the same routes and DB code.
