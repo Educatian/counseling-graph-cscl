@@ -424,42 +424,61 @@ to every `POST /api/events` so the server can resolve the user.
 
 ---
 
-## 12. Cloudflare Pages connection (still TODO at time of writing)
+## 12. Cloudflare Pages — Hono ported, dashboard step pending
 
-Plan when ready:
+**Status:** Hono is ported. The Pages Function entrypoint lives at
+`functions/api/[[catchall]].ts` and uses `hono/cloudflare-pages`.
+`src/server/app.ts` is the runtime-agnostic factory; both Node
+(`src/server/index.ts` via `@hono/node-server`) and CF Pages Functions
+share the same routes and DB code.
 
-1. **dash.cloudflare.com** → Workers & Pages → Create → Pages →
-   Connect to Git → pick `Educatian/counseling-graph-cscl`.
-2. Build settings:
+Verified locally with `wrangler pages dev`:
+- `/api/health` → 200 OK
+- `/api/me` (unauthed) → `{role:"anon"}` correctly
+- `/api/me` (with Supabase JWT) → returns instructor + cohort_id from user_metadata
+- `POST /api/events` (authed) → row landed in Supabase with auth.uid + cohort_id stamped server-side
+- `/api/graph` → 214 nodes + 204 edges + 8 paths, full Drizzle SELECT through postgres-js TCP socket on the CF Workers runtime
+
+Cold-start cost on first request is ~2s (TCP socket dial to Supabase
+pooler). Subsequent requests within an isolate reuse the connection.
+Acceptable for a research instrument; revisit with HTTP-PostgREST
+(`@supabase/supabase-js`) or `@neondatabase/serverless` only if cold
+starts become a UX problem.
+
+### Connecting to Cloudflare Pages — what the user does
+
+1. **dash.cloudflare.com** → Workers & Pages → **Create** → Pages → Connect to Git → authorize Cloudflare's GitHub OAuth app → pick **`Educatian/counseling-graph-cscl`**.
+2. Branch: **`main`** (or pick `feat/phase-a-supabase-migration` for a preview deploy first).
+3. Build settings:
    - Framework preset: **Vite**
    - Build command: `npm run build`
    - Build output: `dist`
-   - Node version: `20` (set via `NODE_VERSION=20` env or `.nvmrc`)
-3. Environment variables (Production):
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-   - `VITE_SUPABASE_PUBLISHABLE_KEY`
-   - `SUPABASE_URL`
-   - `SUPABASE_PUBLISHABLE_KEY`
-   - `SUPABASE_SECRET_KEY`
-   - `DATABASE_URL` ← use the **transaction pooler (port 6543)** here, not the session pooler
-   - `API_PORT` not needed (Cloudflare assigns the port for Functions)
-4. Keep the GitHub Pages workflow alive in parallel — `build:ghpages`
-   produces a `__STATIC_MODE__=true` bundle that ships
-   `public/graph.json` and falls back to localStorage event logging.
-   Static demo stays public; the full backend lives at
-   `*.pages.dev` (or a custom subdomain) behind login.
+   - Root directory: leave empty (project root)
+4. **Environment variables — Production**:
+   ```
+   VITE_SUPABASE_URL              https://qshdxoaxbaunctalzwfb.supabase.co
+   VITE_SUPABASE_ANON_KEY         <legacy anon JWT — see .env.local>
+   VITE_SUPABASE_PUBLISHABLE_KEY  sb_publishable_…
+   SUPABASE_URL                   https://qshdxoaxbaunctalzwfb.supabase.co
+   SUPABASE_PUBLISHABLE_KEY       sb_publishable_…
+   SUPABASE_SECRET_KEY            sb_secret_…
+   DATABASE_URL                   <TRANSACTION pooler URL, port 6543>
+   ```
+   `API_PORT` not needed (Cloudflare assigns it).
+5. **Compatibility flags — both Production and Preview**:
+   - `nodejs_compat` (required for postgres-js TCP socket support)
+6. **Compatibility date**: `2024-09-23` or later.
+7. Save and trigger first deploy. CF Pages auto-detects `functions/` at
+   project root and bundles the Pages Function for `/api/*`.
+8. After first successful deploy: open `https://counseling-graph-cscl.pages.dev/`,
+   log in with a cohort credential, watch a row land in Supabase
+   `event_log` stamped with the right `user_id` + `cohort_id`.
 
-The Hono server isn't yet ported to Cloudflare Pages Functions. Phase
-options:
-- **A — minimal:** wrap `src/server/index.ts` as a Pages Function under
-  `functions/api/[[catchall]].ts` using `hono/cloudflare-pages`. Works
-  with the same code; replace the `@hono/node-server` `serve()` call.
-- **B — split:** keep the Hono server running on a Render/Fly box and
-  let Cloudflare Pages serve only the static assets (proxy `/api/*`
-  to the Hono host). Less elegant but zero refactor.
-
-Decision deferred to next session.
+Keep the GitHub Pages workflow running in parallel — `build:ghpages`
+produces a static bundle (`__STATIC_MODE__=true`) that ships
+`public/graph.json` and falls back to localStorage event logging.
+Static demo stays public at `educatian.github.io/counseling-graph-cscl/`;
+the full backend lives at `*.pages.dev` behind login.
 
 ---
 

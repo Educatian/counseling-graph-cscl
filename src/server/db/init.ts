@@ -6,12 +6,13 @@
  * to apply against Supabase. This file only handles loading core-graph.seed.json
  * into core_nodes / core_edges / learning_paths if those tables are empty.
  */
-import { db, schema } from "./client.js";
+import { getDb, schema } from "./client.js";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { sql } from "drizzle-orm";
 
 export async function loadSeedIfEmpty() {
+  const { db } = getDb();
   const rows = await db.select({ n: sql<number>`count(*)::int` }).from(schema.coreNodes);
   const existing = rows[0]?.n ?? 0;
   if (existing > 0) return { loaded: false, nodes: existing };

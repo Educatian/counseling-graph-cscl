@@ -6,8 +6,10 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { db, schema } from "../src/server/db/client.js";
+import { getDb, schema } from "../src/server/db/client.js";
 import { loadSeedIfEmpty } from "../src/server/db/init.js";
+
+const { db } = getDb();
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outPath = resolve(here, "..", "public", "graph.json");

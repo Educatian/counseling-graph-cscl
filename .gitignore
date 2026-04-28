@@ -7,6 +7,8 @@ data/*.db-shm
 data/*.json
 .env
 .env.local
+.dev.vars
+.wrangler
 .DS_Store
 *.log
 public/graph.json
