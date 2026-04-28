@@ -12,6 +12,7 @@ import { DiscoveryPromptPanel } from "./components/DiscoveryPromptPanel";
 import type { DiscoveryPrompt } from "./components/DiscoveryPrompts";
 import discoveryData from "./data/discovery-prompts.seed.json";
 import { logEvent } from "./lib/eventLogger";
+import { useAuth } from "./lib/useAuth";
 
 const DISCOVERY_PROMPTS = (discoveryData.prompts as DiscoveryPrompt[]);
 
@@ -114,6 +115,7 @@ interface GraphResp {
 }
 
 export default function App() {
+  const auth = useAuth();
   const [data, setData] = useState<GraphResp | null>(null);
   const [selected, setSelected] = useState<GraphNode | null>(null);
   const [domainFilter, setDomainFilter] = useState<"all" | Domain>("all");
@@ -200,10 +202,19 @@ export default function App() {
     void logEvent("lang_change", { lang: l });
   };
   const handleEnter = () => {
+    if (auth.authConfigured && !auth.user) return;
     setEntered(true);
     try { localStorage.setItem("entered", "1"); } catch {}
-    void logEvent("landing_enter", {});
+    void logEvent("landing_enter", { authed: !!auth.user });
   };
+
+  // In auth mode, signing in *is* entry — no second click required.
+  useEffect(() => {
+    if (!auth.authConfigured || !auth.user || entered) return;
+    setEntered(true);
+    try { localStorage.setItem("entered", "1"); } catch {}
+    void logEvent("landing_enter", { authed: true, via: "auto_post_login" });
+  }, [auth.authConfigured, auth.user, entered]);
   const handleHome = () => {
     setEntered(false);
     try { localStorage.removeItem("entered"); } catch {}
@@ -270,8 +281,21 @@ export default function App() {
     });
   };
 
-  if (!entered) {
-    return <Landing stats={data ? { nodes: data.nodes.length, edges: data.edges.length, paths: data.paths.length } : null} onEnter={handleEnter} lang={lang} onLangChange={handleLangChange} />;
+  // Auth required when Supabase is configured (full app mode); static mode bypasses.
+  const requireAuth = auth.authConfigured;
+  if (!entered || (requireAuth && !auth.user)) {
+    return (
+      <Landing
+        stats={data ? { nodes: data.nodes.length, edges: data.edges.length, paths: data.paths.length } : null}
+        onEnter={handleEnter}
+        lang={lang}
+        onLangChange={handleLangChange}
+        authRequired={requireAuth}
+        authLoading={auth.loading}
+        user={auth.user}
+        onSignIn={auth.signIn}
+      />
+    );
   }
 
   return (
@@ -286,6 +310,12 @@ export default function App() {
         onLangChange={handleLangChange}
         onHome={handleHome}
         onTutorial={openTutorial}
+        userEmail={auth.user?.email ?? null}
+        onSignOut={async () => {
+          await auth.signOut();
+          setEntered(false);
+          try { localStorage.removeItem("entered"); } catch {}
+        }}
       />
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         <Sidebar

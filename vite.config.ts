@@ -5,6 +5,9 @@ import path from "node:path";
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
   root: "src/client",
+  // .env.local lives at the project root, but Vite's `root` is src/client, so
+  // we point envDir back at the project root or VITE_* vars don't get injected.
+  envDir: __dirname,
   // For GitHub Pages we deploy under /counseling-graph-cscl/. Local dev stays at /.
   base: mode === "ghpages" ? "/counseling-graph-cscl/" : "/",
   resolve: {

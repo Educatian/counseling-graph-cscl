@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1777405623448,
+      "tag": "0000_tiny_supreme_intelligence",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1777407600000,
+      "tag": "0001_rls_policies",
+      "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1777408800000,
+      "tag": "0002_analytics_prep",
+      "breakpoints": false
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1777410000000,
+      "tag": "0003_micro_analytics_phase_a1",
+      "breakpoints": false
+    }
+  ]
+}

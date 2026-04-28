@@ -1,12 +1,17 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import type { Lang } from "./TitleBar";
+import type { User } from "@supabase/supabase-js";
 
 interface Props {
   stats: { nodes: number; edges: number; paths: number } | null;
   onEnter: () => void;
   lang: Lang;
   onLangChange: (l: Lang) => void;
+  authRequired: boolean;
+  authLoading: boolean;
+  user: User | null;
+  onSignIn: (email: string, password: string) => Promise<{ error?: string }>;
 }
 
 const COPY = {
@@ -30,7 +35,18 @@ const COPY = {
       "③ ⏺ REC로 내 경로를 기록 — 좌하단 게이지로 정합도를 확인"
     ],
     statsLabel: (n: number, e: number, p: number) => `노드 ${n} · 엣지 ${e} · 씨앗 경로 ${p}`,
-    loading: "그래프 준비 중…"
+    loading: "그래프 준비 중…",
+    auth: {
+      title: "로그인",
+      lede: "이 도구는 닫힌 코호트용입니다. 발급받은 계정으로만 입장할 수 있어요.",
+      email: "이메일",
+      password: "비밀번호",
+      submit: "로그인",
+      submitting: "로그인 중…",
+      noAccount: "계정이 없으신가요? 강의자에게 문의해 주세요.",
+      welcome: (email: string) => `${email} 으로 로그인되었습니다`,
+      signOut: "로그아웃"
+    }
   },
   en: {
     eyebrow: "CSCL · Knowledge Graph",
@@ -52,13 +68,51 @@ const COPY = {
       "3. Hit ⏺ REC to record your own path — watch the alignment gauge at bottom-left"
     ],
     statsLabel: (n: number, e: number, p: number) => `${n} nodes · ${e} edges · ${p} seed paths`,
-    loading: "Loading graph…"
+    loading: "Loading graph…",
+    auth: {
+      title: "Sign in",
+      lede: "This tool is for a closed cohort. Sign in with the account issued to you.",
+      email: "Email",
+      password: "Password",
+      submit: "Sign in",
+      submitting: "Signing in…",
+      noAccount: "No account? Contact your instructor.",
+      welcome: (email: string) => `Signed in as ${email}`,
+      signOut: "Sign out"
+    }
   }
 } as const;
 
-export function Landing({ stats, onEnter, lang, onLangChange }: Props) {
+export function Landing({
+  stats,
+  onEnter,
+  lang,
+  onLangChange,
+  authRequired,
+  authLoading,
+  user,
+  onSignIn
+}: Props) {
   const t = COPY[lang];
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+
+  const needsLogin = authRequired && !user;
+  const canEnter = !!stats && (!authRequired || !!user);
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !password || submitting) return;
+    setAuthError(null);
+    setSubmitting(true);
+    const { error } = await onSignIn(email.trim(), password);
+    setSubmitting(false);
+    if (error) setAuthError(error);
+    else setPassword("");
+  };
 
   useEffect(() => {
     const svg = d3.select(svgRef.current!);
@@ -251,24 +305,97 @@ export function Landing({ stats, onEnter, lang, onLangChange }: Props) {
           ))}
         </section>
 
-        <footer style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 4 }}>
-          <button
-            onClick={onEnter}
-            disabled={!stats}
-            style={{
-              padding: "14px 28px", borderRadius: 999,
-              fontSize: 14, fontWeight: 700, letterSpacing: "0.01em",
-              color: "#fff", border: "none", cursor: stats ? "pointer" : "progress",
-              background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 60%, #e5695b 100%)",
-              boxShadow: "0 8px 28px rgba(91,141,239,0.35), 0 2px 6px rgba(15,23,42,0.06)",
-              opacity: stats ? 1 : 0.55,
-              transition: "transform 120ms ease, box-shadow 120ms ease"
-            }}
-            onMouseEnter={(e) => { if (stats) (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
-          >
-            {stats ? t.cta + " →" : t.loading}
-          </button>
+        {needsLogin && !authLoading && (
+          <section style={{
+            display: "grid", gap: 12,
+            padding: "20px 22px", borderRadius: 16,
+            background: "rgba(255,255,255,0.78)",
+            border: "1px solid rgba(15,23,42,0.08)",
+            backdropFilter: "saturate(160%) blur(16px)",
+            boxShadow: "0 8px 28px rgba(15,23,42,0.06)",
+            maxWidth: 460
+          }}>
+            <div>
+              <div style={{
+                fontSize: 11, fontWeight: 700, letterSpacing: "0.16em",
+                textTransform: "uppercase", color: "var(--text-tertiary)"
+              }}>{t.auth.title}</div>
+              <div style={{ fontSize: 13, color: "var(--text-secondary)", marginTop: 4, lineHeight: 1.55 }}>
+                {t.auth.lede}
+              </div>
+            </div>
+            <form onSubmit={handleSignIn} style={{ display: "grid", gap: 10 }}>
+              <input
+                type="email"
+                required
+                autoComplete="username"
+                placeholder={t.auth.email}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{
+                  padding: "11px 14px", borderRadius: 10, fontSize: 14,
+                  border: "1px solid rgba(15,23,42,0.12)",
+                  background: "rgba(255,255,255,0.85)", outline: "none"
+                }}
+              />
+              <input
+                type="password"
+                required
+                autoComplete="current-password"
+                placeholder={t.auth.password}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{
+                  padding: "11px 14px", borderRadius: 10, fontSize: 14,
+                  border: "1px solid rgba(15,23,42,0.12)",
+                  background: "rgba(255,255,255,0.85)", outline: "none"
+                }}
+              />
+              {authError && (
+                <div style={{
+                  fontSize: 12, color: "#c44a3c", padding: "8px 12px",
+                  background: "rgba(229,105,91,0.10)", borderRadius: 8
+                }}>{authError}</div>
+              )}
+              <button
+                type="submit"
+                disabled={submitting || !email || !password}
+                style={{
+                  padding: "12px 18px", borderRadius: 10,
+                  fontSize: 14, fontWeight: 600,
+                  color: "#fff", border: "none",
+                  cursor: submitting ? "progress" : "pointer",
+                  background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 100%)",
+                  opacity: submitting || !email || !password ? 0.6 : 1
+                }}
+              >{submitting ? t.auth.submitting : t.auth.submit}</button>
+              <div style={{ fontSize: 11, color: "var(--text-tertiary)", textAlign: "center" }}>
+                {t.auth.noAccount}
+              </div>
+            </form>
+          </section>
+        )}
+
+        <footer style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 4, flexWrap: "wrap" }}>
+          {!authRequired && (
+            <button
+              onClick={onEnter}
+              disabled={!canEnter}
+              style={{
+                padding: "14px 28px", borderRadius: 999,
+                fontSize: 14, fontWeight: 700, letterSpacing: "0.01em",
+                color: "#fff", border: "none", cursor: canEnter ? "pointer" : "not-allowed",
+                background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 60%, #e5695b 100%)",
+                boxShadow: "0 8px 28px rgba(91,141,239,0.35), 0 2px 6px rgba(15,23,42,0.06)",
+                opacity: canEnter ? 1 : 0.45,
+                transition: "transform 120ms ease, box-shadow 120ms ease"
+              }}
+              onMouseEnter={(e) => { if (canEnter) (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
+            >
+              {!stats ? t.loading : t.cta + " →"}
+            </button>
+          )}
           <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5 }}>
             <div style={{ fontFamily: "var(--font-mono)" }}>
               {stats ? t.statsLabel(stats.nodes, stats.edges, stats.paths) : "—"}
