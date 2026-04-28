@@ -27,7 +27,27 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build:ghpages
+      # Fail loudly if the Supabase secrets aren't set in repo settings —
+      # otherwise Vite silently bakes `undefined` into the bundle and the
+      # deployed site shows a blank login form with no error.
+      - name: Verify Supabase build-time secrets exist
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then
+            echo "::error::Repo secrets VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY are required."
+            echo "Set them at: Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+          echo "secrets look ok (URL host: $(echo "$VITE_SUPABASE_URL" | sed 's|https\?://||;s|/.*||'))"
+
+      - name: Build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run build:ghpages
 
       - name: Add SPA 404 fallback
         run: cp dist/index.html dist/404.html
