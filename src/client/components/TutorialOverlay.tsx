@@ -19,6 +19,12 @@ export interface TutorialStep {
   multi?: boolean;
   title: { ko: string; en: string };
   body:  { ko: string; en: string };
+  /**
+   * Optional screencast base name (e.g. "discovery"). Resolves to
+   * `${BASE_URL}guide/videos/<video>.mp4` (+ .jpg poster) — a narrated clip of
+   * the step's interaction, embedded in the popover.
+   */
+  video?: string;
 }
 
 interface Props {
@@ -31,8 +37,8 @@ interface Props {
   lang: Lang;
 }
 
-const POP_W = 320;
-const POP_H_EST = 190;
+const POP_W = 384;
+const POP_H_EST = 430;
 
 const STR = {
   ko: {
@@ -42,7 +48,8 @@ const STR = {
     skip: "건너뛰기",
     done: "끝내기",
     progress: (i: number, n: number) => `${i} / ${n}단계`,
-    noTarget: "이 단계의 UI가 아직 화면에 없습니다. 설명만 읽고 다음으로 넘어가셔도 됩니다."
+    noTarget: "이 단계의 UI가 아직 화면에 없습니다. 설명만 읽고 다음으로 넘어가셔도 됩니다.",
+    soundHint: "🔊 소리를 켜면 한국어 설명이 나와요"
   },
   en: {
     title: "Tutorial",
@@ -51,7 +58,8 @@ const STR = {
     skip: "Skip",
     done: "Done",
     progress: (i: number, n: number) => `Step ${i} of ${n}`,
-    noTarget: "This step's UI isn't on screen yet — read the description and continue."
+    noTarget: "This step's UI isn't on screen yet — read the description and continue.",
+    soundHint: "🔊 Unmute for the Korean voice-over"
   }
 } as const;
 
@@ -261,6 +269,27 @@ export function TutorialOverlay({ open, steps, step, onPrev, onNext, onClose, la
         }}>
           {current.title[lang]}
         </div>
+        {current.video ? (
+          <div style={{ marginBottom: 10 }}>
+            <video
+              key={current.video}
+              src={`${import.meta.env.BASE_URL}guide/videos/${current.video}.mp4`}
+              poster={`${import.meta.env.BASE_URL}guide/videos/${current.video}.jpg`}
+              controls
+              autoPlay
+              muted
+              playsInline
+              preload="metadata"
+              style={{
+                width: "100%", display: "block", borderRadius: 10,
+                border: "1px solid rgba(15,23,42,0.08)", background: "#0f1729"
+              }}
+            />
+            <div style={{
+              fontSize: 10.5, color: "var(--text-tertiary)", marginTop: 5, textAlign: "center"
+            }}>{t.soundHint}</div>
+          </div>
+        ) : null}
         <div style={{ color: "var(--text-secondary)", marginBottom: 12 }}>
           {current.body[lang]}
         </div>

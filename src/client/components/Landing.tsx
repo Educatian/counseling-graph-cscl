@@ -248,6 +248,22 @@ export function Landing({
         position: "relative", zIndex: 1
       }}>
         <header style={{ display: "grid", gap: 14 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 2 }}>
+            <img
+              src={`${import.meta.env.BASE_URL}brand/logo-mark.png`}
+              alt="Bridgemap"
+              width={30}
+              height={30}
+              style={{ display: "block", filter: "drop-shadow(0 2px 5px rgba(15,23,42,0.12))" }}
+            />
+            <span style={{
+              fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 700,
+              letterSpacing: "-0.02em",
+              background: "linear-gradient(120deg, #5b8def 0%, #8b6fd9 55%, #e5695b 100%)",
+              WebkitBackgroundClip: "text", backgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}>Bridgemap</span>
+          </div>
           <div style={{
             fontSize: 11, fontWeight: 700, letterSpacing: "0.18em",
             textTransform: "uppercase", color: "var(--text-tertiary)"

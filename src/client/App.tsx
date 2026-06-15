@@ -8,6 +8,8 @@ import { Landing } from "./components/Landing";
 import { AlignmentGauge } from "./components/AlignmentGauge";
 import { TutorialOverlay, type TutorialStep } from "./components/TutorialOverlay";
 import { DiscoveryPromptPanel } from "./components/DiscoveryPromptPanel";
+import { GraphLoading } from "./components/GraphLoading";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import type { DiscoveryPrompt } from "./components/DiscoveryPrompts";
 import discoveryData from "./data/discovery-prompts.seed.json";
 import { logEvent } from "./lib/eventLogger";
@@ -23,6 +25,7 @@ const DISCOVERY_PROMPTS = (discoveryData.prompts as DiscoveryPrompt[]);
 const TUTORIAL_STEPS: TutorialStep[] = [
   {
     id: "discovery",
+    video: "discovery",
     targetSelector: '[data-tutorial="discovery-section"]',
     shape: "rect",
     pad: 6,
@@ -37,6 +40,7 @@ const TUTORIAL_STEPS: TutorialStep[] = [
   },
   {
     id: "enter",
+    video: "enter",
     targetSelector: '[data-tutorial="entry-hub"]',
     shape: "circle",
     pad: 14,
@@ -52,6 +56,7 @@ const TUTORIAL_STEPS: TutorialStep[] = [
   },
   {
     id: "bridges",
+    video: "bridges",
     targetSelector: '[data-tutorial="bridges-toggle"]',
     shape: "rect",
     pad: 6,
@@ -66,6 +71,7 @@ const TUTORIAL_STEPS: TutorialStep[] = [
   },
   {
     id: "discussion",
+    video: "discussion",
     targetSelector: '[data-tutorial="ndp-discussion"]',
     shape: "rect",
     pad: 4,
@@ -80,6 +86,7 @@ const TUTORIAL_STEPS: TutorialStep[] = [
   },
   {
     id: "cases",
+    video: "cases",
     targetSelector: '[data-tutorial="ndp-cases"]',
     shape: "rect",
     pad: 4,
@@ -94,6 +101,7 @@ const TUTORIAL_STEPS: TutorialStep[] = [
   },
   {
     id: "record",
+    video: "record",
     targetSelector: '[data-tutorial="rec-button"]',
     shape: "rect",
     pad: 4,
@@ -335,12 +343,27 @@ export default function App() {
         />
         <main style={{ position: "relative", flex: 1, overflow: "hidden" }}>
           {err ? (
-            <div style={{ padding: 24, color: "var(--clinical)" }}>
-              <div style={{ fontSize: 13, fontWeight: 600 }}>API error</div>
-              <div style={{ fontSize: 12, marginTop: 4 }}>{err}</div>
+            <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", padding: 24 }}>
+              <div style={{
+                maxWidth: 440, textAlign: "center", padding: "26px 28px", borderRadius: 16,
+                background: "var(--glass-strong)", border: "1px solid var(--border-hair)",
+                boxShadow: "var(--shadow-lg)"
+              }}>
+                <div style={{ fontSize: 26, marginBottom: 8, color: "var(--clinical)" }}>⚠</div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)" }}>
+                  {lang === "ko" ? "그래프를 불러오지 못했어요" : "Couldn't load the graph"}
+                </div>
+                <div style={{
+                  fontSize: 12, color: "var(--text-tertiary)", marginTop: 10, lineHeight: 1.55,
+                  fontFamily: "var(--font-mono)", wordBreak: "break-word"
+                }}>{err}</div>
+                <button className="primary" style={{ marginTop: 16 }} onClick={() => window.location.reload()}>
+                  {lang === "ko" ? "다시 시도" : "Retry"}
+                </button>
+              </div>
             </div>
           ) : data ? (
-            <>
+            <ErrorBoundary lang={lang}>
               <GraphCanvas
                 nodes={data.nodes}
                 edges={data.edges}
@@ -363,11 +386,9 @@ export default function App() {
               />
               <AlignmentGauge myPath={myPath} seedPaths={data.paths} lang={lang} />
               <NodeDetailPanel node={selected} onClose={() => setSelected(null)} lang={lang} />
-            </>
+            </ErrorBoundary>
           ) : (
-            <div style={{ padding: 24, color: "var(--text-secondary)", fontSize: 13 }}>
-              Loading graph…
-            </div>
+            <GraphLoading lang={lang} />
           )}
         </main>
       </div>

@@ -1,0 +1,15 @@
+{
+  "name": "Bridgemap · Counseling × Clinical Knowledge Graph",
+  "short_name": "Bridgemap",
+  "description": "An instrumented, bilingual knowledge graph of counseling & clinical psychology — a CSCL research instrument.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#eef2f7",
+  "theme_color": "#5b8def",
+  "icons": [
+    { "src": "brand/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "brand/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "brand/maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}
