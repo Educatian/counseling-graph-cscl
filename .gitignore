@@ -23,3 +23,6 @@ public/graph.json
 
 # Playwright test output
 scripts/test-out/
+
+# brand build scratch (raw generations + screenshots + scripts)
+.assets/

@@ -158,7 +158,30 @@ button.segment.active {
   font-weight: 600;
 }
 
-/* Window chrome */
+/* Brand lockup — replaces fake window chrome with real product identity */
+.brand-lockup {
+  display: inline-flex; align-items: center; gap: 9px;
+  height: 100%;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.15s ease;
+}
+.brand-lockup:hover { opacity: 0.78; background: none; }
+.brand-lockup img { filter: drop-shadow(0 1px 2px rgba(15,23,42,0.10)); }
+.brand-wordmark {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  background: linear-gradient(120deg, var(--counseling) 0%, var(--shared) 55%, var(--clinical) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Window chrome (legacy) */
 .window-chrome {
   display: flex; gap: 8px; padding: 0 14px; align-items: center; height: 100%;
 }
@@ -415,6 +438,18 @@ svg.graph circle.pulse-ring {
   border-radius: 12px;
   pointer-events: none;
   animation: discovery-pulse 2.6s ease-in-out infinite;
+}
+
+/* Branded loading constellation — soft breathing dots */
+@keyframes load-breathe {
+  0%, 100% { transform: scale(0.82); opacity: 0.55; }
+  50%      { transform: scale(1.08); opacity: 1; }
+}
+svg .load-dot {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: load-breathe 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(15,23,42,0.12));
 }
 
 /* Scrollbars — ultra-thin channel */

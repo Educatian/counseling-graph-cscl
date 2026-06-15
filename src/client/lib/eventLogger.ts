@@ -40,7 +40,9 @@ export type EventKind =
   // Discovery prompts — epistemic onboarding (which inquiry question a learner picks)
   | "discovery_prompt_open" | "discovery_prompt_close" | "discovery_prompt_path_play"
   // IRB / governance
-  | "consent_recorded";
+  | "consent_recorded"
+  // Reliability — client-side render crash captured by ErrorBoundary
+  | "ui_error";
 
 declare const __STATIC_MODE__: boolean;
 const STATIC = typeof __STATIC_MODE__ !== "undefined" && __STATIC_MODE__;

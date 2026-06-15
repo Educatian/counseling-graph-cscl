@@ -24,21 +24,23 @@ const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
 
 export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome, onTutorial, userEmail, onSignOut }: Props) {
   return (
-    <div className="titlebar" style={{ gridTemplateColumns: "120px 1fr auto", gap: 16 }}>
-      <div className="window-chrome">
-        <span className="traffic red" />
-        <span className="traffic yellow" />
-        <span className="traffic green" />
-      </div>
-      <div className="title" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        {onHome && (
-          <button
-            className="segment"
-            onClick={onHome}
-            title={lang === "ko" ? "랜딩으로 돌아가기" : "Back to landing"}
-            style={{ padding: "2px 8px", fontSize: 12, lineHeight: 1.4 }}
-          >← {lang === "ko" ? "홈" : "Home"}</button>
-        )}
+    <div className="titlebar" style={{ gridTemplateColumns: "auto 1fr auto", gap: 16 }}>
+      <button
+        className="brand-lockup"
+        onClick={onHome}
+        title={lang === "ko" ? "홈으로" : "Home"}
+        style={{ background: "none", border: "none", boxShadow: "none", padding: "0 4px 0 14px" }}
+      >
+        <img
+          src={`${import.meta.env.BASE_URL}brand/logo-mark.png`}
+          alt="Bridgemap"
+          width={22}
+          height={22}
+          style={{ display: "block" }}
+        />
+        <span className="brand-wordmark">Bridgemap</span>
+      </button>
+      <div className="title" style={{ display: "flex", alignItems: "center", gap: 10, justifyContent: "center" }}>
         <div>
           Counseling / Clinical Knowledge Graph
           <div style={{ fontSize: 11, fontWeight: 400, color: "var(--text-tertiary)", marginTop: 1 }}>
