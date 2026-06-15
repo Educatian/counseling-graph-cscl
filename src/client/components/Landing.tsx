@@ -287,6 +287,42 @@ export function Landing({
         </header>
 
         <section style={{
+          position: "relative",
+          borderRadius: 18,
+          overflow: "hidden",
+          border: "1px solid rgba(15,23,42,0.08)",
+          background: "rgba(255,255,255,0.6)",
+          boxShadow: "0 30px 70px -28px rgba(15,23,42,0.30), 0 6px 18px rgba(15,23,42,0.06)",
+          backdropFilter: "saturate(150%) blur(14px)"
+        }}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 7,
+            padding: "9px 14px", borderBottom: "1px solid rgba(15,23,42,0.06)",
+            background: "rgba(255,255,255,0.5)"
+          }}>
+            <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#ff5f57" }} />
+            <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#febc2e" }} />
+            <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#28c840" }} />
+            <span style={{
+              marginLeft: 8, fontSize: 11, color: "var(--text-tertiary)",
+              fontWeight: 600, letterSpacing: "-0.005em"
+            }}>
+              {lang === "ko" ? "라이브 미리보기 · 실제 인터랙션" : "Live preview · real interaction"}
+            </span>
+          </div>
+          <video
+            src={`${import.meta.env.BASE_URL}brand/preview.mp4`}
+            poster={`${import.meta.env.BASE_URL}brand/preview.jpg`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            style={{ width: "100%", display: "block", background: "#0f1729" }}
+          />
+        </section>
+
+        <section style={{
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12
         }}>
           {t.pillars.map((p) => (

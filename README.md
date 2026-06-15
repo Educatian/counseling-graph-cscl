@@ -1,6 +1,8 @@
-# Counseling × Clinical Knowledge Graph — a CSCL research instrument
+# Bridgemap — Counseling × Clinical Knowledge Graph
 
 An instrumented, bilingual (ko/en) knowledge graph of Korean 상담심리 (counseling) and 임상심리 (clinical) psychology curricula, built as a **CSCL research tool** in the Scardamalia / Oshima / Shaffer lineage. Every click, path, annotation, discussion post, and case anchoring is captured as an event trace and is analyzable as a learning-process record.
+
+![Bridgemap live preview](public/brand/preview.gif)
 
 > **Status.** Phase 0 — localhost scaffold + static GitHub Pages preview. Not yet IRB-ready. Not yet deployed to a live cohort.
 >
