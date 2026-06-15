@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./styles.css";
 import { GraphCanvas, type GraphNode, type Domain } from "./components/GraphCanvas";
 import { NodeDetailPanel } from "./components/NodeDetailPanel";
@@ -10,6 +10,10 @@ import { TutorialOverlay, type TutorialStep } from "./components/TutorialOverlay
 import { DiscoveryPromptPanel } from "./components/DiscoveryPromptPanel";
 import { GraphLoading } from "./components/GraphLoading";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { PresenceLayer } from "./components/PresenceLayer";
+import { ReflectionModal } from "./components/ReflectionModal";
+import { saveReflection, type Identity } from "./lib/discourse";
+import { joinPresence, type Peer, type PresenceHandle } from "./lib/presence";
 import type { DiscoveryPrompt } from "./components/DiscoveryPrompts";
 import discoveryData from "./data/discovery-prompts.seed.json";
 import { logEvent } from "./lib/eventLogger";
@@ -135,6 +139,11 @@ export default function App() {
   const [entered, setEntered] = useState<boolean>(() => {
     try { return localStorage.getItem("entered") === "1"; } catch { return false; }
   });
+  // Guest "try without login" — bypasses the auth wall and loads the bundled
+  // graph.json (read/local mode; nothing shared to a cohort).
+  const [guest, setGuest] = useState<boolean>(() => {
+    try { return localStorage.getItem("guest") === "1"; } catch { return false; }
+  });
   const [tutorialOpen, setTutorialOpen] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
   const [activeDiscovery, setActiveDiscovery] = useState<DiscoveryPrompt | null>(null);
@@ -209,6 +218,12 @@ export default function App() {
     try { localStorage.setItem("entered", "1"); } catch {}
     void logEvent("landing_enter", { authed: !!auth.user });
   };
+  const handleGuestEnter = () => {
+    setGuest(true);
+    setEntered(true);
+    try { localStorage.setItem("guest", "1"); localStorage.setItem("entered", "1"); } catch {}
+    void logEvent("landing_enter", { guest: true });
+  };
 
   // In auth mode, signing in *is* entry — no second click required.
   useEffect(() => {
@@ -219,7 +234,8 @@ export default function App() {
   }, [auth.authConfigured, auth.user, entered]);
   const handleHome = () => {
     setEntered(false);
-    try { localStorage.removeItem("entered"); } catch {}
+    setGuest(false);
+    try { localStorage.removeItem("entered"); localStorage.removeItem("guest"); } catch {}
     void logEvent("landing_enter", { via: "home_button" });
   };
 
@@ -229,14 +245,14 @@ export default function App() {
     // Wait for auth state to resolve in non-static mode so the authed
     // learning_paths SELECT carries the JWT.
     const staticMode = typeof window !== "undefined" && (window as { __STATIC_MODE__?: boolean }).__STATIC_MODE__ === true;
-    if (!staticMode && auth.authConfigured && auth.loading) return;
-    fetchGraph()
+    if (!staticMode && !guest && auth.authConfigured && auth.loading) return;
+    fetchGraph(guest)
       .then((d) => {
         setData(d);
         void logEvent("app_ready", { nodes: d.nodes.length, edges: d.edges.length });
       })
       .catch((e) => setErr(String(e)));
-  }, [auth.authConfigured, auth.loading]);
+  }, [auth.authConfigured, auth.loading, guest]);
 
   // Auto-launch the tutorial on a learner's first time inside the graph view
   // (delayed so the D3 force-sim has time to settle and the entry-hub circle
@@ -253,6 +269,62 @@ export default function App() {
     }, 900);
     return () => window.clearTimeout(id);
   }, [entered, data]);
+
+  // Identity for the shared discourse layer. Authed → Supabase-backed cohort
+  // member; demo/static → stable anonymous localStorage id (single-user).
+  const identity = useMemo<Identity>(() => {
+    if (auth.authConfigured && auth.user) {
+      const md = (auth.user.user_metadata ?? {}) as Record<string, unknown>;
+      return {
+        id: auth.user.id,
+        name: (md.display_name as string) || auth.user.email?.split("@")[0] || "me",
+        cohortId: (md.cohort_id as string) || "default",
+        shared: true
+      };
+    }
+    let aid = "";
+    try {
+      aid = localStorage.getItem("anon_id") || "";
+      if (!aid) { aid = "anon-" + Math.random().toString(36).slice(2, 9); localStorage.setItem("anon_id", aid); }
+    } catch { aid = "anon-local"; }
+    return { id: aid, name: lang === "ko" ? "나" : "Me", cohortId: "local", shared: false };
+  }, [auth.authConfigured, auth.user, lang]);
+
+  // --- Realtime co-presence (shared/authed mode only; no-op in demo) ---
+  const [peers, setPeers] = useState<Peer[]>([]);
+  const presenceRef = useRef<PresenceHandle | null>(null);
+  useEffect(() => {
+    if (!entered || !identity.shared) { setPeers([]); return; }
+    const handle = joinPresence(identity, setPeers);
+    presenceRef.current = handle;
+    const onMove = (e: MouseEvent) => {
+      handle.update({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      handle.leave();
+      presenceRef.current = null;
+    };
+  }, [entered, identity]);
+  // Broadcast which node this learner is currently reading.
+  useEffect(() => {
+    presenceRef.current?.update({
+      nodeId: selected?.id ?? null,
+      nodeLabel: selected ? (lang === "en" && selected.labelEn ? selected.labelEn : selected.labelKo) : null
+    });
+  }, [selected, lang]);
+
+  // --- End-of-session reflection ---
+  const [reflectionOpen, setReflectionOpen] = useState(false);
+  const sessionId = useMemo(() => "s-" + Math.random().toString(36).slice(2, 10), []);
+  const handleReflectSubmit = (answers: Record<string, string>) => {
+    void saveReflection(identity, sessionId, answers);
+    void logEvent("reflection_save", {
+      filled: Object.values(answers).filter((v) => v.trim()).length,
+      shared: identity.shared
+    });
+  };
 
   const stats = useMemo(() => {
     if (!data) return null;
@@ -286,13 +358,15 @@ export default function App() {
     });
   };
 
-  // Auth required when Supabase is configured (full app mode); static mode bypasses.
-  const requireAuth = auth.authConfigured;
+  // Auth required when Supabase is configured (full app mode); static mode and
+  // guest "try without login" sessions bypass it.
+  const requireAuth = auth.authConfigured && !guest;
   if (!entered || (requireAuth && !auth.user)) {
     return (
       <Landing
         stats={data ? { nodes: data.nodes.length, edges: data.edges.length, paths: data.paths.length } : null}
         onEnter={handleEnter}
+        onGuest={handleGuestEnter}
         lang={lang}
         onLangChange={handleLangChange}
         authRequired={requireAuth}
@@ -315,11 +389,13 @@ export default function App() {
         onLangChange={handleLangChange}
         onHome={handleHome}
         onTutorial={openTutorial}
+        onReflect={() => setReflectionOpen(true)}
         userEmail={auth.user?.email ?? null}
         onSignOut={async () => {
           await auth.signOut();
           setEntered(false);
-          try { localStorage.removeItem("entered"); } catch {}
+          setGuest(false);
+          try { localStorage.removeItem("entered"); localStorage.removeItem("guest"); } catch {}
         }}
       />
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
@@ -385,7 +461,7 @@ export default function App() {
                 lang={lang}
               />
               <AlignmentGauge myPath={myPath} seedPaths={data.paths} lang={lang} />
-              <NodeDetailPanel node={selected} onClose={() => setSelected(null)} lang={lang} />
+              <NodeDetailPanel node={selected} onClose={() => setSelected(null)} lang={lang} identity={identity} />
             </ErrorBoundary>
           ) : (
             <GraphLoading lang={lang} />
@@ -400,6 +476,13 @@ export default function App() {
         onNext={nextTutorial}
         onClose={closeTutorial}
         lang={lang}
+      />
+      <PresenceLayer peers={peers} lang={lang} />
+      <ReflectionModal
+        open={reflectionOpen}
+        lang={lang}
+        onClose={() => setReflectionOpen(false)}
+        onSubmit={handleReflectSubmit}
       />
     </div>
   );

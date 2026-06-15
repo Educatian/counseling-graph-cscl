@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import type { GraphNode } from "./GraphCanvas";
 import { logEvent } from "../lib/eventLogger";
+import {
+  type Identity, type Move, type Rubric, EMPTY_RUBRIC,
+  loadThread, addPost, removePost, subscribeThread,
+  loadCase, saveCase, clearCase, type Post
+} from "../lib/discourse";
 
 interface Props {
   node: GraphNode | null;
   onClose: () => void;
   lang?: "ko" | "en";
+  identity: Identity;
 }
 
 const DOMAIN_COLOR: Record<string, string> = {
@@ -70,7 +76,7 @@ const MOVE_HINTS: Record<"ko" | "en", Record<"question" | "claim" | "evidence", 
   en: { question: "Question", claim: "Claim", evidence: "Evidence" }
 };
 
-export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
+export function NodeDetailPanel({ node, onClose, lang = "ko", identity }: Props) {
   const [tab, setTab] = useState<(typeof TABS)[number]>("Overview");
   const t = NDP_STR[lang];
   if (!node) return null;
@@ -127,8 +133,8 @@ export function NodeDetailPanel({ node, onClose, lang = "ko" }: Props) {
           )}
         </>
       )}
-      {tab === "Discussion" && <DiscussionThread nodeId={node.id} lang={lang} />}
-      {tab === "Cases" && <CaseRubric nodeId={node.id} lang={lang} />}
+      {tab === "Discussion" && <DiscussionThread nodeId={node.id} lang={lang} identity={identity} />}
+      {tab === "Cases" && <CaseRubric nodeId={node.id} lang={lang} identity={identity} />}
       {tab === "Quiz" && (
         <div className="body" style={{ marginTop: 12 }}>
           {t.quizPlaceholder}
@@ -160,38 +166,24 @@ function SharedContrast({ desc, lang }: { desc: string; lang: "ko" | "en" }) {
   );
 }
 
-/** B5 — §C3 사례개념화 rubric. 노드별로 localStorage에 저장 → 나중에 export. */
-interface Rubric {
-  summary: string;
-  precipitating: string;
-  perpetuating: string;
-  protective: string;
-  cultural: string;
-  updatedAt: number;
-}
-const EMPTY: Rubric = {
-  summary: "", precipitating: "", perpetuating: "", protective: "", cultural: "", updatedAt: 0
-};
-
-function CaseRubric({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) {
+/** B5 — §C3 사례개념화 rubric. Shared backend (Supabase) or localStorage (demo). */
+function CaseRubric({ nodeId, lang, identity }: { nodeId: string; lang: "ko" | "en"; identity: Identity }) {
   const t = NDP_STR[lang];
-  const key = `case:${nodeId}`;
-  const [r, setR] = useState<Rubric>(() => {
-    try { return JSON.parse(localStorage.getItem(key) || "null") || EMPTY; } catch { return EMPTY; }
-  });
+  const [r, setR] = useState<Rubric>(EMPTY_RUBRIC);
   useEffect(() => {
-    try { setR(JSON.parse(localStorage.getItem(key) || "null") || EMPTY); } catch { setR(EMPTY); }
-  }, [key]);
+    let live = true;
+    loadCase(nodeId, identity).then((c) => { if (live) setR(c); }).catch(() => { if (live) setR(EMPTY_RUBRIC); });
+    return () => { live = false; };
+  }, [nodeId, identity]);
 
   const save = () => {
-    const next = { ...r, updatedAt: Date.now() };
-    try { localStorage.setItem(key, JSON.stringify(next)); } catch {}
-    setR(next);
-    void logEvent("case_attach", { nodeId, fieldsFilled: Object.entries(next).filter(([k, v]) => k !== "updatedAt" && v).length });
+    saveCase(nodeId, identity, r).then((next) => {
+      setR(next);
+      void logEvent("case_attach", { nodeId, fieldsFilled: Object.entries(next).filter(([k, v]) => k !== "updatedAt" && v).length });
+    }).catch(() => {});
   };
   const clear = () => {
-    try { localStorage.removeItem(key); } catch {}
-    setR(EMPTY);
+    clearCase(nodeId, identity).then(() => setR(EMPTY_RUBRIC)).catch(() => {});
   };
 
   const field = (
@@ -299,45 +291,42 @@ function PersonalNotes({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) 
   );
 }
 
-/** Discussion thread — minimal CSCL scaffold with epistemic-move tags. */
-type Move = "question" | "claim" | "evidence" | null;
-interface Post { id: string; text: string; tag: Move; ts: number; }
-
+/** Discussion thread — shared CSCL scaffold with epistemic-move tags. */
 const MOVE_META: Record<Exclude<Move, null>, { label: string; color: string }> = {
   question: { label: "Q", color: "#6366f1" },
   claim:    { label: "C", color: "#10b981" },
   evidence: { label: "E", color: "#f59e0b" }
 };
 
-function DiscussionThread({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" }) {
+function DiscussionThread({ nodeId, lang, identity }: { nodeId: string; lang: "ko" | "en"; identity: Identity }) {
   const t = NDP_STR[lang];
   const hints = MOVE_HINTS[lang];
-  const key = `thread:${nodeId}`;
-  const [posts, setPosts] = useState<Post[]>(() => {
-    try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch { return []; }
-  });
+  const [posts, setPosts] = useState<Post[]>([]);
   const [draft, setDraft] = useState("");
   const [tag, setTag] = useState<Move>(null);
 
+  const refresh = () => { loadThread(nodeId, identity).then(setPosts).catch(() => {}); };
   useEffect(() => {
-    try { setPosts(JSON.parse(localStorage.getItem(key) || "[]")); } catch { setPosts([]); }
     setDraft(""); setTag(null);
-  }, [key]);
+    let live = true;
+    loadThread(nodeId, identity).then((p) => { if (live) setPosts(p); }).catch(() => { if (live) setPosts([]); });
+    // Live updates: cohort posts stream in (Supabase) / cross-tab (demo).
+    const unsub = subscribeThread(nodeId, identity, () => { if (live) refresh(); });
+    return () => { live = false; unsub(); };
+  }, [nodeId, identity]);
 
   const post = () => {
     const text = draft.trim();
     if (!text) return;
-    const p: Post = { id: Math.random().toString(36).slice(2, 10), text, tag, ts: Date.now() };
-    const next = [...posts, p];
-    setPosts(next);
-    try { localStorage.setItem(key, JSON.stringify(next)); } catch {}
     setDraft(""); setTag(null);
-    void logEvent("comment_post", { nodeId, tag, length: text.length });
+    addPost(nodeId, identity, text, tag).then((p) => {
+      setPosts((cur) => (cur.some((x) => x.id === p.id) ? cur : [...cur, p]));
+      void logEvent("comment_post", { nodeId, tag, length: text.length, shared: identity.shared });
+    }).catch(() => {});
   };
-  const remove = (id: string) => {
-    const next = posts.filter((p) => p.id !== id);
-    setPosts(next);
-    try { localStorage.setItem(key, JSON.stringify(next)); } catch {}
+  const remove = (p: Post) => {
+    setPosts((cur) => cur.filter((x) => x.id !== p.id));
+    removePost(p, identity).catch(() => {});
   };
 
   return (
@@ -369,17 +358,24 @@ function DiscussionThread({ nodeId, lang }: { nodeId: string; lang: "ko" | "en" 
                 ) : (
                   <span style={{ color: "var(--text-tertiary)" }}>·</span>
                 )}
+                {identity.shared ? (
+                  <span style={{ fontWeight: 700, color: p.authorId === identity.id ? "var(--accent)" : "var(--text-secondary)" }}>
+                    {p.authorName}{p.authorId === identity.id ? " ·" : ""}
+                  </span>
+                ) : null}
                 <span>{new Date(p.ts).toLocaleString()}</span>
-                <button
-                  onClick={() => remove(p.id)}
-                  style={{ marginLeft: "auto", border: "none", background: "transparent",
-                           color: "var(--text-tertiary)", cursor: "pointer", fontSize: 11 }}
-                  aria-label="delete"
-                >✕</button>
+                {p.authorId === identity.id ? (
+                  <button
+                    onClick={() => remove(p)}
+                    style={{ marginLeft: "auto", border: "none", background: "transparent",
+                             color: "var(--text-tertiary)", cursor: "pointer", fontSize: 11 }}
+                    aria-label="delete"
+                  >✕</button>
+                ) : <span style={{ marginLeft: "auto" }} />}
               </div>
               <div style={{ fontSize: 12.5, lineHeight: 1.55, color: "var(--text-primary)",
                             whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
-                {p.text}
+                {p.body}
               </div>
             </div>
           );

@@ -163,6 +163,64 @@ export const discourseNetworks = pgTable(
   })
 );
 
+// ---------- Phase C: shared discourse (knowledge building) ----------
+// Raw collaborative artifacts — cohort-scoped so a post becomes a community
+// knowledge object, not a private localStorage note. Client writes directly via
+// @supabase/supabase-js under RLS (migration 0006).
+
+export const discussionPosts = pgTable(
+  "discussion_posts",
+  {
+    id: text("id").primaryKey(),
+    nodeId: text("node_id").notNull(),
+    cohortId: text("cohort_id").notNull(),
+    authorId: text("author_id").notNull(),
+    authorName: text("author_name").notNull(),
+    body: text("body").notNull(),
+    tag: text("tag", { enum: ["question", "claim", "evidence"] }),
+    buildOnId: text("build_on_id"),
+    ts: timestamp("ts", { withTimezone: true }).notNull().defaultNow()
+  },
+  (t) => ({
+    byNode: index("discussion_node_idx").on(t.nodeId),
+    byCohort: index("discussion_cohort_idx").on(t.cohortId)
+  })
+);
+
+export const caseAnchors = pgTable(
+  "case_anchors",
+  {
+    nodeId: text("node_id").notNull(),
+    authorId: text("author_id").notNull(),
+    cohortId: text("cohort_id").notNull(),
+    summary: text("summary"),
+    precipitating: text("precipitating"),
+    perpetuating: text("perpetuating"),
+    protective: text("protective"),
+    cultural: text("cultural"),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+  },
+  (t) => ({
+    byNode: index("case_anchor_node_idx").on(t.nodeId),
+    byAuthor: index("case_anchor_author_idx").on(t.authorId)
+  })
+);
+
+export const reflections = pgTable(
+  "reflections",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id").notNull(),
+    cohortId: text("cohort_id"),
+    sessionId: text("session_id"),
+    answers: jsonb("answers").notNull(),
+    ts: timestamp("ts", { withTimezone: true }).notNull().defaultNow()
+  },
+  (t) => ({
+    byUser: index("reflections_user_idx").on(t.userId)
+  })
+);
+
 // ---------- IRB consents (G11) ----------
 // Hard blocker for any human-subject paper from S1–S7. One row per
 // (user × protocol_version × accepted-decision); insert-only — revisions

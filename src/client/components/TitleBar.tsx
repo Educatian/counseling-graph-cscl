@@ -12,6 +12,7 @@ interface Props {
   onLangChange: (l: Lang) => void;
   onHome?: () => void;
   onTutorial?: () => void;
+  onReflect?: () => void;
   userEmail?: string | null;
   onSignOut?: () => void;
 }
@@ -22,7 +23,7 @@ const OPTIONS: Array<{ key: "all" | Domain; label: string }> = [
   { key: "clinical", label: "Clinical" }
 ];
 
-export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome, onTutorial, userEmail, onSignOut }: Props) {
+export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, onBridgesOnlyChange, lang, onLangChange, onHome, onTutorial, onReflect, userEmail, onSignOut }: Props) {
   return (
     <div className="titlebar" style={{ gridTemplateColumns: "auto 1fr auto", gap: 16 }}>
       <button
@@ -65,6 +66,14 @@ export function TitleBar({ subtitle, domainFilter, onDomainChange, bridgesOnly, 
           title={lang === "ko" ? "CSCL 사용 가이드북 (새 탭)" : "CSCL guidebook (new tab)"}
           style={{ textDecoration: "none", fontWeight: 600, display: "inline-flex", alignItems: "center" }}
         >📘 {lang === "ko" ? "가이드" : "Guide"}</a>
+        {onReflect && (
+          <button
+            className="segment"
+            onClick={onReflect}
+            title={lang === "ko" ? "오늘의 성찰 (메타인지)" : "Today's reflection (metacognition)"}
+            style={{ fontWeight: 600 }}
+          >✶ {lang === "ko" ? "성찰" : "Reflect"}</button>
+        )}
         <button
           className={`segment ${bridgesOnly ? "active" : ""}`}
           onClick={() => onBridgesOnlyChange(!bridgesOnly)}

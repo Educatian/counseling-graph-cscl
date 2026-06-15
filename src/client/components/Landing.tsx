@@ -6,6 +6,7 @@ import type { User } from "@supabase/supabase-js";
 interface Props {
   stats: { nodes: number; edges: number; paths: number } | null;
   onEnter: () => void;
+  onGuest: () => void;
   lang: Lang;
   onLangChange: (l: Lang) => void;
   authRequired: boolean;
@@ -28,7 +29,10 @@ const COPY = {
       { label: "S5 · Mirror Mode", desc: "실시간 전문가-정합도 게이지" }
     ],
     cta: "그래프 열기",
-    subCta: "Phase 0 · 로컬 · v0.0.1",
+    guestCta: "로그인 없이 바로 데모",
+    guestSub: "가입·설치 없이 즉시 둘러보기",
+    signInCta: "코호트 로그인",
+    subCta: "Phase 0 · v0.0.1",
     how: [
       "① 진입 허브를 선택해 도메인을 고른다",
       "② 씨앗 경로를 따라 전문가의 사고 순서를 본다",
@@ -61,7 +65,10 @@ const COPY = {
       { label: "S5 · Mirror Mode", desc: "Live alignment gauge to expert reference" }
     ],
     cta: "Enter the graph",
-    subCta: "Phase 0 · local · v0.0.1",
+    guestCta: "Try the demo — no login",
+    guestSub: "No sign-up, explore instantly",
+    signInCta: "Cohort sign-in",
+    subCta: "Phase 0 · v0.0.1",
     how: [
       "1. Pick an entry hub to choose a domain",
       "2. Follow a seed path to see the expert's order of reasoning",
@@ -85,7 +92,7 @@ const COPY = {
 
 export function Landing({
   stats,
-  onEnter,
+  onGuest,
   lang,
   onLangChange,
   authRequired,
@@ -99,9 +106,9 @@ export function Landing({
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [showLogin, setShowLogin] = useState(false);
 
   const needsLogin = authRequired && !user;
-  const canEnter = !!stats && (!authRequired || !!user);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -242,122 +249,148 @@ export function Landing({
       </div>
 
       <div style={{
-        maxWidth: 1040, margin: "0 auto",
-        padding: "80px 32px 64px",
-        display: "grid", gap: 40,
+        maxWidth: 1180, margin: "0 auto",
+        padding: "clamp(48px, 8vh, 96px) 32px 64px",
+        display: "grid", gap: 44,
         position: "relative", zIndex: 1
       }}>
-        <header style={{ display: "grid", gap: 14 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 2 }}>
-            <img
-              src={`${import.meta.env.BASE_URL}brand/logo-mark.png`}
-              alt="Bridgemap"
-              width={30}
-              height={30}
-              style={{ display: "block", filter: "drop-shadow(0 2px 5px rgba(15,23,42,0.12))" }}
-            />
-            <span style={{
-              fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 700,
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(120deg, #5b8def 0%, #8b6fd9 55%, #e5695b 100%)",
-              WebkitBackgroundClip: "text", backgroundClip: "text",
-              WebkitTextFillColor: "transparent"
-            }}>Bridgemap</span>
-          </div>
-          <div style={{
-            fontSize: 11, fontWeight: 700, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "var(--text-tertiary)"
-          }}>{t.eyebrow}</div>
-          <h1 style={{
-            fontFamily: "var(--font-display)", fontSize: 52, fontWeight: 600,
-            lineHeight: 1.05, letterSpacing: "-0.025em",
-            margin: 0, color: "var(--text-primary)",
-            background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 50%, #e5695b 100%)",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-            backgroundClip: "text"
-          }}>{t.title}</h1>
-          <div style={{
-            fontSize: 18, color: "var(--text-secondary)", fontWeight: 400,
-            letterSpacing: "-0.01em"
-          }}>{t.titleSub}</div>
-          <p style={{
-            maxWidth: 720, fontSize: 14.5, lineHeight: 1.7,
-            color: "var(--text-secondary)", margin: "6px 0 0"
-          }}>{t.lede}</p>
-        </header>
-
+        {/* ---- HERO: two-column ---- */}
         <section style={{
-          position: "relative",
-          borderRadius: 18,
-          overflow: "hidden",
-          border: "1px solid rgba(15,23,42,0.08)",
-          background: "rgba(255,255,255,0.6)",
-          boxShadow: "0 30px 70px -28px rgba(15,23,42,0.30), 0 6px 18px rgba(15,23,42,0.06)",
-          backdropFilter: "saturate(150%) blur(14px)"
-        }}>
-          <div style={{
-            display: "flex", alignItems: "center", gap: 7,
-            padding: "9px 14px", borderBottom: "1px solid rgba(15,23,42,0.06)",
-            background: "rgba(255,255,255,0.5)"
-          }}>
-            <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#ff5f57" }} />
-            <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#febc2e" }} />
-            <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#28c840" }} />
-            <span style={{
-              marginLeft: 8, fontSize: 11, color: "var(--text-tertiary)",
-              fontWeight: 600, letterSpacing: "-0.005em"
-            }}>
-              {lang === "ko" ? "라이브 미리보기 · 실제 인터랙션" : "Live preview · real interaction"}
-            </span>
+          display: "grid", gap: "clamp(28px, 4vw, 56px)",
+          gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 0.95fr)",
+          alignItems: "center"
+        }} className="hero-grid">
+          {/* left — copy + CTAs */}
+          <div style={{ display: "grid", gap: 16, minWidth: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+              <img
+                src={`${import.meta.env.BASE_URL}brand/logo-mark.png`}
+                alt="Bridgemap" width={32} height={32}
+                style={{ display: "block", filter: "drop-shadow(0 2px 6px rgba(15,23,42,0.14))" }}
+              />
+              <span style={{
+                fontFamily: "var(--font-display)", fontSize: 20, fontWeight: 700, letterSpacing: "-0.02em",
+                background: "linear-gradient(120deg, #5b8def 0%, #8b6fd9 55%, #e5695b 100%)",
+                WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent"
+              }}>Bridgemap</span>
+            </div>
+            <div style={{
+              fontSize: 11, fontWeight: 700, letterSpacing: "0.18em",
+              textTransform: "uppercase", color: "var(--text-tertiary)"
+            }}>{t.eyebrow}</div>
+            <h1 style={{
+              fontFamily: "var(--font-display)", fontSize: "clamp(38px, 5.2vw, 60px)", fontWeight: 600,
+              lineHeight: 1.04, letterSpacing: "-0.03em", margin: 0,
+              background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 50%, #e5695b 100%)",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text"
+            }}>{t.title}</h1>
+            <div style={{ fontSize: "clamp(16px, 2vw, 19px)", color: "var(--text-secondary)", letterSpacing: "-0.01em" }}>
+              {t.titleSub}
+            </div>
+            <p style={{ maxWidth: 540, fontSize: 14.5, lineHeight: 1.7, color: "var(--text-secondary)", margin: "4px 0 6px" }}>
+              {t.lede}
+            </p>
+
+            {/* CTA row — guest demo is the primary action */}
+            <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 2 }}>
+              <button
+                onClick={onGuest}
+                style={{
+                  padding: "15px 30px", borderRadius: 999,
+                  fontSize: 15, fontWeight: 700, letterSpacing: "0.01em",
+                  color: "#fff", border: "none", cursor: "pointer",
+                  background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 58%, #e5695b 100%)",
+                  boxShadow: "0 12px 32px -8px rgba(91,141,239,0.55), 0 2px 6px rgba(15,23,42,0.08)",
+                  transition: "transform 130ms ease, box-shadow 130ms ease"
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
+              >{t.guestCta} →</button>
+              {authRequired ? (
+                <button
+                  onClick={() => setShowLogin((v) => !v)}
+                  style={{
+                    padding: "13px 22px", borderRadius: 999, fontSize: 14, fontWeight: 600,
+                    color: "var(--text-secondary)", cursor: "pointer",
+                    background: "rgba(255,255,255,0.7)", border: "1px solid rgba(15,23,42,0.1)",
+                    backdropFilter: "saturate(150%) blur(10px)"
+                  }}
+                >{t.signInCta}</button>
+              ) : null}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 12, color: "var(--text-tertiary)" }}>
+              <span style={{
+                width: 6, height: 6, borderRadius: "50%", background: "#28c840",
+                boxShadow: "0 0 0 3px rgba(40,200,64,0.18)"
+              }} />
+              {t.guestSub}
+            </div>
+            <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5, marginTop: 4 }}>
+              <span style={{ fontFamily: "var(--font-mono)" }}>
+                {stats ? t.statsLabel(stats.nodes, stats.edges, stats.paths) : "214 nodes · 204 edges · 8 seed paths"}
+              </span>
+              <span style={{ margin: "0 8px", opacity: 0.5 }}>·</span>
+              <span>{t.subCta}</span>
+            </div>
           </div>
-          <video
-            src={`${import.meta.env.BASE_URL}brand/preview.mp4`}
-            poster={`${import.meta.env.BASE_URL}brand/preview.jpg`}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            style={{ width: "100%", display: "block", background: "#0f1729" }}
-          />
+
+          {/* right — live preview, framed */}
+          <div style={{
+            position: "relative", borderRadius: 18, overflow: "hidden",
+            border: "1px solid rgba(15,23,42,0.08)", background: "rgba(255,255,255,0.6)",
+            boxShadow: "0 40px 90px -30px rgba(15,23,42,0.38), 0 8px 22px rgba(15,23,42,0.07)",
+            backdropFilter: "saturate(150%) blur(14px)"
+          }}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 7, padding: "9px 14px",
+              borderBottom: "1px solid rgba(15,23,42,0.06)", background: "rgba(255,255,255,0.5)"
+            }}>
+              <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#ff5f57" }} />
+              <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#febc2e" }} />
+              <span style={{ width: 9, height: 9, borderRadius: "50%", background: "#28c840" }} />
+              <span style={{ marginLeft: 8, fontSize: 11, color: "var(--text-tertiary)", fontWeight: 600 }}>
+                {lang === "ko" ? "라이브 미리보기 · 실제 인터랙션" : "Live preview · real interaction"}
+              </span>
+            </div>
+            <video
+              src={`${import.meta.env.BASE_URL}brand/preview.mp4`}
+              poster={`${import.meta.env.BASE_URL}brand/preview.jpg`}
+              autoPlay muted loop playsInline preload="metadata"
+              style={{ width: "100%", display: "block", background: "#0f1729" }}
+            />
+          </div>
         </section>
 
+        {/* ---- pillars strip ---- */}
         <section style={{
-          display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12
+          display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 12
         }}>
           {t.pillars.map((p) => (
             <div key={p.label} style={{
-              padding: "14px 16px", borderRadius: 14,
-              background: "rgba(255,255,255,0.7)",
-              border: "1px solid rgba(15,23,42,0.06)",
-              backdropFilter: "saturate(150%) blur(14px)",
-              boxShadow: "0 2px 12px rgba(15,23,42,0.04)"
+              padding: "15px 17px", borderRadius: 14,
+              background: "rgba(255,255,255,0.72)", border: "1px solid rgba(15,23,42,0.06)",
+              backdropFilter: "saturate(150%) blur(14px)", boxShadow: "0 2px 12px rgba(15,23,42,0.04)"
             }}>
               <div style={{
                 fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
                 textTransform: "uppercase", color: "var(--text-tertiary)", marginBottom: 6
               }}>{p.label}</div>
-              <div style={{ fontSize: 13, color: "var(--text-primary)", lineHeight: 1.55 }}>
-                {p.desc}
-              </div>
+              <div style={{ fontSize: 13, color: "var(--text-primary)", lineHeight: 1.55 }}>{p.desc}</div>
             </div>
           ))}
         </section>
 
+        {/* ---- how-to strip ---- */}
         <section style={{
-          display: "grid", gap: 10,
-          padding: "18px 20px", borderRadius: 14,
-          background: "rgba(255,255,255,0.55)",
-          border: "1px dashed rgba(15,23,42,0.1)"
+          display: "grid", gap: 10, padding: "18px 20px", borderRadius: 14,
+          background: "rgba(255,255,255,0.55)", border: "1px dashed rgba(15,23,42,0.1)"
         }}>
           {t.how.map((line, i) => (
-            <div key={i} style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-              {line}
-            </div>
+            <div key={i} style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>{line}</div>
           ))}
         </section>
 
-        {needsLogin && !authLoading && (
+        {needsLogin && showLogin && !authLoading && (
           <section style={{
             display: "grid", gap: 12,
             padding: "20px 22px", borderRadius: 16,
@@ -428,34 +461,19 @@ export function Landing({
           </section>
         )}
 
-        <footer style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 4, flexWrap: "wrap" }}>
-          {!authRequired && (
-            <button
-              onClick={onEnter}
-              disabled={!canEnter}
-              style={{
-                padding: "14px 28px", borderRadius: 999,
-                fontSize: 14, fontWeight: 700, letterSpacing: "0.01em",
-                color: "#fff", border: "none", cursor: canEnter ? "pointer" : "not-allowed",
-                background: "linear-gradient(135deg, #5b8def 0%, #8b6fd9 60%, #e5695b 100%)",
-                boxShadow: "0 8px 28px rgba(91,141,239,0.35), 0 2px 6px rgba(15,23,42,0.06)",
-                opacity: canEnter ? 1 : 0.45,
-                transition: "transform 120ms ease, box-shadow 120ms ease"
-              }}
-              onMouseEnter={(e) => { if (canEnter) (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
-            >
-              {!stats ? t.loading : t.cta + " →"}
-            </button>
-          )}
-          <div style={{ fontSize: 11, color: "var(--text-tertiary)", lineHeight: 1.5 }}>
-            <div style={{ fontFamily: "var(--font-mono)" }}>
-              {stats ? t.statsLabel(stats.nodes, stats.edges, stats.paths) : "—"}
-            </div>
-            <div style={{ marginTop: 2 }}>{t.subCta}</div>
-          </div>
+        <footer style={{
+          fontSize: 11, color: "var(--text-tertiary)", textAlign: "center",
+          paddingTop: 8, borderTop: "1px solid rgba(15,23,42,0.06)"
+        }}>
+          Bridgemap · Counseling × Clinical Knowledge Graph — a CSCL research instrument
         </footer>
       </div>
+
+      <style>{`
+        @media (max-width: 880px) {
+          .hero-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

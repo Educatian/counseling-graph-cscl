@@ -16,7 +16,9 @@ data/*.json
 wrangler.toml
 .DS_Store
 *.log
-public/graph.json
+# public/graph.json is now committed so the bundled guest "try without login"
+# demo works in every build (incl. the Supabase ghpages app). It is the public
+# curriculum seed, identical to src/client/data/core-graph.seed.json.
 
 # tsc build artifacts (we check in .ts sources only)
 *.tsbuildinfo

@@ -42,7 +42,9 @@ export type EventKind =
   // IRB / governance
   | "consent_recorded"
   // Reliability — client-side render crash captured by ErrorBoundary
-  | "ui_error";
+  | "ui_error"
+  // Metacognitive end-of-session reflection
+  | "reflection_save";
 
 declare const __STATIC_MODE__: boolean;
 const STATIC = typeof __STATIC_MODE__ !== "undefined" && __STATIC_MODE__;

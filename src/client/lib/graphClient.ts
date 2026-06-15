@@ -21,8 +21,10 @@ export interface GraphResp {
 
 const undef = <T,>(v: T | null | undefined): T | undefined => (v == null ? undefined : v);
 
-export async function fetchGraph(): Promise<GraphResp> {
-  if (STATIC) {
+export async function fetchGraph(guest = false): Promise<GraphResp> {
+  // Static demo build, or a guest "try without login" session in the full app:
+  // load the bundled public/graph.json instead of hitting Supabase.
+  if (STATIC || guest) {
     const r = await fetch(`${import.meta.env.BASE_URL}graph.json`);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     return (await r.json()) as GraphResp;
