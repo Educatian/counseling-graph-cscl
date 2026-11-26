@@ -29,12 +29,12 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "dotenv": "^17.4.2",
-    "drizzle-kit": "^0.29.0",
-    "drizzle-orm": "^0.36.4",
+    "drizzle-kit": "0.31.11",
+    "drizzle-orm": "0.45.4",
     "playwright": "^1.59.1",
     "postgres": "^3.4.9",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "vite": "^5.4.11"
+    "vite": "6.4.6"
   }
 }
